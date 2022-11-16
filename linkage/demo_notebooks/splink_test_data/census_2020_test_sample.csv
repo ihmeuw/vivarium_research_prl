@@ -1,0 +1,961 @@
+,first_name,last_name,age,date_of_birth,address,zipcode,relation_to_household_head,sex,race_ethnicity,middle_initial,unique_id
+0,Margaret,Clark,68,1951-07-27,"1344 winoka rd  brooksville, fl",34601,Reference person,Female,Black,J,0
+1,Jeffrey,Littlejohn,52,1967-05-03,"927 23rd st  clearwater, fl",34698,Reference person,Male,Black,V,1
+2,Briana,Jackson,13,2006-09-07,"927 23rd st  clearwater, fl",34698,Biological child,Female,Black,A,2
+3,Benjamin,Cox,21,1998-10-21,"927 23rd st  clearwater, fl",34698,Stepchild,Male,Black,D,3
+4,Willie,Tucker,72,1947-10-09,"8904 167th place  fleming island, fl",32003,Reference person,Male,White,J,4
+5,Frank,Centers,80,1939-09-21,"3478 claude douglas cir  jacksonville, fl",32218,Reference person,Male,White,C,5
+6,Judy,Long,80,1939-06-01,"3478 claude douglas cir  jacksonville, fl",32218,Opp-sex spouse,Female,White,R,6
+7,Mark,Harmon,66,1953-04-06,"94 perry rd  orlando, fl",32832,Reference person,Male,White,B,7
+8,Christine,Mckee,40,1979-05-08,"94 perry rd  orlando, fl",32832,Biological child,Female,White,J,8
+9,Aidan,Rountree,14,2005-05-01,"94 perry rd  orlando, fl",32832,Grandchild,Male,White,J,9
+10,Kenneth,Truebenbach,71,1949-01-05,"136 southwood ave  north pt, fl",33953,Reference person,Male,White,A,10
+11,Kenneth,Wilson,72,1947-10-03,"136 southwood ave  north pt, fl",33953,Other nonrelative,Male,White,B,11
+12,Jamie,Gamble,34,1985-10-27,"164 raymond rd  merritt island, fl",32953,Reference person,Female,White,C,12
+13,Edward,Kleinschmidt,78,1941-04-12,"2144 e ann st  palm springs, fl",33461,Reference person,Male,White,J,13
+14,Tiffany,Ellis,49,1971-03-17,"7854 agnes ave  titusville, fl",32780,Reference person,Female,Black,R,14
+15,Timothy,Ramirez,46,1974-03-09,"7854 agnes ave  titusville, fl",32780,Opp-sex partner,Male,Latino,A,15
+16,Kenneth,Jankowski,67,1953-03-07,"1820 colleen ct  fort myers, fl",33908,Reference person,Male,White,W,16
+17,Kelly,Jensen,57,1963-03-21,"1820 colleen ct  fort myers, fl",33908,Opp-sex spouse,Female,White,C,17
+18,Judith,Demello,81,1938-12-13,"74 2 avenue  gainesville, fl",32653,Reference person,Female,White,C,18
+19,Frank,Nielsen,88,1931-08-15,"74 2 avenue  gainesville, fl",32653,Opp-sex spouse,Male,White,A,19
+20,Joyce,Botello,68,1951-08-08,"1253 w 102nd st  cape coral, fl",33909,Reference person,Female,Latino,J,20
+21,Brian,Marty,30,1990-02-04,"178 waverly avenue  panama city, fl",32401,Reference person,Male,White,V,21
+22,Vanessa,Long,28,1991-04-12,"178 waverly avenue  panama city, fl",32401,Opp-sex spouse,Female,White,G,22
+23,Gloria,Lake,64,1955-08-02,"178 waverly avenue  panama city, fl",32401,Parent-in-law,Female,White,N,23
+24,Shannon,Kelleher,37,1982-08-08," northwest rock creek bvd  homestead, fl",33032,Reference person,Female,White,C,24
+25,Sherry,Ascencio,56,1963-05-21," northwest rock creek bvd  homestead, fl",33032,Roommate,Female,White,G,25
+26,Emily,Sherwood,33,1986-11-27,"5700 charjene way  unincorporated, fl",33434,Reference person,Female,White,K,26
+27,Jamie,Nelson,33,1987-02-01,"5700 charjene way  unincorporated, fl",33434,Same-sex spouse,Female,White,A,27
+28,Lindsey,Perez,34,1985-11-20,"54 forfar drive # 500 jacksonville, fl",32218,Reference person,Female,Latino,S,28
+29,Thomas,Alvarez,39,1980-12-04,"54 forfar drive # 500 jacksonville, fl",32218,Opp-sex spouse,Male,Latino,J,29
+30,Maria,Munoz,6,2013-05-04,"54 forfar drive # 500 jacksonville, fl",32218,Biological child,Female,Latino,D,30
+31,Angelina,Barrios,1,2018-11-17,"54 forfar drive # 500 jacksonville, fl",32218,Biological child,Female,Latino,A,31
+32,Richard,Hanneman-Boyer,36,1983-04-20,"3208 brightwood avenu fl 4 apt 509 kissimmee, fl",34746,Reference person,Male,White,K,32
+33,Katherine,Dudley,37,1982-07-08,"3208 brightwood avenu fl 4 apt 509 kissimmee, fl",34746,Opp-sex spouse,Female,Black,R,33
+34,Harper,Kim,9,2010-09-22,"3208 brightwood avenu fl 4 apt 509 kissimmee, fl",34746,Biological child,Female,Multiracial or Other,M,34
+35,Mariah,Chamblee,5,2014-07-19,"3208 brightwood avenu fl 4 apt 509 kissimmee, fl",34746,Biological child,Female,Multiracial or Other,G,35
+36,Aidan,Crosdale,12,2007-07-12,"3208 brightwood avenu fl 4 apt 509 kissimmee, fl",34746,Stepchild,Male,Black,G,36
+37,Henry,Richardson,81,1938-04-27,"412 58 stree  harlem, fl",33440,Reference person,Male,White,E,37
+38,Judy,Smart,78,1941-09-18,"412 58 stree  harlem, fl",33440,Opp-sex spouse,Female,White,P,38
+39,Louise,Nicholson,86,1933-04-18,"12040 se 103rd ct  punta gorda, fl",33982,Reference person,Female,White,J,39
+40,Joe,Zisa,84,1935-12-09,"92 address unassigned  delray beach, fl",33444,Reference person,Male,White,N,40
+42,Margaret,Williams,64,1956-01-07,"7186 n 329 e  palm beach gardens, fl",33410,Reference person,Female,Black,E,42
+43,Richard,Hicks,32,1988-03-03,"2971 greenview dr  gainesville, fl",32601,Reference person,Male,Black,D,43
+44,Austin,Zappia,28,1991-04-23,"26 cypress crt  jacksonville, fl",32277,Reference person,Male,White,N,44
+45,Brian,Baehler,31,1989-03-27,"22 alden rd  unincorporated, fl",32839,Reference person,Male,White,F,45
+46,Janet,Singh,34,1986-02-21,"22 alden rd  unincorporated, fl",32839,Opp-sex spouse,Female,Asian,J,46
+47,Angel,Campbell,9,2011-03-11,"22 alden rd  unincorporated, fl",32839,Biological child,Male,Multiracial or Other,D,47
+48,Madelyn,Richards,6,2013-12-21,"22 alden rd  unincorporated, fl",32839,Biological child,Female,Multiracial or Other,M,48
+49,Kim,Peterson,59,1960-10-01,"13172 lamplite ln  unincorporated, fl",32824,Reference person,Female,White,B,49
+50,Tiffany,Church,21,1998-06-30,"13172 lamplite ln  unincorporated, fl",32824,Biological child,Female,White,F,50
+51,Sarah,Field,82,1937-09-07,"1885 nw 143rd ave  sanford, fl",32771,Reference person,Female,White,O,51
+52,Naomi,Usry,37,1982-07-24,"8521 n edison st  daytona beach, fl",32114,Reference person,Female,White,J,52
+53,Willie,Moberg,67,1952-09-01," denby  cape coral, fl",33909,Reference person,Male,White,W,53
+54,Jodi,Bollinger,34,1985-12-14," denby  cape coral, fl",33909,Biological child,Female,White,T,54
+55,Caroline,Ewasko,9,2010-10-02," denby  cape coral, fl",33909,Grandchild,Female,White,A,55
+56,Grayson,Larson,6,2013-09-06," denby  cape coral, fl",33909,Grandchild,Male,White,J,56
+57,Brandon,Synesael,37,1983-01-10," denby  cape coral, fl",33909,Child-in-law,Male,White,E,57
+58,Justin,Berberena,41,1978-05-27,"1720 gulf rd  north fort myers, fl",33903,Reference person,Male,Latino,F,58
+59,George,Dudderar,69,1950-04-19,"8205 avocet dr  estero, fl",33928,Reference person,Male,White,R,59
+61,Joan,Kibbee,88,1931-10-25,"4087 jasper loop  sarasota, fl",34231,Reference person,Female,White,C,61
+62,Gary,Schnurr,71,1948-12-28,"27 rand street  cocoa, fl",32927,Reference person,Male,White,N,62
+63,Tina,Rodriguez,44,1975-07-17,"27 rand street  cocoa, fl",32927,Opp-sex spouse,Female,Latino,C,63
+64,Stefanie,Dalton,33,1987-03-05,"3414 sw 28th st  titusville, fl",32796,Reference person,Female,White,J,64
+65,Charles,Chadwick,31,1988-12-20,"3414 sw 28th st  titusville, fl",32796,Opp-sex spouse,Male,White,D,65
+66,Raelynn,Lawson,2,2017-10-18,"3414 sw 28th st  titusville, fl",32796,Biological child,Female,White,A,66
+67,Rhonda,Rios,58,1961-04-13,"1141 east 57 street  homestead, fl",33031,Reference person,Female,Latino,A,67
+68,Kyle,Banda,34,1985-06-13,"1141 east 57 street  homestead, fl",33031,Biological child,Male,Latino,D,68
+69,Brenda,Seals,74,1945-12-20,"286 e 49th st  largo, fl",33774,Reference person,Female,Black,G,69
+70,Virginia,Marin,77,1942-05-13,"5720 s adams st  jacksonville, fl",32256,Reference person,Female,Latino,B,70
+71,Steven,Patton,48,1971-07-27,"618 marquette drive # 208 weston, fl",33331,Reference person,Male,White,S,71
+72,Brian,Mcentire,16,2004-02-16,"618 marquette drive # 208 weston, fl",33331,Biological child,Male,White,K,72
+73,Aidan,Keller,13,2006-08-24,"618 marquette drive # 208 weston, fl",33331,Biological child,Male,White,K,73
+74,Brandy,Sorenson,39,1980-10-20,"618 marquette drive # 208 weston, fl",33331,Opp-sex partner,Female,White,L,74
+75,Elizabeth,Couey,75,1945-01-31,"3100 ne 49 st  lake land, fl",33815,Reference person,Female,White,R,75
+76,Eva,Gilinsky,11,2009-01-04,"3100 ne 49 st  lake land, fl",33815,Grandchild,Female,White,K,76
+77,Ronald,Beiser,81,1938-10-17,"6173 avenida cuatro vientos  lakeland, fl",33809,Reference person,Male,White,T,77
+78,Alice,Bard,79,1940-08-30,"6173 avenida cuatro vientos  lakeland, fl",33809,Opp-sex spouse,Female,White,S,78
+79,Timothy,Heacock,63,1956-04-28,"1097 n state st  palm coast, fl",32137,Reference person,Male,White,S,79
+80,Kelly,Keith,27,1993-01-19,"103 hemp rd  port charlotte, fl",33948,Reference person,Female,Black,S,80
+81,Allison,Baker,25,1994-04-07," w 4th st  north port, fl",34287,Reference person,Female,Black,K,81
+82,Sadie,Tidwell,2,2017-10-15," w 4th st  north port, fl",34287,Biological child,Female,Black,K,82
+83,Liliana,Marshall,0,2019-12-03," w 4th st  north port, fl",34287,Biological child,Female,Black,A,83
+84,Adam,Reyes,39,1980-05-29,"7753 nautical way  melbourne, fl",32901,Reference person,Male,Latino,D,84
+85,Kristen,Brabenec,28,1991-10-10,"7753 nautical way  melbourne, fl",32901,Opp-sex spouse,Female,White,T,85
+86,Lee,Polanco-Fernandez,66,1953-12-16,"5306 kingsbury road  estero, fl",33928,Reference person,Male,Latino,J,86
+87,Beverly,Salazar,65,1954-09-06,"5306 kingsbury road  estero, fl",33928,Opp-sex spouse,Female,Latino,A,87
+88,Gary,Nolt,70,1949-08-13,"10780 rivercrest dr  kissimmee, fl",34744,Reference person,Male,White,G,88
+89,Sherry,Joseph,57,1962-07-24,"10780 rivercrest dr  kissimmee, fl",34744,Opp-sex spouse,Female,White,D,89
+90,Adam,Schindler,37,1982-11-27,"2408 brookshire dr  sunset corners, fl",33187,Reference person,Male,White,M,90
+91,Katherine,Gaudiano,35,1985-02-27,"2408 brookshire dr  sunset corners, fl",33187,Opp-sex spouse,Female,White,S,91
+92,Brooke,Marafioti,8,2011-08-09,"2408 brookshire dr  sunset corners, fl",33187,Biological child,Female,White,L,92
+93,Jeffrey,Battle,53,1966-12-23,"340 80 street  st. petersburg, fl",33710,Reference person,Male,Black,M,93
+94,Nicholas,Goodman,36,1983-08-05,"5266 shady rd  orange city, fl",32763,Reference person,Male,White,K,94
+95,Lindsey,Williamson,35,1985-01-16,"5266 shady rd  orange city, fl",32763,Opp-sex spouse,Female,White,K,95
+96,Charles,Weller,6,2013-05-16,"5266 shady rd  orange city, fl",32763,Biological child,Male,White,C,96
+97,Jack,Ramer,5,2014-11-20,"5266 shady rd  orange city, fl",32763,Biological child,Male,White,B,97
+99,Martha,Wright,71,1948-09-03,"1043 w atherton rd  ocala, fl",34481,Reference person,Female,White,I,99
+100,Ruth,Susan,86,1933-04-03,"926 forestwood dr  cocoa, fl",32926,Reference person,Female,White,M,100
+101,Cheryl,Fountain,50,1969-05-05,"1829 nobel pl  weston, fl",33332,Reference person,Female,White,J,101
+102,Eric,Bradley,51,1968-11-17,"1829 nobel pl  weston, fl",33332,Opp-sex spouse,Male,White,F,102
+103,Diane,Jackson,71,1948-04-15,"25 cobblestone drive  lutz, fl",33625,Reference person,Female,Black,S,103
+104,Jeffrey,Stafford,46,1973-12-25,"3652 poppy ln  pittman, fl",32726,Reference person,Male,White,R,104
+105,Melanie,Henderson,48,1971-09-01,"3842 ne 32nd pl  sarasota, fl",34231,Reference person,Female,White,D,105
+106,Shelby,Garden,19,2000-09-02,"3842 ne 32nd pl  sarasota, fl",34231,Biological child,Female,White,S,106
+107,Andrea,Kennedy,26,1994-02-03,"3501 bryson st  tampa, fl",33619,Reference person,Female,White,J,107
+108,Erica,Rue,26,1993-12-08,"3501 bryson st  tampa, fl",33619,Roommate,Female,White,B,108
+109,Emily,Davidson,39,1980-11-26,"350 maple ter  jensen beach, fl",34957,Reference person,Female,White,T,109
+110,Anthony,Solano,81,1938-06-27,"931 w 28th st  titusville, fl",32780,Reference person,Male,Latino,J,110
+111,Gary,Wilson,62,1957-05-30,"105 riverview avenue  unincorporated, fl",33469,Reference person,Male,White,R,111
+112,Elizabeth,Person,69,1950-07-04,"105 riverview avenue  unincorporated, fl",33469,Sibling,Female,White,P,112
+113,Rebecca,Mccamey,55,1965-03-30,"105 riverview avenue  unincorporated, fl",33469,Sibling,Female,White,J,113
+114,Margaret,Stone,65,1954-10-01,"221 w alameda ave  marianna, fl",32446,Reference person,Female,Black,R,114
+115,Joy,Haverstick,57,1962-08-02,"7171 bluejay drive  belleair bluffs, fl",33770,Reference person,Female,White,L,115
+116,Diane,Emfinger,59,1960-08-23,"7171 bluejay drive  belleair bluffs, fl",33770,Sibling,Female,White,N,116
+117,Vincent,Allen,66,1953-05-27,"3197 s elati st  ft myers, fl",33913,Reference person,Male,White,M,117
+118,Cheryl,Dines,66,1953-09-01,"3197 s elati st  ft myers, fl",33913,Opp-sex spouse,Female,White,A,118
+119,Ronald,Perez,53,1966-08-17,"457 fairfield rd  havana, fl",32333,Reference person,Male,Latino,A,119
+120,Alexander,Watkins,32,1987-09-28,"457 fairfield rd  havana, fl",32333,Biological child,Male,Latino,H,120
+121,Colton,Mata,7,2012-05-07,"457 fairfield rd  havana, fl",32333,Biological child,Male,Latino,R,121
+122,Sara,Lugo,42,1977-09-27,"457 fairfield rd  havana, fl",32333,Opp-sex partner,Female,Latino,T,122
+123,Jerome,Sheneman,81,1939-03-19,"5210 pughsville road  sanibel, fl",33957,Reference person,Male,White,R,123
+124,Evelyn,Cooley,78,1941-10-07,"5210 pughsville road  sanibel, fl",33957,Opp-sex spouse,Female,White,A,124
+125,Ronald,Cooper,65,1954-08-16,"35 katie court  jacksonville, fl",32244,Reference person,Male,White,A,125
+126,Loretta,Greenidge,68,1952-02-17,"35 katie court  jacksonville, fl",32244,Opp-sex spouse,Female,White,L,126
+127,Joseph,Wood,75,1944-06-08,"6010 wanda circle apt 336 perry, fl",32348,Reference person,Male,White,E,127
+128,Lillian,Taylor,71,1948-05-16,"6010 wanda circle apt 336 perry, fl",32348,Opp-sex spouse,Female,White,L,128
+129,Elizabeth,Georgeson,70,1949-09-13,"720 hiscock st  indialantic, fl",32903,Reference person,Female,White,M,129
+131,Joseph,Johnston,76,1943-07-20,"61052 white rd  kissimmee, fl",34758,Reference person,Male,White,L,131
+132,Evelyn,Hardaker,77,1942-11-10,"61052 white rd  kissimmee, fl",34758,Opp-sex spouse,Female,White,J,132
+133,Eric,Moss,25,1994-08-20,"6116 132nd st ne  jacksonville, fl",32216,Reference person,Male,Multiracial or Other,S,133
+134,Tanya,Moran,44,1976-01-02,"2912 thomas ln  gainesville, fl",32608,Reference person,Female,Latino,P,134
+135,Cameron,Hernandez Rodriguez,18,2001-11-30,"2912 thomas ln  gainesville, fl",32608,Biological child,Male,Latino,M,135
+136,Thomas,Sebastian,13,2007-02-21,"2912 thomas ln  gainesville, fl",32608,Biological child,Male,Latino,E,136
+137,Diane,Lien,69,1950-07-15,"155 ridge way  orlando, fl",32805,Reference person,Female,White,L,137
+138,Kenneth,Sigal,70,1949-11-16,"155 ridge way  orlando, fl",32805,Opp-sex partner,Male,White,E,138
+139,Henry,Chase,78,1941-09-04,"24716 county route 16  riverview, fl",33569,Reference person,Male,Black,E,139
+140,Alice,Mcintosh,74,1945-08-26,"24716 county route 16  riverview, fl",33569,Sibling,Female,Black,I,140
+141,Lois,Fields,95,1925-02-02,"24716 county route 16  riverview, fl",33569,Parent,Female,Black,L,141
+142,Frances,Train,76,1943-11-03,"519 west broadway  lehigh acres, fl",33971,Reference person,Female,White,E,142
+143,Anthony,Miller,49,1970-07-31,"8828 upper 89th street cir s  orlando, fl",32807,Reference person,Male,Black,M,143
+144,Autumn,Wakefield,35,1984-10-03,"8828 upper 89th street cir s  orlando, fl",32807,Opp-sex spouse,Female,Black,J,144
+145,Brian,Taylor,15,2005-02-06,"8828 upper 89th street cir s  orlando, fl",32807,Biological child,Male,Black,N,145
+146,Betty,Tien,63,1957-01-12,"1532 creekbend dr  ft lauderdale, fl",33334,Reference person,Female,Asian,J,146
+147,George,Tran,68,1952-01-09,"1532 creekbend dr  ft lauderdale, fl",33334,Opp-sex spouse,Male,Asian,P,147
+148,Jamie,Huang,36,1983-06-26,"1532 creekbend dr  ft lauderdale, fl",33334,Biological child,Female,Asian,R,148
+149,Haley,Chung,27,1993-03-22,"1532 creekbend dr  ft lauderdale, fl",33334,Biological child,Female,Asian,H,149
+150,Roberta,Meyrick,64,1955-09-22,"31-32 89th street no 94 frnt unincorporated, fl",33417,Reference person,Female,White,M,150
+151,Amelia,Henderson,15,2004-06-02,"31-32 89th street no 94 frnt unincorporated, fl",33417,Adopted child,Female,White,A,151
+152,Kim,Fenner,60,1959-11-04,"31-32 89th street no 94 frnt unincorporated, fl",33417,Same-sex partner,Female,White,L,152
+153,Samantha,Cruse,41,1978-11-21,"8800 vistana centre drive  st. petersburg, fl",33710,Reference person,Female,White,B,153
+155,Kristen,Specht,31,1988-08-03,"3 fairview av extension  cape coral, fl",33993,Opp-sex spouse,Female,White,A,155
+156,Chase,Smith,11,2008-06-22,"3 fairview av extension  cape coral, fl",33993,Biological child,Male,White,J,156
+158,Milena,Lorence,6,2013-08-03,"3 fairview av extension  cape coral, fl",33993,Biological child,Female,White,I,158
+159,Jose,Anderson,5,2014-09-13,"3 fairview av extension  cape coral, fl",33993,Biological child,Male,White,S,159
+160,Reagan,Edgmon,3,2016-11-02,"3 fairview av extension  cape coral, fl",33993,Biological child,Female,White,E,160
+161,Amara,Sutton,1,2019-03-31,"3 fairview av extension  cape coral, fl",33993,Biological child,Female,White,K,161
+162,Charles,Sailor,30,1989-09-27,"1286 county road 185  pembroke pines, fl",33024,Reference person,Male,White,C,162
+163,Caitlin,Kaye,30,1989-04-21,"1286 county road 185  pembroke pines, fl",33024,Opp-sex spouse,Female,White,D,163
+164,Madelyn,Biancamano,7,2012-11-30,"1286 county road 185  pembroke pines, fl",33024,Biological child,Female,White,P,164
+165,Luca,Bucher,2,2018-03-08,"1286 county road 185  pembroke pines, fl",33024,Biological child,Male,White,W,165
+166,Everleigh,Dietzman,0,2020-02-25,"1286 county road 185  pembroke pines, fl",33024,Biological child,Female,White,I,166
+167,Ray,Bair,72,1947-06-04,"5806 sw 112 wy  tampa, fl",33615,Reference person,Male,White,J,167
+168,Karen,Inzinga,76,1943-09-21,"5806 sw 112 wy  tampa, fl",33615,Opp-sex spouse,Female,White,R,168
+169,Willie,Leong,68,1951-05-22,"1102 sw cr 300  baldwin, fl",32234,Reference person,Male,White,N,169
+170,Arlene,Rhoads,57,1962-07-25,"1102 sw cr 300  baldwin, fl",32234,Opp-sex spouse,Female,White,S,170
+172,Antonio,Mejia,53,1966-08-27,"7944 se 62nd ave  unincorporated, fl",32824,Opp-sex spouse,Male,Latino,M,172
+173,Ellie,Herrera Tachiquin,7,2013-01-15,"7944 se 62nd ave  unincorporated, fl",32824,Biological child,Female,Latino,A,173
+174,Holly,Yount,0,2019-05-17,"7944 se 62nd ave  unincorporated, fl",32824,Biological child,Female,White,E,174
+175,Ruth,Garcialopez,82,1937-11-27,"7944 se 62nd ave  unincorporated, fl",32824,Other relative,Female,Latino,B,175
+176,Terri,Grandstaff-Barcenas,60,1959-05-17,"7944 se 62nd ave  unincorporated, fl",32824,Other relative,Female,Latino,D,176
+177,Krista,Hendrick,44,1975-12-16," magnolia rd  boca raton, fl",33486,Reference person,Female,White,J,177
+178,Sean,Towns,16,2003-06-05," magnolia rd  boca raton, fl",33486,Biological child,Male,White,R,178
+179,Willie,Frazier,69,1951-03-26,"86 timberbrook cir  palm coast, fl",32164,Reference person,Male,White,J,179
+180,Mary,Farrell,57,1963-03-07,"86 timberbrook cir  palm coast, fl",32164,Opp-sex spouse,Female,White,C,180
+181,Christine,Heim,36,1983-04-17,"5124 braemar st  spring hill, fl",34606,Reference person,Female,White,G,181
+182,Jeffrey,Shockey,45,1974-09-01,"5124 braemar st  spring hill, fl",34606,Opp-sex spouse,Male,White,X,182
+183,Jose,Ulrich,0,2019-12-12,"5124 braemar st  spring hill, fl",34606,Biological child,Male,White,Z,183
+184,Walter,Bell,82,1938-01-18,"1776 w olive ave  the villages, fl",32162,Reference person,Male,White,D,184
+185,Joan,Rhodes,79,1940-12-28,"1776 w olive ave  the villages, fl",32162,Opp-sex spouse,Female,White,N,185
+186,Caleb,Elias,21,1998-09-09,"1776 w olive ave  the villages, fl",32162,Grandchild,Male,White,D,186
+187,Thomas,Richards,29,1990-05-25,"1126 s dequincy st  lauderdale lks, fl",33309,Reference person,Male,Black,K,187
+188,Kathy,Roehm,66,1953-04-02,"3936 saturn ave  holmes beach, fl",34217,Reference person,Female,White,S,188
+189,Larry,Bradberry,64,1955-08-12,"603 wheat ml ct e  kendall, fl",33176,Reference person,Male,White,D,189
+190,Jacqueline,Edwards,55,1964-11-11,"603 wheat ml ct e  kendall, fl",33176,Opp-sex spouse,Female,White,H,190
+191,James,Delapaz,81,1939-03-05,"10 n forest beach dr  jacksonville, fl",32211,Reference person,Male,Latino,B,191
+192,Juanita,Villescas,87,1932-09-10,"153 casa sevilla ave  north prt, fl",33953,Reference person,Female,Latino,C,192
+193,Kevin,Webb,56,1963-06-17,"2681 state route 21 lot 27 cpe coral, fl",33904,Reference person,Male,White,R,193
+194,April,Amin,60,1960-02-05,"2681 state route 21 lot 27 cpe coral, fl",33904,Opp-sex spouse,Female,Multiracial or Other,M,194
+195,Leonardo,Manser,21,1998-07-16,"2681 state route 21 lot 27 cpe coral, fl",33904,Grandchild,Male,White,M,195
+196,Jessica,Gonzalez,34,1985-11-29,"6450 n hwy 97  plantation, fl",33324,Reference person,Female,Latino,A,196
+197,Montserrat,Contreras,6,2013-10-21,"6450 n hwy 97  plantation, fl",33324,Biological child,Female,Latino,A,197
+198,Gabriela,Cortez,22,1997-07-27,"12351 coyote rn ln  tampa, fl",33612,Reference person,Female,Latino,B,198
+199,Chelsea,Raines,22,1997-10-09,"12351 coyote rn ln  tampa, fl",33612,Roommate,Female,White,J,199
+200,Barbara,Barnhart,46,1973-09-05,"4308 greenwood avenue  kissimmee, fl",34758,Reference person,Female,White,L,200
+201,Steven,Mendes,35,1984-07-04,"4917 gallatin way  deerfield beach, fl",33442,Reference person,Male,Latino,S,201
+202,Kelsey,Armenta,29,1990-06-28,"4917 gallatin way  deerfield beach, fl",33442,Opp-sex spouse,Female,Latino,L,202
+203,Nolan,Lozano,0,2019-04-09,"4917 gallatin way  deerfield beach, fl",33442,Biological child,Male,Latino,J,203
+204,Martin,Iverson,30,1990-01-14,"18341 se sandy ln  kissimmee, fl",34747,Reference person,Male,White,M,204
+205,Denise,Bettencourt,27,1992-10-17,"18341 se sandy ln  kissimmee, fl",34747,Opp-sex spouse,Female,White,A,205
+206,Zaiden,Smith,2,2018-02-23,"18341 se sandy ln  kissimmee, fl",34747,Biological child,Male,White,L,206
+207,Lourdes,Bakhtiar,37,1982-05-19,"12180 lucca st 101  unincorporated, fl",32817,Reference person,Female,Latino,I,207
+208,Brent,Delaney,36,1983-08-17,"12180 lucca st 101  unincorporated, fl",32817,Opp-sex spouse,Male,White,M,208
+209,Josiah,Cruz,11,2009-03-28,"12180 lucca st 101  unincorporated, fl",32817,Biological child,Male,Latino,D,209
+210,Sue,Densley,66,1953-06-03,"8500 dominican ct  titusville, fl",32780,Reference person,Female,White,L,210
+211,Jerome,Beatrice,67,1952-09-14,"8500 dominican ct  titusville, fl",32780,Opp-sex spouse,Male,White,J,211
+212,Willie,Stepp,60,1960-03-04,"2714 jennie wells dr  broward gardens, fl",33160,Reference person,Female,White,D,212
+213,Joyce,Driscoll,63,1957-01-15,"549 w dana ln  winston, fl",33567,Reference person,Female,White,J,213
+214,Willie,Speroni,64,1956-03-03,"549 w dana ln  winston, fl",33567,Opp-sex spouse,Male,White,B,214
+215,Glenn,Worthing,36,1983-08-29,"549 w dana ln  winston, fl",33567,Biological child,Male,White,T,215
+216,Eli,James,9,2010-06-07,"549 w dana ln  winston, fl",33567,Grandchild,Male,AIAN,A,216
+217,Teresa,Lefebvre,45,1974-06-22,"4044 wst 55th street  hialeah, fl",33169,Reference person,Female,White,T,217
+218,Thomas,Bertoglio,40,1979-09-27,"4044 wst 55th street  hialeah, fl",33169,Opp-sex spouse,Male,Multiracial or Other,A,218
+219,Alexa,Jones,20,1999-10-25,"4044 wst 55th street  hialeah, fl",33169,Biological child,Female,Multiracial or Other,M,219
+220,Bryan,Nash,18,2001-10-03,"4044 wst 55th street  hialeah, fl",33169,Biological child,Male,Multiracial or Other,D,220
+221,Reid,Tippett,6,2013-08-25,"4044 wst 55th street  hialeah, fl",33169,Biological child,Male,Multiracial or Other,N,221
+222,Margaret,Dobbins,67,1953-02-05,"4044 wst 55th street  hialeah, fl",33169,Parent-in-law,Female,Multiracial or Other,J,222
+223,Grace,Dieffenbach,77,1942-10-12,"3616 summerset pl  orlando, fl",32801,Reference person,Female,White,M,223
+224,Ronald,Lewis,77,1942-07-11,"3616 summerset pl  orlando, fl",32801,Opp-sex spouse,Male,White,P,224
+225,Eric,Polk,33,1986-08-21,"3556 purebred dr  st. petersburg, fl",33702,Reference person,Male,White,K,225
+226,Caitlin,Birkholz,29,1990-12-05,"3556 purebred dr  st. petersburg, fl",33702,Opp-sex spouse,Female,White,C,226
+227,Jaxson,Hill,4,2015-08-31,"3556 purebred dr  st. petersburg, fl",33702,Biological child,Male,White,Z,227
+228,Kay,Cross,66,1953-09-27,"3556 purebred dr  st. petersburg, fl",33702,Parent,Female,White,D,228
+229,James,Deline,66,1954-01-03,"3556 purebred dr  st. petersburg, fl",33702,Parent,Male,White,P,229
+230,Janice,Johnson,72,1947-08-29,"1796 cedar creek road  wellington, fl",33414,Reference person,Female,White,J,230
+231,Ashton,Edwards,28,1992-02-04,"1514 clark ave  bradenton, fl",34210,Reference person,Female,White,A,231
+232,Nikki,Paul,39,1980-06-03,"1514 clark ave  bradenton, fl",34210,Sibling,Female,White,J,232
+233,Mary,Walters,66,1953-10-14,"300 funston avenue  hallandale beach, fl",33009,Reference person,Female,White,T,233
+234,Anna,Harrison,76,1943-11-13,"183 a n 71st street  west palm beach, fl",33401,Reference person,Female,Multiracial or Other,M,234
+235,Dawn,Hostos,42,1977-06-19,"315 4th st  port labelle, fl",33935,Reference person,Female,Latino,J,235
+236,Daniel,Sanandres,49,1970-05-14,"315 4th st  port labelle, fl",33935,Other relative,Male,Latino,A,236
+237,Henry,Ching,83,1936-09-26,"10428 ne 52nd st  hollywood, fl",33021,Reference person,Male,Asian,J,237
+238,Grace,Kaval,78,1941-12-10,"10428 ne 52nd st  hollywood, fl",33021,Opp-sex spouse,Female,Asian,M,238
+239,Sarah,Goff,80,1939-05-29,"3533 west 66th stree  sorrento, fl",32726,Reference person,Female,White,C,239
+240,Kenneth,Grant,83,1937-03-30,"3533 west 66th stree  sorrento, fl",32726,Opp-sex spouse,Male,White,D,240
+241,Jeremy,Wells,44,1975-07-05,"1246 glyndon avnu  altamonte springs, fl",32701,Reference person,Male,White,O,241
+243,Frank,Leblanc,94,1925-07-26,"6135 moss hill ct  nrth port, fl",34287,Reference person,Male,White,B,243
+244,Jeremy,Schmidt,40,1979-09-09,"3855 grand central pl e  satsuma, fl",32189,Reference person,Male,White,J,244
+245,Scott,Nguyen,55,1964-05-22,"13919 bonnington dr  unincorporated, fl",33411,Reference person,Male,Asian,M,245
+246,Cathy,Ngo,61,1958-10-01,"13919 bonnington dr  unincorporated, fl",33411,Opp-sex spouse,Female,Asian,M,246
+247,Richard,Parmar,25,1994-05-31,"13919 bonnington dr  unincorporated, fl",33411,Biological child,Male,Asian,D,247
+248,Jayla,Ye,22,1997-10-07,"13919 bonnington dr  unincorporated, fl",33411,Biological child,Female,Asian,E,248
+249,Jordan,Archambault,27,1992-12-19,"10966 half moon pass  margate, fl",33063,Reference person,Male,White,K,249
+251,Sean,Boling,27,1992-05-28,"10966 half moon pass  margate, fl",33063,Roommate,Male,White,R,251
+252,Henry,Mcguire,80,1939-05-03,"8015 105th ave  homestead, fl",33177,Reference person,Male,White,L,252
+253,Louis,Perry,68,1951-11-08,"108-49 52 avenue  franjo, fl",33193,Reference person,Male,Black,J,253
+254,Beverly,Imler,70,1949-04-15,"108-49 52 avenue  franjo, fl",33193,Opp-sex spouse,Female,Black,L,254
+255,Princess,Kniffin,34,1985-10-08,"7129 founders club ct  coconut creek, fl",33073,Reference person,Female,White,B,255
+256,Ronald,Quinones,59,1960-06-11,"6207 w berridge ln  cp coral, fl",33990,Reference person,Male,Latino,B,256
+257,Michael,Caver,33,1987-02-02,"7002 60th pl  daytona beach, fl",32119,Reference person,Female,Black,E,257
+258,Jesus,Blanks,32,1987-08-10,"7002 60th pl  daytona beach, fl",32119,Opp-sex partner,Male,Black,M,258
+259,Melissa,Downs,68,1951-11-09,"127 s lkt mountain rd  pensacola, fl",32506,Reference person,Female,White,D,259
+260,Edward,Barth,79,1940-04-30,"127 s lkt mountain rd  pensacola, fl",32506,Opp-sex spouse,Male,White,M,260
+261,Ryan,Buentello Molina,44,1975-11-01,"4618 w market st  wesley chapel, fl",33544,Reference person,Male,Latino,L,261
+262,Judith,Medellin Filippi,72,1947-12-02,"4618 w market st  wesley chapel, fl",33544,Parent,Female,Latino,C,262
+263,Donald,Rhame,75,1945-01-12,"1821 walnut springs dr  jacksonville, fl",32256,Reference person,Male,White,S,263
+264,Anthony,Beaver,50,1970-03-06,"11113 1 2 ventura blvd  neptune beach, fl",32266,Reference person,Male,White,T,264
+265,Paul,Hendershot,60,1959-05-29,"10 cornell st  mims, fl",32754,Reference person,Male,White,A,265
+266,Lillie,Stacy,64,1955-04-24,"10 cornell st  mims, fl",32754,Opp-sex spouse,Female,White,B,266
+267,Alejandro,Gallow,37,1982-11-29,"1022 wood st  miami, fl",33134,Reference person,Male,Black,M,267
+268,Dana,Thomas,45,1975-02-10,"1022 wood st  miami, fl",33134,Opp-sex partner,Female,Black,K,268
+269,Reagan,Hunter,4,2015-12-14,"1022 wood st  miami, fl",33134,Biological child,Female,Black,C,269
+270,Jade,Wheeler,12,2007-07-02,"1022 wood st  miami, fl",33134,Other nonrelative,Female,Black,E,270
+271,Robin,Castro,69,1951-02-17,"5505 w tulare ave  mims, fl",32754,Reference person,Female,Latino,L,271
+272,Julie,Sorge,61,1959-02-16,"251 n main st  del tura golf & country club, fl",33955,Reference person,Female,White,J,272
+273,James,Garrett,66,1954-03-14,"251 n main st  del tura golf & country club, fl",33955,Opp-sex spouse,Male,White,R,273
+274,Theresa,Montoya,54,1965-04-24,"100 glendale manor dr  fort myers beach, fl",33931,Reference person,Female,Latino,E,274
+275,Anthony,Carroll,62,1957-10-19,"1120 shaffer trl  winter park, fl",32792,Reference person,Male,White,K,275
+276,Deborah,Adams,64,1955-04-24,"165 s main st  fort myers, fl",33905,Reference person,Female,White,R,276
+277,Clifford,Meeks,71,1949-01-24,"165 s main st  fort myers, fl",33905,Opp-sex spouse,Male,White,J,277
+278,Melody,Wingerson,61,1958-11-20,"3200 lee ave southwest  margate, fl",33063,Reference person,Female,White,M,278
+279,Kevin,Stutler,59,1960-09-20,"1 dunbar ln  tampa, fl",33605,Reference person,Male,White,V,279
+280,Michele,Henke,52,1968-02-21,"1 dunbar ln  tampa, fl",33605,Opp-sex spouse,Female,White,D,280
+281,Thomas,Perry,26,1993-12-07,"1 dunbar ln  tampa, fl",33605,Biological child,Male,White,N,281
+282,Emma,Day,6,2014-03-21,"1 dunbar ln  tampa, fl",33605,Grandchild,Female,White,M,282
+283,Jeanne,Tolman,76,1944-03-15,"1 dunbar ln  tampa, fl",33605,Parent-in-law,Female,White,T,283
+284,Vanessa,Desmond,38,1981-06-22,"105 quail ridge dr  jacksonville, fl",32218,Reference person,Female,White,J,284
+285,Ryan,Karjala,42,1978-01-24,"105 quail ridge dr  jacksonville, fl",32218,Opp-sex spouse,Male,White,R,285
+286,Ty,Cruz,18,2002-02-02,"357 valleywood dr  hollywood, fl",33312,Reference person,Male,Latino,M,286
+287,Charlotte,Gonzales,11,2008-12-21,"357 valleywood dr  hollywood, fl",33312,Sibling,Female,Latino,R,287
+288,Thomas,Marrero,7,2012-08-07,"357 valleywood dr  hollywood, fl",33312,Sibling,Male,Latino,J,288
+289,Marilyn,Gutierrez,35,1985-02-19,"357 valleywood dr  hollywood, fl",33312,Parent,Female,Latino,L,289
+292,Matthew,Tuttle,48,1971-04-04,"734 roma ave s  bradenton, fl",34208,Biological child,Male,White,H,292
+293,Sarah,Mccullough,95,1925-02-17," orion wy  nrth port, fl",33953,Reference person,Female,White,A,293
+294,Monica,Funke,59,1960-05-05,"24 beratlis pl  hialeah, fl",33056,Reference person,Female,White,M,294
+295,Donald,Meszaros,57,1962-04-14,"24 beratlis pl  hialeah, fl",33056,Opp-sex spouse,Male,White,J,295
+296,Dana,Zimmer,49,1971-03-12,"13447 longtin  gulf harbors, fl",34688,Reference person,Female,White,D,296
+297,Paul,Bumbaugh,52,1967-11-17,"13447 longtin  gulf harbors, fl",34688,Opp-sex spouse,Male,White,R,297
+298,Kyle,Mathers,45,1974-12-30,"13623 cole point dr  winter park, fl",32792,Reference person,Male,White,M,298
+299,Willie,Clem,73,1946-11-02,"30 highland avenue  mulberry, fl",33860,Reference person,Male,White,B,299
+300,Beatrice,Kevwitch,77,1942-04-13,"30 highland avenue  mulberry, fl",33860,Opp-sex spouse,Female,White,R,300
+301,Mary,Wines,68,1951-05-30,"908 s power rd  st. petersburg, fl",33713,Reference person,Female,White,W,301
+302,Larry,Jones,76,1943-07-24,"908 s power rd  st. petersburg, fl",33713,Opp-sex spouse,Male,White,F,302
+303,Lee,Hoffmann,40,1979-07-01,"749 mi ridge ests  destin, fl",32541,Reference person,Male,White,M,303
+304,Jessica,Guerra,37,1982-10-01,"749 mi ridge ests  destin, fl",32541,Opp-sex spouse,Female,Latino,M,304
+305,Raelynn,Delrio,3,2016-09-23,"749 mi ridge ests  destin, fl",32541,Biological child,Female,Latino,M,305
+306,Emilee,Haskew,0,2019-12-30,"749 mi ridge ests  destin, fl",32541,Biological child,Female,Latino,G,306
+307,Jennifer,Rhodes,37,1982-11-13,"7148 furnace road  palm bay, fl",32909,Reference person,Female,White,J,307
+308,Alicia,Stewart,40,1979-04-28,"7148 furnace road  palm bay, fl",32909,Roommate,Female,White,B,308
+309,Flora,Gunneson,95,1924-08-02,"1205 paula dr  ashton, fl",34771,Reference person,Female,White,M,309
+310,Alfred,Pompey,70,1950-02-04,"835 bay ridge aven  clearwater, fl",34698,Reference person,Male,White,J,310
+311,Linda,Shuford,71,1948-06-11,"835 bay ridge aven  clearwater, fl",34698,Opp-sex spouse,Female,White,C,311
+312,Dena,Nicholson,49,1971-03-30,"835 bay ridge aven  clearwater, fl",34698,Stepchild,Female,White,J,312
+313,Kenneth,Moses,50,1969-12-18,"835 bay ridge aven  clearwater, fl",34698,Child-in-law,Male,White,C,313
+314,Ericka,Mcduffie,40,1980-01-16,"9 north shore dr  unincorporated, fl",33412,Reference person,Female,Black,J,314
+315,Thomas,Prather,35,1984-11-11,"9 north shore dr  unincorporated, fl",33412,Opp-sex partner,Male,Black,R,315
+316,Melisa,Gilbert,39,1980-12-26,"1323 caitlyn cir  cp coral, fl",33993,Reference person,Female,White,H,316
+317,Roderick,Schumacher,37,1982-11-15,"1323 caitlyn cir  cp coral, fl",33993,Opp-sex spouse,Male,White,C,317
+318,Makayla,Welsh,19,2001-02-06,"1323 caitlyn cir  cp coral, fl",33993,Biological child,Female,White,D,318
+319,Adelaide,Bode,8,2011-11-19,"1323 caitlyn cir  cp coral, fl",33993,Stepchild,Female,White,I,319
+320,Shirley,Brinkerhoff,90,1929-09-06,"11447 venice blvd  venice, fl",34275,Reference person,Female,White,L,320
+321,Amy,Wood,32,1987-09-21,"600 n maranantha rd  hialeah, fl",33016,Reference person,Female,White,C,321
+322,Christopher,Jackson,36,1983-05-16,"600 n maranantha rd  hialeah, fl",33016,Opp-sex spouse,Male,White,T,322
+323,Gunner,Parkinson,0,2020-03-03,"600 n maranantha rd  hialeah, fl",33016,Biological child,Male,White,L,323
+324,Allen,Motlagh,50,1969-08-24,"3203 ardoch ct  jacksonville, fl",32277,Reference person,Male,White,M,324
+325,Mitchell,Cobb,53,1966-11-22,"3203 ardoch ct  jacksonville, fl",32277,Same-sex partner,Male,Black,O,325
+326,Gregory,Goering,54,1965-10-29,"687 spring creek pkwy  panama city, fl",32401,Reference person,Male,White,S,326
+328,Aaron,Crumpacker,19,2001-02-12,"687 spring creek pkwy  panama city, fl",32401,Biological child,Male,White,K,328
+329,Lois,Kobes,89,1930-09-13,"687 spring creek pkwy  panama city, fl",32401,Parent-in-law,Female,White,R,329
+330,Dustin,Egan,45,1974-04-30,"2732 s georgia st  ocala, fl",34472,Reference person,Male,White,W,330
+331,Laurie,Brawn Nolasco,42,1977-04-19,"2732 s georgia st  ocala, fl",34472,Opp-sex spouse,Female,Latino,J,331
+332,Mary,Wells,77,1942-06-17,"4 oldbury lane # 238 tampa, fl",33616,Reference person,Female,White,A,332
+333,George,Rhodes,63,1957-02-28,"6536 sthe 92nd avenue fl 1 quincy, fl",32351,Reference person,Male,White,R,333
+334,Diane,Brown,75,1944-04-18,"11694 club house pkwy  bradenton, fl",34210,Reference person,Female,White,E,334
+335,Rebecca,Chisem,53,1967-03-06,"5633 barrettstrace ln  hialeah, fl",33147,Reference person,Female,Black,L,335
+336,Earl,Green,59,1960-06-07,"5633 barrettstrace ln  hialeah, fl",33147,Opp-sex spouse,Male,Black,J,336
+337,Mackenzie,Jacson,29,1990-08-20,"5633 barrettstrace ln  hialeah, fl",33147,Biological child,Female,Black,A,337
+338,Tiffany,Tape,20,2000-01-19,"5633 barrettstrace ln  hialeah, fl",33147,Biological child,Female,Black,C,338
+339,Linda,Dejonge,68,1952-03-09," fawy hill cir  flamingo, fl",34769,Reference person,Female,White,M,339
+340,Lewis,Behan,76,1943-11-26," fawy hill cir  flamingo, fl",34769,Opp-sex spouse,Male,White,J,340
+341,Tiara,Longe,37,1982-05-05," fawy hill cir  flamingo, fl",34769,Biological child,Female,White,H,341
+342,Richard,Callanan,26,1993-06-12," fawy hill cir  flamingo, fl",34769,Grandchild,Male,White,J,342
+343,Meaghan,Howe,22,1997-10-28," fawy hill cir  flamingo, fl",34769,Grandchild,Female,White,A,343
+344,Brent,Latta,39,1981-03-29,"9195 main str  middleburg, fl",32068,Reference person,Male,Multiracial or Other,M,344
+345,Jessica,Mcgee,39,1980-06-11,"9195 main str  middleburg, fl",32068,Opp-sex partner,Female,Multiracial or Other,J,345
+346,Aimee,Jeanbaptiste,7,2012-09-03,"9195 main str  middleburg, fl",32068,Biological child,Female,Multiracial or Other,I,346
+347,Lucy,Campbell,4,2015-11-18,"9195 main str  middleburg, fl",32068,Biological child,Female,Multiracial or Other,M,347
+348,Mary,Louden,60,1959-05-25,"501 sierra peak ct  homestead, fl",33033,Reference person,Female,White,L,348
+349,Kevin,Learnard,60,1959-09-25,"501 sierra peak ct  homestead, fl",33033,Opp-sex spouse,Male,White,R,349
+350,Lena,Charles,95,1924-06-22,"6251 nw 199th ln  gainesville, fl",32607,Reference person,Female,White,M,350
+351,Mary,Condra,95,1924-08-18,"6251 nw 199th ln  gainesville, fl",32607,Same-sex spouse,Female,White,P,351
+352,Thomas,Escobedo-Pelaez,38,1981-12-13,"2400 terra crsg blvd  sarasota, fl",34243,Reference person,Male,Latino,L,352
+353,Wendy,Jacobo,54,1965-07-03,"27-29 easton street  kissimmee, fl",34743,Reference person,Female,Latino,A,353
+354,Martin,Abelino Martinez,26,1993-08-12,"27-29 easton street  kissimmee, fl",34743,Biological child,Male,Latino,M,354
+355,Sheila,Smith,58,1961-04-25,"1942 union st  pompano beach, fl",33060,Reference person,Female,White,D,355
+356,Tonya,Falk,52,1967-10-15,"201 oak prk dr  tamarac, fl",33319,Reference person,Female,White,M,356
+357,Paul,Jacobs,51,1968-12-04,"201 oak prk dr  tamarac, fl",33319,Opp-sex spouse,Male,White,F,357
+358,Jose,Guy,24,1996-01-21,"201 oak prk dr  tamarac, fl",33319,Biological child,Male,White,J,358
+359,Kaylee,Christiansen,21,1998-05-21,"201 oak prk dr  tamarac, fl",33319,Biological child,Female,White,S,359
+360,Janelle,Lewis,21,1998-11-24,"201 oak prk dr  tamarac, fl",33319,Biological child,Female,White,E,360
+361,Malcolm,James,21,1998-08-11,"201 oak prk dr  tamarac, fl",33319,Biological child,Male,White,J,361
+362,Regina,Santiago,7,2012-05-21,"201 oak prk dr  tamarac, fl",33319,Biological child,Female,White,T,362
+363,Jerry,Saavedra Santos,31,1988-04-29,"2505 easy st  tampa, fl",33647,Reference person,Male,Latino,M,363
+364,Angel,Gutierrez,4,2015-05-12,"2505 easy st  tampa, fl",33647,Biological child,Male,Latino,J,364
+365,Misty,Montes,27,1992-05-11,"2505 easy st  tampa, fl",33647,Opp-sex partner,Female,Latino,B,365
+366,Lois,Kochendorfer,90,1929-05-15,"37 s piney plains cir  holiday, fl",34691,Reference person,Female,White,R,366
+367,Dean,Ufret,50,1969-09-07," west g street  saint cloud, fl",34769,Reference person,Male,White,H,367
+368,Nellie,Snyder,86,1933-07-30,"4130 northeast croco roa unit 404 lehigh acres, fl",33976,Reference person,Female,White,M,368
+369,Michael,Haley,53,1966-08-01,"5438 durango ct  spring hill, fl",34609,Reference person,Male,Black,D,369
+370,Cheryl,Stokley,51,1968-05-28,"5438 durango ct  spring hill, fl",34609,Opp-sex spouse,Female,Black,M,370
+371,Rebecca,Hemingway,12,2008-02-06,"5438 durango ct  spring hill, fl",34609,Biological child,Female,Black,M,371
+372,Maria,Montgomery,47,1972-11-08,"8430 e hawthorne st  venice, fl",34293,Reference person,Female,White,S,372
+374,Dora,Landrum,88,1931-10-09,"2434 bancroft ln  jacksonville, fl",32220,Reference person,Female,White,M,374
+375,Jeffrey,Williams,42,1977-07-06,"15814 cth c  highland beach, fl",33487,Reference person,Male,White,K,375
+376,Alberto,Carter,31,1988-06-17," north carrollton avenue  unincorporated, fl",32837,Reference person,Male,White,K,376
+377,Latifah,Salter,28,1991-07-23," north carrollton avenue  unincorporated, fl",32837,Opp-sex spouse,Female,White,D,377
+378,Pablo,Morales,5,2014-04-07," north carrollton avenue  unincorporated, fl",32837,Biological child,Male,White,L,378
+379,Angel,Fox,3,2017-02-20," north carrollton avenue  unincorporated, fl",32837,Biological child,Male,White,G,379
+380,Jessica,Davenport,28,1991-07-08,"2607 e bluefield ave  venice, fl",34293,Reference person,Female,Multiracial or Other,J,380
+381,Jordan,Citro,29,1990-08-05,"2607 e bluefield ave  venice, fl",34293,Opp-sex partner,Male,White,E,381
+382,Steven,Decristofaro,41,1978-09-21,"630 society hill  unincorporated, fl",33418,Reference person,Male,Latino,Q,382
+383,Donald,Langhoff,55,1965-01-18,"4608 southwest juneau stree ground floor orlando, fl",32806,Reference person,Male,White,C,383
+384,Rhonda,Easley Brown,53,1966-11-09,"4608 southwest juneau stree ground floor orlando, fl",32806,Opp-sex spouse,Female,Multiracial or Other,B,384
+385,Steven,Simmons,47,1972-11-27,"700 barnhill rd se  largo, fl",33764,Reference person,Male,Black,R,385
+386,Daniel,Moon,56,1964-01-22,"509 nueces st  stuart, fl",34996,Reference person,Male,White,M,386
+387,Lisa,Mcmurray,57,1962-10-03,"509 nueces st  stuart, fl",34996,Opp-sex spouse,Female,White,K,387
+388,Katelyn,Bowlin,17,2002-05-24,"509 nueces st  stuart, fl",34996,Biological child,Female,White,Y,388
+389,Beulah,Schettini,88,1931-06-25,"3 fenway rd  lakeland, fl",33868,Reference person,Female,Latino,J,389
+390,Shari,Castillo,58,1962-01-23,"3 fenway rd  lakeland, fl",33868,Biological child,Female,Latino,L,390
+391,Stacy,Reyes,54,1965-06-19,"9404 edway ct  miami, fl",33174,Reference person,Female,Latino,L,391
+392,Aaron,Macias,59,1961-03-11,"9404 edway ct  miami, fl",33174,Opp-sex spouse,Male,Latino,L,392
+393,Nina,Thompson,36,1984-01-21,"9404 edway ct  miami, fl",33174,Stepchild,Female,White,J,393
+394,Ashley,Poston,33,1987-03-04,"15476 heyden  sarasota, fl",34231,Reference person,Female,White,L,394
+395,Thomas,Fay Hillegonds,34,1985-09-10,"15476 heyden  sarasota, fl",34231,Opp-sex partner,Male,White,M,395
+396,Marcel,Harbin,2,2017-12-10,"15476 heyden  sarasota, fl",34231,Biological child,Male,White,O,396
+397,Brandy,Guy,38,1981-04-19,"3657 field  yalaha, fl",34715,Reference person,Female,White,S,397
+398,Francisco,Berg,39,1981-02-23,"3657 field  yalaha, fl",34715,Opp-sex spouse,Male,White,A,398
+399,Noel,Hammock,7,2012-05-28,"3657 field  yalaha, fl",34715,Biological child,Male,White,J,399
+400,Aubrie,Arterburn,4,2015-08-15,"3657 field  yalaha, fl",34715,Biological child,Female,White,I,400
+401,Julissa,Parks,1,2018-06-23,"3657 field  yalaha, fl",34715,Biological child,Female,White,E,401
+402,Vickie,Devilbiss,70,1950-02-06,"124 cole ct  hialeah, fl",33055,Reference person,Female,White,L,402
+403,Kenneth,Beougher,73,1946-08-22,"13247 elmrock ave  blountstown, fl",32424,Reference person,Male,White,B,403
+404,Linda,Tollett,71,1948-09-27,"13247 elmrock ave  blountstown, fl",32424,Opp-sex spouse,Female,White,M,404
+405,Lee,Roop,60,1959-04-14,"2640 8th street  orlando, fl",32811,Reference person,Male,White,J,405
+406,Janet,Mcgannon,56,1964-01-17,"2640 8th street  orlando, fl",32811,Opp-sex spouse,Female,White,S,406
+407,Terry,Bullis,78,1941-07-08,"16348 sw estuary dr  venice, fl",34293,Reference person,Male,White,J,407
+409,Lester,Carlsen,70,1949-04-04,"32434 oil well rd  port charlotte, fl",33981,Reference person,Male,White,O,409
+410,Shirley,Weaver,62,1957-09-01,"32434 oil well rd  port charlotte, fl",33981,Opp-sex spouse,Female,White,L,410
+411,Christopher,Enos,37,1982-09-22,"15505 ne 2nd st  miramar beach, fl",32550,Reference person,Male,White,S,411
+412,Katrina,Love,46,1973-08-20,"9915 w hope cir  miami beach, fl",33139,Reference person,Female,Black,D,412
+413,Debra,Lujan,51,1968-07-28,"568 floral dr  englewood, fl",33981,Reference person,Female,Latino,G,413
+415,Bernard,Mass,48,1971-04-09,"2332 bath avenue upstairs unit 417 palm bay, fl",32907,Reference person,Male,White,D,415
+416,Brenda,Mazzetta,50,1969-05-18,"2332 bath avenue upstairs unit 417 palm bay, fl",32907,Opp-sex spouse,Female,White,W,416
+417,King,Stambaugh,11,2008-04-17,"2332 bath avenue upstairs unit 417 palm bay, fl",32907,Biological child,Male,White,J,417
+418,Karen,Yates,79,1940-12-15,"113 sandelwood dr  cpe coral, fl",33993,Reference person,Female,White,M,418
+419,Gary,Ross,57,1962-10-07,"113 sandelwood dr  cpe coral, fl",33993,Biological child,Male,White,M,419
+420,Larry,Wood,77,1942-12-11,"876 east 34th stree apt no 5l mayo, fl",32066,Reference person,Male,White,W,420
+421,Roberta,Cohoon,65,1954-11-29,"876 east 34th stree apt no 5l mayo, fl",32066,Opp-sex spouse,Female,White,M,421
+422,Lindsey,Gonzalez,34,1985-05-23,"1830 av del mundo  lakeland, fl",33801,Reference person,Female,Latino,J,422
+423,Emma,Hernandez Mercado,7,2013-02-28,"1830 av del mundo  lakeland, fl",33801,Biological child,Female,Latino,E,423
+424,Dorian,Belmont Troncoso,5,2014-05-29,"1830 av del mundo  lakeland, fl",33801,Biological child,Male,Latino,S,424
+425,Matthew,Clements,62,1958-02-28," walnut street  brooksville, fl",34602,Reference person,Male,White,J,425
+426,Heather,Mcteer,56,1963-04-06," walnut street  brooksville, fl",34602,Opp-sex spouse,Female,White,L,426
+427,Cora,Hauck,80,1939-07-30,"5 orleans ct  st. petersburg, fl",33781,Reference person,Female,White,L,427
+429,Ashley,Debord,28,1991-07-19,"5638 sw 36th terrace  bradenton, fl",34203,Opp-sex spouse,Female,Asian,B,429
+430,Amir,Felix,1,2019-01-01,"5638 sw 36th terrace  bradenton, fl",34203,Biological child,Male,Asian,A,430
+432,Arlene,Anthony,58,1961-12-01,"295 summerhill road  unincorporated, fl",32819,Reference person,Female,White,V,432
+433,Larry,Belcher,61,1959-01-01,"295 summerhill road  unincorporated, fl",32819,Opp-sex spouse,Male,White,T,433
+434,Carlos,Reeves,52,1968-03-14,"3308 gillespie st  mabel, fl",34748,Reference person,Male,White,M,434
+435,Sonia,Mitchell Guzman,52,1967-06-30,"3308 gillespie st  mabel, fl",34748,Opp-sex spouse,Female,Latino,L,435
+436,Gabrielle,Brantley,25,1994-06-06,"1835 harvard dr  hialeah, fl",33169,Reference person,Female,White,A,436
+437,Gavin,Cook,26,1994-02-27,"1835 harvard dr  hialeah, fl",33169,Opp-sex partner,Male,White,K,437
+438,Benjamin,Degroot,73,1946-11-20,"553 lakeview dr  st cloud, fl",34772,Reference person,Male,White,J,438
+439,Emily,Fowler,71,1949-01-23,"553 lakeview dr  st cloud, fl",34772,Opp-sex spouse,Female,White,B,439
+440,Dianne,Hughes,54,1965-08-21,"119 freedom way  sunrise, fl",33351,Reference person,Female,Black,D,440
+442,Erin,Mendez,30,1989-05-28,"78 fox stre  unincorporated, fl",34734,Reference person,Female,Latino,N,442
+443,Randy,Perez,29,1990-10-06,"78 fox stre  unincorporated, fl",34734,Opp-sex spouse,Male,Latino,M,443
+445,Karen,Barker,58,1961-04-12,"7 wescott golf crse b.k. pvt  bradenton, fl",34209,Reference person,Female,White,C,445
+446,Rodney,Miller,64,1956-03-16,"7 wescott golf crse b.k. pvt  bradenton, fl",34209,Opp-sex spouse,Male,White,J,446
+447,Dean,Ramirez,56,1963-04-19,"7108 lebanon trl  lauderhill, fl",33313,Reference person,Male,Latino,J,447
+448,Catherine,Paz,62,1957-11-05,"7108 lebanon trl  lauderhill, fl",33313,Opp-sex partner,Female,Latino,M,448
+449,Betty,Morales,38,1981-06-05,"7108 lebanon trl  lauderhill, fl",33313,Biological child,Female,Latino,J,449
+450,Brian,Rodriguez,28,1991-07-31,"7108 lebanon trl  lauderhill, fl",33313,Biological child,Male,Latino,M,450
+451,Christopher,Gonzales,21,1999-02-10,"7108 lebanon trl  lauderhill, fl",33313,Grandchild,Male,Latino,T,451
+452,Jack,Canas Morales,10,2009-04-26,"7108 lebanon trl  lauderhill, fl",33313,Grandchild,Male,Latino,D,452
+453,Mason,Mijares,5,2015-03-10,"7108 lebanon trl  lauderhill, fl",33313,Grandchild,Male,Latino,K,453
+454,Jessica,Estes,27,1992-05-26,"1700 garfield st  ocala, fl",34471,Reference person,Female,White,A,454
+455,Fernando,Gasca Pelaez,30,1989-05-04,"1700 garfield st  ocala, fl",34471,Opp-sex partner,Male,Latino,M,455
+456,Emma,Schneider,56,1963-04-22,"12766 seminole blvd  miami beach, fl",33127,Reference person,Female,White,E,456
+457,Kelvin,Hernandez Galvan,57,1962-07-23,"12766 seminole blvd  miami beach, fl",33127,Opp-sex spouse,Male,Latino,J,457
+458,Daniel,Richardson,58,1961-06-13," abbeywood road  kissimmee, fl",34746,Reference person,Male,White,B,458
+459,Mary,Lozada,56,1964-01-14," abbeywood road  kissimmee, fl",34746,Opp-sex spouse,Female,Latino,D,459
+460,Christopher,Varney,30,1989-10-02," abbeywood road  kissimmee, fl",34746,Biological child,Male,White,C,460
+461,Kay,Temple,61,1958-10-29,"1550 bridge road  unincorporated, fl",32804,Reference person,Female,Black,E,461
+462,Dwight,Evans,60,1960-03-20,"1550 bridge road  unincorporated, fl",32804,Opp-sex spouse,Male,Black,R,462
+463,Edward,Castelan,61,1958-08-01,"96 cothran st  harbor palms, fl",34689,Reference person,Male,Latino,B,463
+464,Marian,Estrada-Machuca,57,1962-07-28,"96 cothran st  harbor palms, fl",34689,Opp-sex spouse,Female,Latino,D,464
+465,Dale,Cordero,51,1968-06-12,"22724 ridgeway  unincorporated, fl",32818,Reference person,Male,White,M,465
+466,Dennis,Wilson,25,1995-02-20,"562 washington street  winter springs, fl",32708,Reference person,Male,White,M,466
+467,Lewis,Chandler,67,1952-08-01,"1051 n douglas ave  zephyrhills, fl",33541,Reference person,Male,Black,J,467
+468,Gladys,Dover,74,1945-04-09,"1051 n douglas ave  zephyrhills, fl",33541,Opp-sex spouse,Female,Black,M,468
+469,Nathan,Wolde-Patterson,51,1969-03-28,"2531 s naples wy  sarasota, fl",34238,Reference person,Male,Black,R,469
+470,Janice,Rascoe,45,1974-12-07,"2531 s naples wy  sarasota, fl",34238,Opp-sex spouse,Female,Black,J,470
+471,Uriel,Noel,11,2008-06-24,"2531 s naples wy  sarasota, fl",34238,Biological child,Male,Black,J,471
+472,Ailani,Spurlock,4,2016-01-06,"2531 s naples wy  sarasota, fl",34238,Biological child,Female,Black,L,472
+473,Paul,Kerr,54,1966-01-13,"17818 folly pt dr  estero, fl",33928,Reference person,Male,White,A,473
+474,Kevin,Hudson,58,1961-09-07,"4815 e skycrest park cv  lehigh acres, fl",33974,Reference person,Male,White,M,474
+475,Roosevelt,Gonzalez,83,1937-01-17,"401 college hill rd  jacksonville, fl",32218,Reference person,Male,Latino,J,475
+476,Joyce,Davey,73,1947-02-24,"401 college hill rd  jacksonville, fl",32218,Opp-sex spouse,Female,Latino,O,476
+477,James,Gonzalez,67,1953-01-01,"266 s beacon hill dr  arcadia, fl",34266,Reference person,Male,Latino,P,477
+478,Cynthia,Martinez,61,1958-08-04,"266 s beacon hill dr  arcadia, fl",34266,Opp-sex spouse,Female,Latino,S,478
+479,Michael,Lipsey,60,1959-08-27,"5763 ridgeview ct  jacksonville, fl",32257,Reference person,Male,AIAN,S,479
+480,Michael,Vu,30,1989-06-13,"24953 powers ct  pompano beach, fl",33062,Reference person,Male,Multiracial or Other,C,480
+481,Joyce,Bhatt,29,1990-05-12,"24953 powers ct  pompano beach, fl",33062,Opp-sex spouse,Female,Asian,T,481
+482,Guy,Gracy,62,1957-10-14,"5360 oriole dr  winter haven, fl",33884,Reference person,Male,White,L,482
+483,Sherrie,Seward,55,1964-08-07,"5360 oriole dr  winter haven, fl",33884,Opp-sex spouse,Female,White,L,483
+484,Candice,Magedanz,26,1993-06-07,"5360 oriole dr  winter haven, fl",33884,Biological child,Female,White,A,484
+485,Skyla,Fullmer,19,2000-12-03,"5360 oriole dr  winter haven, fl",33884,Biological child,Female,White,E,485
+486,Marvin,Johnson,13,2006-11-28,"5360 oriole dr  winter haven, fl",33884,Biological child,Male,White,A,486
+487,Lindsey,Pyer,34,1985-08-22,"10079 fair lane aptmnt no 113l indian rocks beach, fl",33785,Reference person,Female,Black,B,487
+488,Sabrina,Farr,16,2003-05-03,"10079 fair lane aptmnt no 113l indian rocks beach, fl",33785,Biological child,Female,Black,H,488
+489,Cameron,Phillips,14,2006-01-25,"10079 fair lane aptmnt no 113l indian rocks beach, fl",33785,Biological child,Male,Black,H,489
+490,Amiya,Vincent,11,2009-01-15,"10079 fair lane aptmnt no 113l indian rocks beach, fl",33785,Biological child,Female,Black,I,490
+491,Devon,Touray,9,2010-04-07,"10079 fair lane aptmnt no 113l indian rocks beach, fl",33785,Biological child,Male,Black,J,491
+492,Keyla,Musse,1,2019-03-02,"10079 fair lane aptmnt no 113l indian rocks beach, fl",33785,Biological child,Female,Black,H,492
+493,Linda,Scheller,66,1953-10-07,"2500 medallion dr  tampa, fl",33610,Reference person,Female,White,M,493
+494,Dwight,Throckmorton,66,1953-10-16,"2500 medallion dr  tampa, fl",33610,Opp-sex spouse,Male,White,J,494
+495,Jean,Thompson,84,1935-07-19,"3995 angola  hallandale beach, fl",33009,Reference person,Female,Multiracial or Other,C,495
+496,Vernon,Gallup,63,1956-10-27,"3995 angola  hallandale beach, fl",33009,Opp-sex spouse,Male,Multiracial or Other,J,496
+497,Nelson,Hill,32,1987-10-04,"1040 sutter street  cpe coral, fl",33909,Reference person,Male,Multiracial or Other,B,497
+498,Michael,Verheyen,48,1971-12-05,"2401 sprague rd  chipley, fl",32428,Reference person,Male,White,S,498
+499,Dana,Hayes,41,1978-12-17,"2401 sprague rd  chipley, fl",32428,Opp-sex spouse,Female,White,L,499
+500,Orion,Oconnor,9,2011-03-26,"2401 sprague rd  chipley, fl",32428,Biological child,Male,White,N,500
+501,Trevor,Everson,4,2015-11-27,"2401 sprague rd  chipley, fl",32428,Biological child,Male,White,L,501
+502,Rudolph,Bearden,72,1947-07-16,"3068 spottswood av  jacksonville, fl",32222,Reference person,Male,White,L,502
+503,Dianne,Pierce,62,1957-06-07,"3068 spottswood av  jacksonville, fl",32222,Opp-sex spouse,Female,White,M,503
+504,Deborah,Tullock,47,1973-01-04,"17872 sw 5 st  fernandina beach, fl",32034,Reference person,Female,White,M,504
+505,Elisa,Valk,26,1993-12-14,"17872 sw 5 st  fernandina beach, fl",32034,Biological child,Female,White,L,505
+506,Jessica,Love,26,1993-10-19,"17872 sw 5 st  fernandina beach, fl",32034,Biological child,Female,White,A,506
+507,Katlyn,Miesen,20,1999-05-15,"17872 sw 5 st  fernandina beach, fl",32034,Biological child,Female,White,E,507
+508,Regina,Infield,69,1950-09-04,"17872 sw 5 st  fernandina beach, fl",32034,Parent,Female,White,M,508
+509,Louis,Perry,61,1958-09-20,"523 foundry street northwest flat 575 pompano beach, fl",33062,Reference person,Male,White,J,509
+510,Sherry,Addyman,57,1963-03-08,"5441 j st  new port richey, fl",34653,Reference person,Female,White,K,510
+511,Lee,Shehadeh,55,1964-11-03,"5441 j st  new port richey, fl",34653,Opp-sex partner,Male,White,M,511
+512,James,Betz,63,1956-08-30,"35 barbarosa lane  north port, fl",34287,Reference person,Male,White,S,512
+513,Belinda,Fredericks,50,1969-04-01,"35 barbarosa lane  north port, fl",34287,Opp-sex spouse,Female,White,J,513
+514,Mary,Glickman,61,1959-01-30,"801 s ocean dr 404  pensacola, fl",32502,Reference person,Female,White,L,514
+515,James,Gould,62,1957-10-14,"801 s ocean dr 404  pensacola, fl",32502,Opp-sex spouse,Male,White,S,515
+516,Eduardo,Mueller,28,1991-06-17,"801 s ocean dr 404  pensacola, fl",32502,Biological child,Male,White,M,516
+517,Dianne,Drake,55,1964-04-08,"4309 mariner way 207  fort-myers, fl",33907,Reference person,Female,White,D,517
+518,Christopher,Lynch,40,1979-07-26,"834 31st stre  lehigh acres, fl",33972,Reference person,Male,White,T,518
+519,Samantha,Bergman,37,1983-04-01,"834 31st stre  lehigh acres, fl",33972,Opp-sex spouse,Female,White,S,519
+520,Belen,Smith,3,2016-04-15,"834 31st stre  lehigh acres, fl",33972,Biological child,Female,White,I,520
+521,Conner,Welle,0,2020-01-16,"834 31st stre  lehigh acres, fl",33972,Biological child,Male,White,S,521
+522,Stephen,Vonberg,65,1955-01-21,"300 ne moberly ln  cape coral, fl",33914,Reference person,Male,White,S,522
+523,Gina,Otey,64,1956-03-17,"300 ne moberly ln  cape coral, fl",33914,Opp-sex spouse,Female,White,S,523
+524,Bobby,Jeppesen,82,1937-06-16,"8545 sowest wilson la apt number 20r tampa, fl",33614,Reference person,Male,White,A,524
+525,Alma,Dancy,74,1945-09-22,"8545 sowest wilson la apt number 20r tampa, fl",33614,Opp-sex spouse,Female,White,V,525
+526,Haley,Richardson,36,1983-05-21,"3093 joyce dr  miramar, fl",33023,Reference person,Female,Black,E,526
+527,Jacob,Hall,11,2009-02-18,"3093 joyce dr  miramar, fl",33023,Biological child,Male,Black,A,527
+528,Steven,Mack,43,1976-12-09,"3093 joyce dr  miramar, fl",33023,Roommate,Male,Black,G,528
+529,Jack,Adams,27,1992-07-15,"519 jewell drive aptmnt 10068 rockdale, fl",33175,Reference person,Male,White,M,529
+530,Ashley,Boerger,27,1992-08-13,"519 jewell drive aptmnt 10068 rockdale, fl",33175,Opp-sex spouse,Female,White,B,530
+531,Sophia,Grimm,1,2018-09-29,"519 jewell drive aptmnt 10068 rockdale, fl",33175,Biological child,Female,White,J,531
+532,Olivia,Riley,0,2019-10-03,"519 jewell drive aptmnt 10068 rockdale, fl",33175,Biological child,Female,White,M,532
+533,Dominic,Brewer,8,2012-02-21,"519 jewell drive aptmnt 10068 rockdale, fl",33175,Stepchild,Male,White,N,533
+534,Sophie,Kalkbrenner,5,2015-03-09,"519 jewell drive aptmnt 10068 rockdale, fl",33175,Stepchild,Female,White,P,534
+535,Michael,Doan,37,1982-07-15,"3 beloit dr  weston, fl",33326,Reference person,Male,White,C,535
+536,Loretta,Leach,51,1968-10-24,"3 beloit dr  weston, fl",33326,Opp-sex partner,Female,Multiracial or Other,L,536
+537,Mary,Larsen,80,1939-10-28,"3 beloit dr  weston, fl",33326,Other relative,Female,White,M,537
+538,Brian,Harris,24,1995-12-07,"2017 case rd # 11 fl celebration, fl",34747,Reference person,Male,White,K,538
+540,James,Celli,62,1957-10-12,"116-30 148 street  plantation, fl",33317,Reference person,Male,White,M,540
+541,Kimberly,Allen,54,1965-07-29,"116-30 148 street  plantation, fl",33317,Opp-sex spouse,Female,White,C,541
+542,Amy,Laporte,31,1988-12-04,"56 mexico point drive w  winter prk, fl",32792,Reference person,Female,White,N,542
+543,Michael,Newman,31,1988-11-16,"56 mexico point drive w  winter prk, fl",32792,Opp-sex spouse,Male,Multiracial or Other,C,543
+544,Noah,Hanna,5,2014-10-10,"56 mexico point drive w  winter prk, fl",32792,Biological child,Male,White,L,544
+545,Brayden,Maryott,1,2018-11-27,"56 mexico point drive w  winter prk, fl",32792,Biological child,Male,White,N,545
+546,Kathleen,Poe,64,1955-06-11,"113 reed ave  palm coast, fl",32137,Reference person,Female,Black,G,546
+547,Jerome,Thomas,73,1946-12-06,"21 howard stre  miramar, fl",33025,Reference person,Male,Black,A,547
+548,Josephine,Jones,62,1957-05-19,"21 howard stre  miramar, fl",33025,Opp-sex spouse,Female,Black,F,548
+549,Michael,Pinedo,36,1983-08-01,"156 goldsborough dr  jacksonville, fl",32250,Reference person,Male,Latino,C,549
+551,Alannah,Monge,0,2019-04-24,"156 goldsborough dr  jacksonville, fl",32250,Biological child,Female,Latino,V,551
+553,Darrin,Mayol,55,1965-03-17,"253 mapuana rd  juno beach, fl",33408,Opp-sex spouse,Male,Latino,G,553
+554,Michael,Cooley,48,1971-09-30,"1669 stillwater ps  lakeland, fl",33801,Reference person,Male,White,C,554
+555,Wesley,Finnegan,52,1967-08-23,"2156 bolton dr nw  orlando, fl",32819,Reference person,Male,White,S,555
+556,Tonia,Swoboda,44,1975-09-11,"2156 bolton dr nw  orlando, fl",32819,Opp-sex spouse,Female,White,N,556
+557,Isabel,Green,16,2003-05-12,"2156 bolton dr nw  orlando, fl",32819,Biological child,Female,White,N,557
+558,Mariah,Bryan,14,2005-08-13,"2156 bolton dr nw  orlando, fl",32819,Biological child,Female,White,S,558
+559,Tyrone,Friedman,62,1957-04-12,"429 montgomery fry rd ne  lehigh acres, fl",33976,Reference person,Male,White,J,559
+560,Lucy,Becerra,59,1960-07-30,"429 montgomery fry rd ne  lehigh acres, fl",33976,Opp-sex spouse,Female,Latino,D,560
+561,Reginald,Seeley,65,1955-03-09,"118 vly forge ct  summerfield, fl",34491,Reference person,Male,White,J,561
+562,Linda,Brown,69,1950-08-06,"2009 n washington st  kendall, fl",33173,Reference person,Female,White,C,562
+563,Leon,Davenport,75,1944-05-03,"2009 n washington st  kendall, fl",33173,Opp-sex spouse,Male,White,J,563
+564,Michael,Boyd,45,1975-01-22,"3563 downing street # 10053 unincorporated, fl",34786,Reference person,Male,White,G,564
+565,Angelica,Logsdon,40,1979-11-03,"3563 downing street # 10053 unincorporated, fl",34786,Opp-sex spouse,Female,White,R,565
+566,Michael,Galeano,52,1967-10-17,"313 sorrelwood dr  brandon, fl",33511,Reference person,Male,Latino,D,566
+567,Jacquelyn,Lozoya,79,1941-01-16,"313 sorrelwood dr  brandon, fl",33511,Parent,Female,Latino,P,567
+568,Jay,Lobaton Vazquez,54,1965-06-03,"313 sorrelwood dr  brandon, fl",33511,Roommate,Male,Latino,J,568
+569,Marcus,Perez,56,1963-04-14,"58b arcadia str  brandon, fl",33510,Reference person,Male,Latino,D,569
+571,Ronnie,Benesh,77,1942-10-28,"1704 mckeen st  bradenton, fl",34209,Reference person,Male,White,J,571
+572,Alan,Lucia,77,1942-11-11,"19027 warbler ct  pompano beach, fl",33060,Reference person,Male,White,S,572
+573,Lynn,Pe,75,1944-11-15,"19027 warbler ct  pompano beach, fl",33060,Opp-sex spouse,Female,White,M,573
+574,Mary,Bullock,76,1943-06-05,"129 hinchey road  cape coral, fl",33993,Reference person,Female,White,D,574
+575,Maurice,Bravo,44,1976-03-07," totteridge lane  chiefland, fl",32626,Reference person,Male,Latino,M,575
+576,Abigail,Cruz,45,1974-05-23," totteridge lane  chiefland, fl",32626,Opp-sex spouse,Female,Latino,M,576
+577,Isaiah,Renteria,19,2001-02-14," totteridge lane  chiefland, fl",32626,Biological child,Male,Latino,K,577
+578,Avery,Smith-Benson,14,2005-06-01," totteridge lane  chiefland, fl",32626,Biological child,Female,Latino,C,578
+579,Katherine,Kleczkowski,37,1982-04-22,"1465 laney walker blvd  kendall, fl",33156,Reference person,Female,White,M,579
+580,Melvin,Palaia,44,1975-07-31,"1465 laney walker blvd  kendall, fl",33156,Opp-sex spouse,Male,White,N,580
+581,Chad,Regmi,19,2001-02-19,"1465 laney walker blvd  kendall, fl",33156,Biological child,Male,Multiracial or Other,M,581
+582,Emilio,Powell,14,2005-11-14,"1465 laney walker blvd  kendall, fl",33156,Biological child,Male,White,J,582
+583,Kori,Malagon,28,1992-02-07,"1276 waterbury rd  longwood, fl",32750,Reference person,Female,Latino,J,583
+584,Christopher,Resendez,32,1988-03-27,"1276 waterbury rd  longwood, fl",32750,Opp-sex spouse,Male,Latino,S,584
+585,Kevin,Rodriguez,3,2016-12-26,"1276 waterbury rd  longwood, fl",32750,Biological child,Male,Latino,T,585
+586,Susie,Schoonmaker,75,1945-01-02,"3060 denver ave  okeechobee, fl",34974,Reference person,Female,White,E,586
+587,Leslie,Cohen,76,1944-02-03,"3060 denver ave  okeechobee, fl",34974,Opp-sex spouse,Male,White,A,587
+589,Harvey,Gill,78,1941-12-18,"10607 cedar lake  winter spgs, fl",32708,Reference person,Male,White,M,589
+590,Jennifer,Gloria,45,1974-10-03,"3273 star rd  dade cty, fl",33523,Reference person,Female,Latino,M,590
+591,Alia,Ortiz,20,1999-11-13,"3273 star rd  dade cty, fl",33523,Biological child,Female,Latino,J,591
+592,Willie,Lazo,83,1936-10-14,"3273 star rd  dade cty, fl",33523,Parent,Female,Latino,M,592
+593,Michael,Shepherd,50,1970-01-24,"604 marshall ave  boca raton, fl",33432,Reference person,Male,White,S,593
+594,Shari,Veneziano,50,1969-04-18,"604 marshall ave  boca raton, fl",33432,Opp-sex spouse,Female,White,D,594
+595,Enzo,Burton,14,2005-05-12,"604 marshall ave  boca raton, fl",33432,Stepchild,Male,White,S,595
+596,Kimberly,Bravo,55,1964-09-28,"2080 bergen avnu  port orange, fl",32129,Reference person,Female,Latino,W,596
+597,Anthony,Level,62,1958-03-02,"2080 bergen avnu  port orange, fl",32129,Opp-sex spouse,Male,Latino,G,597
+598,Franklin,Peralta,28,1991-09-28,"2080 bergen avnu  port orange, fl",32129,Biological child,Male,Latino,C,598
+599,Jesse,Nesbitt,82,1937-06-17,"3411 self creek raod  bradenton, fl",34202,Reference person,Male,White,J,599
+600,Lissette,Hughes,38,1981-05-18,"14165 73rd ave ne  margate, fl",33063,Reference person,Female,White,L,600
+601,Michael,Huser,40,1979-10-05,"14165 73rd ave ne  margate, fl",33063,Opp-sex spouse,Male,White,C,601
+602,James,Webb,72,1947-09-04,"2344 el marra drv  cape coral, fl",33993,Reference person,Male,White,P,602
+603,Sarah,Causey,81,1938-09-05,"2344 el marra drv  cape coral, fl",33993,Opp-sex spouse,Female,White,J,603
+604,Lisa,Bittle,55,1965-03-10,"6117 manton ave  green cove springs, fl",32043,Reference person,Female,Black,M,604
+605,Macie,Douglas,19,2000-08-31,"6117 manton ave  green cove springs, fl",32043,Biological child,Female,Black,K,605
+606,Barbara,Collins,34,1985-08-30,"206 aspen cir  clearwater, fl",33755,Reference person,Female,White,T,606
+607,Nikki,King,49,1970-04-17,"1406 tiffany lane  altamonte spgs, fl",32714,Reference person,Female,Black,C,607
+608,Andrea,Hayes,32,1987-07-13,"1406 tiffany lane  altamonte spgs, fl",32714,Biological child,Female,Black,M,608
+609,Katherine,Collier,34,1985-06-08,"1407 n sycamore bl  gainesville, fl",32605,Reference person,Female,White,M,609
+610,Michael,Goldstein,11,2008-07-09,"1407 n sycamore bl  gainesville, fl",32605,Biological child,Male,White,A,610
+611,Angel,Samuels,8,2011-07-11,"1407 n sycamore bl  gainesville, fl",32605,Biological child,Male,White,M,611
+612,Kailyn,Hathcock,5,2014-07-11,"1407 n sycamore bl  gainesville, fl",32605,Biological child,Female,White,I,612
+613,Jay,Allard,29,1990-11-16,"1114 sunrise dr  okeechobee, fl",34974,Reference person,Male,White,C,613
+614,Martha,Edwards,31,1988-08-11,"1114 sunrise dr  okeechobee, fl",34974,Other nonrelative,Female,White,A,614
+615,Jeffery,Wevodau,68,1951-11-04,"19800 canterbury  ft myers, fl",33908,Reference person,Male,White,L,615
+616,Carole,Soria,61,1958-05-27,"19800 canterbury  ft myers, fl",33908,Opp-sex spouse,Female,White,D,616
+617,Margaret,Barlow,64,1955-10-05,"4530 jason dr  nth pt, fl",34286,Reference person,Female,White,C,617
+618,Carlton,Mccurley,64,1956-03-18,"4530 jason dr  nth pt, fl",34286,Opp-sex spouse,Male,White,D,618
+619,Gene,Sietz,57,1962-04-26,"12555 ansin cir dr  bonita spgs, fl",34135,Reference person,Male,White,M,619
+621,Amber,Rowzee,15,2004-08-24,"12555 ansin cir dr  bonita spgs, fl",34135,Biological child,Female,White,J,621
+622,Xavier,Center,12,2007-08-02,"12555 ansin cir dr  bonita spgs, fl",34135,Biological child,Male,White,C,622
+623,Peggy,Rondon,84,1935-05-20,"326 marina village way  alva, fl",33920,Reference person,Female,Latino,M,623
+624,Donald,Melendez,90,1930-03-11,"326 marina village way  alva, fl",33920,Opp-sex spouse,Male,Latino,B,624
+625,John,Ismerio Nunez,56,1964-01-27,"326 marina village way  alva, fl",33920,Biological child,Male,Latino,G,625
+626,Michael,Rosas Reyes,50,1969-09-17,"326 marina village way  alva, fl",33920,Biological child,Male,Latino,J,626
+627,Dale,Lartigue,31,1988-10-07,"326 marina village way  alva, fl",33920,Grandchild,Male,Multiracial or Other,D,627
+628,Serenity,Dierks,10,2009-04-06,"326 marina village way  alva, fl",33920,Grandchild,Female,Multiracial or Other,K,628
+629,Larry,Martin,74,1945-06-24,"11142 jeanette dr  jacksonville beach, fl",32250,Reference person,Male,Black,W,629
+630,Lisa,Winchester,59,1960-04-25,"11142 jeanette dr  jacksonville beach, fl",32250,Opp-sex spouse,Female,Black,T,630
+631,Christina,Tran,18,2001-05-11," south john b dennis parkway  merritt island, fl",32953,Reference person,Female,Asian,A,631
+632,Ramona,Mccune,60,1960-03-27,"5081 logan st se  lehigh acres, fl",33972,Reference person,Female,White,L,632
+633,Christopher,Lowrey,39,1980-12-31,"6368 cmt salado 3r piso ap 94 unincorporated, fl",33498,Reference person,Male,White,B,633
+634,Sonya,Botello,41,1978-08-20,"6368 cmt salado 3r piso ap 94 unincorporated, fl",33498,Opp-sex spouse,Female,White,J,634
+635,Corinne,Villarreal,41,1979-01-13,"528 roper rd aptmnt № a 6 bradenton, fl",34208,Reference person,Female,Latino,S,635
+636,Cameron,Lugo,15,2004-05-30,"528 roper rd aptmnt № a 6 bradenton, fl",34208,Biological child,Male,Latino,J,636
+637,Alice,Espinosa,14,2005-08-07,"528 roper rd aptmnt № a 6 bradenton, fl",34208,Biological child,Female,Latino,I,637
+638,Ian,Pooler,42,1978-02-03,"3935 alla rd  kendall, fl",33155,Reference person,Male,White,M,638
+639,Misty,Villalobos,43,1977-02-10,"3935 alla rd  kendall, fl",33155,Opp-sex spouse,Female,Latino,C,639
+640,Jeffery,Ortiz,11,2009-02-14,"3935 alla rd  kendall, fl",33155,Other relative,Male,Latino,M,640
+641,Keisha,Croker,46,1973-09-02,"140 mcgiboney pl  tampa, fl",33604,Reference person,Female,White,J,641
+642,Ernest,Blackman,46,1973-09-07,"140 mcgiboney pl  tampa, fl",33604,Opp-sex spouse,Male,White,M,642
+643,Kassidy,Galarza,12,2007-12-08,"140 mcgiboney pl  tampa, fl",33604,Biological child,Female,White,I,643
+644,Mary,Carley,77,1942-05-11,"504 loris ln  jacksonville, fl",32202,Reference person,Female,White,B,644
+645,Bernard,Bartmess,58,1962-01-10,"504 loris ln  jacksonville, fl",32202,Biological child,Male,White,J,645
+646,Hilda,Mullen,90,1930-03-24,"7 prospect street  lutz, fl",33558,Reference person,Female,White,M,646
+648,Michael,Ward,45,1974-05-18,"752 carriage cir  st augustine, fl",32084,Opp-sex spouse,Male,White,C,648
+649,Bree,Sword,14,2006-03-30,"752 carriage cir  st augustine, fl",32084,Biological child,Female,White,C,649
+650,James,Castro,68,1952-01-20,"1503 242nd st  north sarasota, fl",34241,Reference person,Male,Latino,E,650
+651,Gladys,Harris,65,1954-08-01,"4536 red school ro  coral sprngs, fl",33065,Reference person,Female,Black,M,651
+652,Jennifer,Covington,39,1981-02-07,"4536 red school ro  coral sprngs, fl",33065,Biological child,Female,Black,J,652
+653,Elisha,Carter,12,2007-07-31,"4536 red school ro  coral sprngs, fl",33065,Grandchild,Female,Black,J,653
+654,Damari,Williams,4,2015-12-15,"4536 red school ro  coral sprngs, fl",33065,Grandchild,Male,Black,Q,654
+655,Cecil,Hutchins,65,1955-01-28,"5516 new cut road # 314 live oak, fl",32060,Reference person,Male,White,G,655
+656,Marcia,Borgard,63,1956-04-05,"5516 new cut road # 314 live oak, fl",32060,Opp-sex spouse,Female,White,M,656
+657,Michael,Gray,61,1958-09-28,"20994 torre del lago st  cottondale, fl",32431,Reference person,Male,Black,T,657
+658,Mary,Lubin,59,1960-05-18,"20994 torre del lago st  cottondale, fl",32431,Opp-sex spouse,Female,Black,L,658
+659,Jennifer,Rumph,40,1979-07-11,"20994 torre del lago st  cottondale, fl",32431,Stepchild,Female,Black,A,659
+660,Melvin,Porter,80,1939-04-28,"510 echo ln  destin, fl",32541,Reference person,Male,White,J,660
+661,Brian,Pete,22,1997-10-03,"36 old road  lakeland, fl",33809,Reference person,Male,Black,L,661
+662,Andrea,Salas Saenz,23,1996-12-23,"36 old road  lakeland, fl",33809,Opp-sex partner,Female,Latino,D,662
+663,Mitchell,Skipp,35,1984-04-24,"162 clinton street  mulberry, fl",33860,Reference person,Male,White,M,663
+664,Julie,Meade,61,1959-01-27,"10400 park mdws dr  kissimmee, fl",34744,Reference person,Female,White,C,664
+665,James,Clarke,61,1958-11-19,"10400 park mdws dr  kissimmee, fl",34744,Opp-sex spouse,Male,White,M,665
+666,Jessica,Hall,38,1981-08-18,"10400 park mdws dr  kissimmee, fl",34744,Biological child,Female,White,J,666
+667,Rodney,Wren,12,2007-12-15,"10400 park mdws dr  kissimmee, fl",34744,Grandchild,Male,White,J,667
+668,Rachel,Adams,10,2010-03-06,"10400 park mdws dr  kissimmee, fl",34744,Grandchild,Female,White,T,668
+669,James,Smith,77,1943-01-07,"6 roxy aven  fort myers, fl",33905,Reference person,Male,White,W,669
+670,Kathleen,Lemaster,67,1952-12-09,"6 roxy aven  fort myers, fl",33905,Opp-sex spouse,Female,White,S,670
+671,Henry,Ornelas,85,1934-08-04,"61-40 148 street  jacksonville, fl",32207,Reference person,Male,Latino,T,671
+672,Stephanie,Miller,70,1949-06-16,"4558 17th ave ne  north fort myers, fl",33917,Reference person,Female,White,A,672
+673,Christopher,Macleod,26,1993-06-16,"4558 17th ave ne  north fort myers, fl",33917,Biological child,Male,White,J,673
+674,Tiffany,Rife,53,1967-02-22,"4007 crescendo ave no a fort myers, fl",33907,Reference person,Female,White,L,674
+675,Karen,Brady,73,1946-05-04,"4007 crescendo ave no a fort myers, fl",33907,Parent,Female,White,G,675
+676,Deborah,Condon,65,1954-12-19,"21605 otoole dr  riverview, fl",33619,Reference person,Female,White,R,676
+677,Jada,Goodman,25,1994-04-17,"3009 marlin cir  pensacola, fl",32504,Reference person,Female,Latino,A,677
+678,James,Pass,67,1952-06-04,"1183 pinewood place dr  jacksonville, fl",32081,Reference person,Male,White,R,678
+679,Sharon,Jensen,48,1972-01-19,"405 blackburn rd  spring hill, fl",34608,Reference person,Female,White,M,679
+680,Michael,Perez,52,1967-12-27,"405 blackburn rd  spring hill, fl",34608,Opp-sex spouse,Male,White,J,680
+681,Ernesto,Papikyan,18,2001-09-13,"405 blackburn rd  spring hill, fl",34608,Biological child,Male,White,S,681
+682,Sophia,Heller,14,2005-09-14,"405 blackburn rd  spring hill, fl",34608,Biological child,Female,White,D,682
+683,Sarah,Jones,87,1932-05-09,"1105 ridgewood dr  palm bay, fl",32908,Reference person,Female,White,E,683
+684,James,Jones,56,1964-01-06,"14016 great notch ter  tampa, fl",33614,Reference person,Male,Black,J,684
+685,Courtney,Perez,30,1989-09-28,"303 e fourth st  spring hill, fl",34609,Reference person,Male,Latino,D,685
+686,Jill,Lewis,27,1992-05-07,"303 e fourth st  spring hill, fl",34609,Opp-sex partner,Female,White,E,686
+687,Dwayne,Williams,36,1983-08-10,"328 n willow st  kendall, fl",33177,Reference person,Male,White,D,687
+688,Jennifer,Sloan,41,1979-01-15,"11747 old course rd  davie, fl",33324,Reference person,Female,White,M,688
+689,Nathan,Griffith,20,1999-10-03,"11747 old course rd  davie, fl",33324,Biological child,Male,White,C,689
+691,Carlos,Gentry,20,1999-12-09,"6865 sunridge ln  unincorporated, fl",33415,Reference person,Male,White,A,691
+692,Caleb,Flowers,22,1997-04-28,"6865 sunridge ln  unincorporated, fl",33415,Roommate,Male,White,E,692
+693,Michael,Ortiz,21,1998-08-24,"6865 sunridge ln  unincorporated, fl",33415,Roommate,Male,Latino,M,693
+694,Julia,Brinkley,24,1995-07-04,"627 s 12th st  belleair, fl",33756,Reference person,Female,White,J,694
+695,Kareem,Turner,7,2012-10-30,"627 s 12th st  belleair, fl",33756,Biological child,Male,White,C,695
+696,Leon,Pope,35,1984-10-17,"627 s 12th st  belleair, fl",33756,Sibling,Male,White,J,696
+697,Seth,Schwabe,33,1986-11-15,"627 s 12th st  belleair, fl",33756,Opp-sex partner,Male,White,M,697
+698,Nicholas,Juarez,52,1967-12-09,"700 west amarosa avenue  fort pierce, fl",34950,Reference person,Male,Latino,J,698
+699,Kimberly,Talavera,50,1970-03-17,"700 west amarosa avenue  fort pierce, fl",34950,Opp-sex spouse,Female,Latino,M,699
+700,Christopher,Akins-Lopez,29,1990-11-21,"700 west amarosa avenue  fort pierce, fl",34950,Biological child,Male,Latino,S,700
+701,Christopher,Lopez Varas,28,1991-10-08,"700 west amarosa avenue  fort pierce, fl",34950,Biological child,Male,Latino,P,701
+702,Vernon,Baum,58,1961-08-31,"23800 ne 42nd ct  altamonte springs, fl",32714,Reference person,Male,White,M,702
+703,Patricia,Denney,62,1957-05-15,"23800 ne 42nd ct  altamonte springs, fl",32714,Opp-sex spouse,Female,White,J,703
+704,Eva,Belue,73,1947-02-22,"1519 8th st  orlando, fl",32804,Reference person,Female,White,L,704
+705,Kimberly,Nielsen,49,1970-12-10,"205 waters edge ln  lantana, fl",33462,Reference person,Female,White,M,705
+706,James,Larson,77,1943-01-21,"1275 e stanford ave  elkton, fl",32033,Reference person,Male,White,J,706
+707,Eva,Ramirez,77,1942-04-06,"1275 e stanford ave  elkton, fl",32033,Opp-sex spouse,Female,Latino,P,707
+708,Louis,Christian,49,1970-11-28,"31714 w vista lake  kendall, fl",33155,Reference person,Male,White,M,708
+709,Benjamin,Lee,69,1950-09-12,"31714 w vista lake  kendall, fl",33155,Roommate,Male,White,J,709
+710,Paul,Gorley,52,1967-06-09,"31714 w vista lake  kendall, fl",33155,Roommate,Male,White,J,710
+711,Mary,Sparks,80,1939-12-14,"1306 6th street neast  unincorporated, fl",33478,Reference person,Female,White,M,711
+712,Edgar,Hollowell,82,1937-07-11,"1306 6th street neast  unincorporated, fl",33478,Opp-sex spouse,Male,White,H,712
+713,Mary,Loomis,79,1940-10-20,"158 main street  daytona beach shores, fl",32118,Reference person,Female,White,J,713
+714,Lisa,Martin,54,1965-04-19,"158 main street  daytona beach shores, fl",32118,Biological child,Female,White,M,714
+715,Michael,Plank,26,1993-06-16,"158 main street  daytona beach shores, fl",32118,Grandchild,Male,White,J,715
+716,Alexander,Batres,54,1965-06-25,"521 carolina ave  palm coast, fl",32164,Reference person,Male,Latino,C,716
+717,Julie,Phillips,60,1959-06-06,"7 bobann drive  winter haven, fl",33884,Reference person,Female,AIAN,K,717
+718,Sherry,Fields,57,1962-04-21,"1038 w 12th  silver springs, fl",34488,Reference person,Female,White,V,718
+719,Laura,Mason,27,1993-01-19,"1038 w 12th  silver springs, fl",34488,Biological child,Female,White,K,719
+720,Alison,Nickerson,54,1966-03-21,"473 mcbride lane  pembroke pines, fl",33029,Reference person,Female,White,C,720
+721,Paul,Rittmann,52,1967-11-28,"473 mcbride lane  pembroke pines, fl",33029,Opp-sex spouse,Male,White,C,721
+722,Bobby,Mclendon,19,2000-11-09,"473 mcbride lane  pembroke pines, fl",33029,Biological child,Male,White,S,722
+723,Lorena,Johns,40,1980-03-08,"115 river bank rd  apopka, fl",32712,Reference person,Female,White,C,723
+724,Dennis,Sellers,15,2004-11-13,"115 river bank rd  apopka, fl",32712,Biological child,Male,White,J,724
+725,Valeria,Mckenzie,13,2007-03-10,"115 river bank rd  apopka, fl",32712,Biological child,Female,White,J,725
+726,Walter,Masterson,3,2016-08-19,"115 river bank rd  apopka, fl",32712,Biological child,Male,White,L,726
+727,Mary,Priester,75,1944-10-31," n redbird pl  so daytona, fl",32119,Reference person,Female,White,B,727
+728,Henry,Coleman,79,1940-10-16," n redbird pl  so daytona, fl",32119,Opp-sex spouse,Male,White,A,728
+729,Bobbie,Simon,81,1939-03-07,"1000 whitetail trl  keystone hieghts, fl",32656,Reference person,Female,White,M,729
+730,James,Ferrier Coker,68,1951-10-28,"17143 pahata ct  boynton beach, fl",33435,Reference person,Male,White,J,730
+731,Bridgette,Mccauley,58,1961-07-04,"17143 pahata ct  boynton beach, fl",33435,Opp-sex spouse,Female,White,S,731
+732,Herman,Prince,67,1953-01-12,"8432 denton hwy  fort myers, fl",33912,Reference person,Male,White,M,732
+733,Rachel,Pranger,63,1956-09-04,"8432 denton hwy  fort myers, fl",33912,Opp-sex spouse,Female,White,A,733
+734,Michael,Flowers,39,1980-12-06,"8432 denton hwy  fort myers, fl",33912,Stepchild,Male,White,C,734
+735,Jessica,Santos,36,1984-01-21,"3828 university blvd  lakeland, fl",33803,Reference person,Female,White,E,735
+737,Nataly,Lara,13,2006-12-04,"3828 university blvd  lakeland, fl",33803,Biological child,Female,White,I,737
+738,Gloria,Ross,10,2009-05-26,"3828 university blvd  lakeland, fl",33803,Biological child,Female,White,I,738
+739,George,Montilla,66,1954-03-08,"913 pearson dr  st. pete beach, fl",33706,Reference person,Male,White,M,739
+740,Charles,Duran,30,1989-12-17,"8555 co rd 18  weston, fl",33332,Reference person,Male,Latino,B,740
+741,Jessica,Armitage,29,1990-11-11,"8555 co rd 18  weston, fl",33332,Opp-sex spouse,Female,White,C,741
+742,Jacquelyn,Bonsack,43,1976-04-09,"1112 augustus dr  winter pk, fl",32792,Reference person,Female,White,J,742
+743,Javier,Hislop,45,1975-01-19,"1112 augustus dr  winter pk, fl",32792,Opp-sex spouse,Male,White,J,743
+744,Emilio,Lara,21,1999-02-07,"1112 augustus dr  winter pk, fl",32792,Biological child,Male,Latino,T,744
+745,Saul,Bance,15,2004-06-12,"1112 augustus dr  winter pk, fl",32792,Biological child,Male,White,E,745
+746,Erika,Smith,9,2010-09-29,"1112 augustus dr  winter pk, fl",32792,Biological child,Female,White,I,746
+747,Linda,Marsala,69,1950-05-30,"1801 nw market st  palm bay, fl",32905,Reference person,Female,White,M,747
+749,Mary,Vogler,95,1924-12-09,"1801 nw market st  palm bay, fl",32905,Parent,Female,White,M,749
+750,Nicole,Williams,34,1985-09-01," nc 268  jacksonville, fl",32202,Reference person,Female,White,D,750
+751,Christopher,Peachey,35,1984-07-30," nc 268  jacksonville, fl",32202,Opp-sex spouse,Male,White,J,751
+752,Isabella,Andersen,14,2005-08-20," nc 268  jacksonville, fl",32202,Biological child,Female,White,E,752
+754,Elijah,Mitzel,2,2017-12-14," nc 268  jacksonville, fl",32202,Biological child,Male,White,E,754
+755,James,Law,55,1964-05-04,"3708 175th pl  homestead, fl",33033,Reference person,Male,Asian,S,755
+756,Wendy,Islam,54,1965-09-22,"3708 175th pl  homestead, fl",33033,Opp-sex spouse,Female,Asian,T,756
+757,Jack,Yuan,88,1931-09-15,"3708 175th pl  homestead, fl",33033,Parent,Male,Asian,E,757
+758,James,Knight,72,1947-04-17,"13596 whitney rd  championsgate, fl",34714,Reference person,Male,White,J,758
+759,Mary,Rodriguez,65,1954-05-19,"13596 whitney rd  championsgate, fl",34714,Opp-sex spouse,Female,White,D,759
+760,Kimberly,Gallegos,61,1958-06-07,"116 w 47th pl  fort lauderdale, fl",33309,Reference person,Female,Latino,M,760
+761,Aaron,Galindo-Granillo,83,1936-04-02,"116 w 47th pl  fort lauderdale, fl",33309,Opp-sex spouse,Male,Latino,O,761
+762,Michael,Brown,29,1990-06-25,"116 w 47th pl  fort lauderdale, fl",33309,Biological child,Male,Latino,C,762
+763,James,Estrada-Aguilera,65,1954-08-20,"9298 watson industrial park  kissimmee, fl",34747,Reference person,Male,Latino,E,763
+764,Kenneth,Nahabedian,47,1972-04-27,"9298 watson industrial park  kissimmee, fl",34747,Roommate,Male,White,C,764
+765,Collin,Weddle,27,1992-05-15,"5867 jefferson avenue  jupiter, fl",33458,Reference person,Male,White,K,765
+766,Randy,Lindstrom,22,1997-06-29,"2009 bay av  sanford, fl",32771,Reference person,Male,White,M,766
+767,Johnathon,Ganz,22,1997-11-07,"2009 bay av  sanford, fl",32771,Roommate,Male,Latino,K,767
+768,Mae,Myers,69,1950-09-07,"10499 austin drive  valparaiso, fl",32580,Reference person,Female,White,D,768
+769,Earnest,Brehmer,72,1947-05-04,"10499 austin drive  valparaiso, fl",32580,Opp-sex spouse,Male,White,J,769
+770,Nicholas,Alegria,36,1983-09-20,"1788 mclendon aven  maitland, fl",32751,Reference person,Male,Latino,R,770
+771,Steven,Zavala-Rezai,36,1983-10-10,"1788 mclendon aven  maitland, fl",32751,Other relative,Male,Latino,O,771
+772,Julio,Avila,33,1987-01-02,"1788 mclendon aven  maitland, fl",32751,Other relative,Male,Latino,R,772
+773,Alex,Villafranco-Rodriguez,50,1969-12-07,"1788 mclendon aven  maitland, fl",32751,Other nonrelative,Male,Latino,J,773
+774,Jennifer,Person,41,1978-06-29,"16221 lakestone dr  ft myers, fl",33905,Reference person,Female,White,M,774
+775,Todd,Fenno,34,1985-06-11,"16221 lakestone dr  ft myers, fl",33905,Opp-sex spouse,Male,White,M,775
+776,Giselle,Desouza,41,1979-03-19,"48 camrock dr  flagler beach, fl",32136,Reference person,Female,White,H,776
+777,Keisha,Hines,14,2005-09-01,"48 camrock dr  flagler beach, fl",32136,Biological child,Female,White,A,777
+778,Carlos,Drago,36,1983-11-17,"3687 saddlemire rd  pt charlotte, fl",33948,Reference person,Male,White,C,778
+779,Dwight,Newell,68,1951-04-21," prudence stre  melbourne, fl",32940,Reference person,Male,White,W,779
+780,Hazel,Thompson,72,1947-08-30," prudence stre  melbourne, fl",32940,Opp-sex partner,Female,White,L,780
+781,Trina,Hafley,48,1971-06-28,"740 cunningham ave  sunrise, fl",33323,Reference person,Female,White,J,781
+782,Michael,Ewoldt,53,1967-02-14,"740 cunningham ave  sunrise, fl",33323,Opp-sex spouse,Male,White,J,782
+784,Christopher,Ochiltree,19,2000-12-09,"6387 autumn berry cir  jacksonville, fl",32225,Biological child,Male,White,C,784
+785,Gabriel,Halloran,48,1971-04-04,"20155 raceway rd  riverview, fl",33569,Reference person,Male,White,R,785
+786,Lora,Stone,48,1971-06-30,"20155 raceway rd  riverview, fl",33569,Opp-sex spouse,Female,White,L,786
+788,Thomas,Hildreth,11,2008-08-22,"20155 raceway rd  riverview, fl",33569,Biological child,Male,White,C,788
+789,James,Soy,71,1948-12-20,"125 west avenue g f no 112 lehigh acres, fl",33972,Reference person,Male,White,R,789
+790,Michaela,Ackerman,31,1988-04-22,"974 kini court aptmnt 366 vero beach, fl",32962,Reference person,Female,White,T,790
+791,Charles,Smith,30,1990-03-15,"974 kini court aptmnt 366 vero beach, fl",32962,Opp-sex spouse,Male,White,R,791
+792,Khloe,Jackson,0,2020-01-27,"974 kini court aptmnt 366 vero beach, fl",32962,Biological child,Female,White,L,792
+793,James,Butkus,70,1949-11-17,"151 snead rd  deerfield beach, fl",33441,Reference person,Male,White,J,793
+794,Willie,Pierce,68,1951-09-09,"151 snead rd  deerfield beach, fl",33441,Other relative,Male,White,G,794
+795,John,Bodine,58,1961-06-03,"45 guinea ln  jacksonville, fl",32225,Reference person,Male,White,S,795
+796,James,Sigala,60,1959-09-01,"218 easy st  unincorporated, fl",32824,Reference person,Male,Latino,M,796
+797,Terri,Rodrigues,60,1960-03-12,"218 easy st  unincorporated, fl",32824,Other relative,Female,Latino,C,797
+798,Brent,Sotomayor,38,1982-02-17,"218 easy st  unincorporated, fl",32824,Other relative,Male,Latino,M,798
+799,James,Sansone,81,1938-10-17,"2177 s 275 e  orlando, fl",32801,Reference person,Male,White,J,799
+800,Lisa,Boyles,56,1963-09-13,"2551 east 27th street no 55 new pt richey, fl",34655,Reference person,Female,White,K,800
+801,Victoria,Darby,78,1942-03-01,"2551 east 27th street no 55 new pt richey, fl",34655,Parent,Female,White,M,801
+802,Mary,Wofford,62,1957-08-11,"179 sandy brk rd  jacksonville, fl",32250,Reference person,Female,Black,L,802
+803,Christie,Sibert,53,1967-02-15,"1334 vanderbilt road  chuluota, fl",32766,Reference person,Female,Black,F,803
+804,Maurice,Palmer,56,1963-07-26,"1334 vanderbilt road  chuluota, fl",32766,Opp-sex spouse,Male,Black,M,804
+805,Maria,Thomas,28,1991-11-29,"1334 vanderbilt road  chuluota, fl",32766,Biological child,Female,Black,V,805
+806,Penny,Harless,57,1963-03-29,"10851 west perimeter rd  okeechobee, fl",34972,Reference person,Female,White,J,806
+807,Colleen,Pickett,30,1989-10-08,"10851 west perimeter rd  okeechobee, fl",34972,Biological child,Female,White,A,807
+808,Brennan,Foor,5,2014-07-11,"10851 west perimeter rd  okeechobee, fl",34972,Grandchild,Male,White,D,808
+809,John,Martinez,57,1962-11-24,"12625 177th ave ne  ocala, fl",34476,Reference person,Male,Latino,T,809
+810,Jana,Lucas,56,1963-05-23,"12625 177th ave ne  ocala, fl",34476,Opp-sex spouse,Female,Latino,P,810
+811,Janet,Wilks,56,1964-02-18,"140 e 2200 n  cape coral, fl",33904,Reference person,Female,Black,S,811
+812,James,Taylor,57,1962-09-10,"140 e 2200 n  cape coral, fl",33904,Opp-sex spouse,Male,Black,J,812
+813,Jessica,Williams,33,1986-07-21,"140 e 2200 n  cape coral, fl",33904,Biological child,Female,Black,A,813
+814,Zachary,Penney,31,1989-03-24,"140 e 2200 n  cape coral, fl",33904,Biological child,Male,Black,B,814
+816,Kareem,Hill,6,2013-04-16,"140 e 2200 n  cape coral, fl",33904,Grandchild,Male,Black,J,816
+817,Coral,Lacewell,3,2017-03-06,"140 e 2200 n  cape coral, fl",33904,Grandchild,Female,Black,N,817
+818,Mildred,David,67,1952-05-26,"4704 astaire pl  jacksonville, fl",32206,Reference person,Female,White,L,818
+819,James,Fite,65,1955-03-14,"6841 n forestview dr  wesley chapel, fl",33543,Reference person,Male,White,R,819
+820,Clara,Leavey,66,1953-11-03,"6841 n forestview dr  wesley chapel, fl",33543,Opp-sex spouse,Female,White,D,820
+821,Melissa,Goss,60,1959-06-23,"15068 n 140th ave  fort mccoy, fl",32134,Reference person,Female,White,J,821
+822,Donald,Lutz,30,1990-03-27,"15068 n 140th ave  fort mccoy, fl",32134,Biological child,Male,White,D,822
+823,Charlie,Simmons,10,2009-10-17,"15068 n 140th ave  fort mccoy, fl",32134,Grandchild,Male,White,J,823
+824,Jack,Pumphrey,47,1972-05-07,"15068 n 140th ave  fort mccoy, fl",32134,Other nonrelative,Male,White,M,824
+825,Michael,Cochrane,54,1966-01-04,"3075 plumbrook rd  lutz, fl",33558,Reference person,Male,White,K,825
+826,Jennifer,Gutierrez,50,1970-02-01,"10304 pimlico pl  frostproof, fl",33843,Reference person,Female,White,L,826
+827,Johnnie,Azbill,46,1973-12-20,"10304 pimlico pl  frostproof, fl",33843,Opp-sex spouse,Male,White,N,827
+828,Josiah,Carr,11,2008-06-03,"10304 pimlico pl  frostproof, fl",33843,Stepchild,Male,White,J,828
+829,Gayle,Euler,68,1951-09-21,"3377 dearcy avenue # 472 wesley chapel, fl",33544,Reference person,Female,White,D,829
+830,Janet,Hargis,56,1963-05-05,"121 s 11th st  unincorporated, fl",32828,Reference person,Female,Latino,B,830
+831,Carl,Hernandez Sierra,52,1967-07-30,"121 s 11th st  unincorporated, fl",32828,Opp-sex spouse,Male,Latino,R,831
+832,Melissa,Ruiz,18,2001-09-16,"121 s 11th st  unincorporated, fl",32828,Biological child,Female,Latino,J,832
+833,Mildred,Mcguire,59,1960-04-18,"1331 wilson st  hollywood, fl",33019,Reference person,Female,White,B,833
+834,Leslie,Leach,61,1958-11-26,"1331 wilson st  hollywood, fl",33019,Opp-sex spouse,Male,White,D,834
+835,Kimberly,Kastl,53,1966-11-30,"2360 gurley rd  deland, fl",32724,Reference person,Female,White,C,835
+837,Genevieve,Person,30,1989-12-26,"1816 w blvd  unincorporated, fl",33434,Reference person,Female,White,B,837
+838,Allisson,Jennings,10,2009-04-21,"1816 w blvd  unincorporated, fl",33434,Biological child,Female,White,D,838
+839,Royal,Stockman,3,2016-08-10,"1816 w blvd  unincorporated, fl",33434,Biological child,Male,White,E,839
+840,Bernard,Harris,49,1970-12-31,"68 hope st  jacksonville, fl",32204,Reference person,Male,White,F,840
+841,James,Roe,82,1937-12-06,"12825 planters rw dr  elkton, fl",32033,Reference person,Male,White,H,841
+842,Mary,Fadden,79,1940-07-30,"12825 planters rw dr  elkton, fl",32033,Opp-sex spouse,Female,White,B,842
+843,Jennifer,Stuart,38,1981-09-23," kenwood av  gainesville, fl",32607,Reference person,Female,Black,J,843
+844,Jacob,Govan,18,2001-09-27," kenwood av  gainesville, fl",32607,Biological child,Male,Black,A,844
+845,Anthony,Chea,15,2004-06-07," kenwood av  gainesville, fl",32607,Biological child,Male,Black,N,845
+846,Gerald,Kallon,12,2008-02-28," kenwood av  gainesville, fl",32607,Biological child,Male,Black,S,846
+847,Audriana,Martin,8,2011-10-13," kenwood av  gainesville, fl",32607,Biological child,Female,Black,C,847
+848,Sophia,Walls,6,2013-10-02," kenwood av  gainesville, fl",32607,Biological child,Female,Black,O,848
+849,Donnie,Slattery,60,1959-06-06,"307 garfield st  tampa, fl",33647,Reference person,Male,White,D,849
+850,Nathan,Kondratyuk,57,1962-10-05,"307 garfield st  tampa, fl",33647,Same-sex spouse,Male,White,R,850
+851,Joyce,Johnson,68,1951-05-25,"1477 rue deauville blvd  land o lakes, fl",34639,Reference person,Female,White,M,851
+852,Chandra,Price,52,1967-08-28,"103 union st  st. petersburg, fl",33714,Reference person,Female,White,P,852
+853,James,Buckner,58,1961-07-15,"103 union st  st. petersburg, fl",33714,Opp-sex spouse,Male,White,J,853
+854,Rafael,Crane,24,1995-09-12,"103 union st  st. petersburg, fl",33714,Biological child,Male,White,M,854
+855,George,Ash,66,1953-12-31,"1302 25th ave n  riverview, fl",33569,Reference person,Male,White,C,855
+857,Terri,Morris,64,1956-03-28,"4 maples mobile home pk  withla, fl",33809,Reference person,Female,White,L,857
+858,Edward,Vallera,61,1958-07-18,"4 maples mobile home pk  withla, fl",33809,Opp-sex spouse,Male,White,L,858
+859,Patricia,Zhou,40,1980-03-03,"645 swst 19th circel  north sarasota, fl",34241,Reference person,Female,Asian,C,859
+860,Wayne,Kim,41,1978-04-30,"645 swst 19th circel  north sarasota, fl",34241,Opp-sex spouse,Male,Asian,M,860
+861,Melissa,Sethi,14,2006-01-08,"645 swst 19th circel  north sarasota, fl",34241,Biological child,Female,Asian,M,861
+863,Ralph,Ghodsi,37,1983-01-12,"56 reservation street ap 1 kissimmee, fl",34744,Opp-sex spouse,Male,White,D,863
+864,Jennifer,Helm,36,1983-10-24,"4112 ne 24th st  indian rocks beach, fl",33785,Reference person,Female,White,J,864
+865,James,Prince,63,1956-07-16,"779 state route 502  jacksonville, fl",32208,Reference person,Male,Black,M,865
+866,Mark,Esqueda,43,1976-09-01,"1014 so 2nd stre g f madeira beach, fl",33708,Reference person,Male,Latino,L,866
+867,Ruth,Garcia,46,1973-05-07,"1014 so 2nd stre g f madeira beach, fl",33708,Opp-sex spouse,Female,Latino,J,867
+868,Brett,Marvin,43,1977-02-06,"18034 shawley dr  unincorporated, fl",33406,Reference person,Male,White,M,868
+869,Bobbi,Mellott,39,1981-01-13,"18034 shawley dr  unincorporated, fl",33406,Opp-sex spouse,Female,White,C,869
+870,Lea,Black,2,2017-11-18,"18034 shawley dr  unincorporated, fl",33406,Biological child,Female,White,I,870
+871,Jessica,Leithead,31,1988-06-24,"14363 san paolo ln  port orange, fl",32128,Reference person,Female,Multiracial or Other,A,871
+872,Christopher,Wright,33,1986-06-03,"14363 san paolo ln  port orange, fl",32128,Opp-sex spouse,Male,Multiracial or Other,S,872
+873,Terrell,Mccormick,10,2009-11-30,"14363 san paolo ln  port orange, fl",32128,Biological child,Male,Multiracial or Other,M,873
+874,Michael,Gillespie,6,2014-03-21,"14363 san paolo ln  port orange, fl",32128,Biological child,Male,Multiracial or Other,N,874
+875,Sophia,Holeman,4,2016-02-27,"14363 san paolo ln  port orange, fl",32128,Biological child,Female,Multiracial or Other,A,875
+876,Kenneth,Culver,50,1969-05-08,"3001 north gantenbein avenue  lk land, fl",33803,Reference person,Male,White,A,876
+877,Kelly,Nelson,58,1962-02-14,"2945 e indianapolis ave  lake land, fl",33809,Reference person,Male,Black,D,877
+878,Desiree,Minor,55,1964-08-21,"2945 e indianapolis ave  lake land, fl",33809,Opp-sex spouse,Female,Black,T,878
+879,Cameron,Smith,42,1977-11-28,"20 central street  vero beach, fl",32960,Reference person,Male,Black,F,879
+880,Alicia,Falkner,40,1979-11-10,"20 central street  vero beach, fl",32960,Opp-sex spouse,Female,Black,T,880
+881,Janiyah,Mcwhorter,18,2001-04-14,"20 central street  vero beach, fl",32960,Biological child,Female,Black,E,881
+883,Alyssa,Lopez Buenrostro,42,1977-07-06,"952 cherokee road apartment 2 atlantic beach, fl",32233,Reference person,Female,Latino,J,883
+884,Michael,Ruiz,42,1977-05-11,"952 cherokee road apartment 2 atlantic beach, fl",32233,Opp-sex spouse,Male,Latino,K,884
+885,Braylen,Ramos,8,2012-01-12,"952 cherokee road apartment 2 atlantic beach, fl",32233,Biological child,Male,Latino,J,885
+887,Leo,Bolling,81,1938-05-24,"4911 meadow run dr  miramar, fl",33025,Reference person,Male,White,J,887
+888,Myrna,Millard,81,1939-02-05,"4911 meadow run dr  miramar, fl",33025,Opp-sex spouse,Female,White,O,888
+889,Elaine,Hamrick,43,1977-01-18,"4911 meadow run dr  miramar, fl",33025,Biological child,Female,White,J,889
+890,James,Akens,64,1955-09-24,"4973 titan roberts rd  pembroke pines, fl",33026,Reference person,Male,White,G,890
+891,Linda,Burcham,70,1949-04-22,"4973 titan roberts rd  pembroke pines, fl",33026,Opp-sex partner,Female,White,C,891
+892,Melody,Walker,32,1988-02-04,"1298 wittenberg road  jacksonville, fl",32216,Reference person,Female,White,A,892
+893,Emma,Brann,8,2012-01-20,"1298 wittenberg road  jacksonville, fl",32216,Biological child,Female,Multiracial or Other,I,893
+894,Michael,Rivera,46,1973-07-25,"1685 nugget ct  ft myers, fl",33908,Reference person,Male,Latino,J,894
+895,Kenneth,Ramirez,48,1971-04-22,"1685 nugget ct  ft myers, fl",33908,Roommate,Male,Latino,S,895
+896,Sheryl,Sanchez-Serrano,47,1972-07-05,"1685 nugget ct  ft myers, fl",33908,Roommate,Female,Latino,J,896
+897,Michael,Garza,35,1984-04-21,"1685 nugget ct  ft myers, fl",33908,Roommate,Male,Latino,C,897
+898,Charles,Flores Ortega,31,1988-07-18,"1685 nugget ct  ft myers, fl",33908,Roommate,Male,Latino,I,898
+899,Michael,Orefice,46,1973-05-21,"1213 16th place southw  fort myers, fl",33908,Reference person,Male,White,J,899
+900,Holly,Barnum,41,1979-02-05,"1213 16th place southw  fort myers, fl",33908,Opp-sex spouse,Female,White,S,900
+901,Nala,Gardner,6,2014-02-27,"1213 16th place southw  fort myers, fl",33908,Adopted child,Female,White,C,901
+902,Kevin,Ferguson,58,1962-01-31,"6722 112th avenu northeast no r palm bay, fl",32907,Reference person,Male,White,D,902
+903,Gladys,Quintanilla,67,1953-03-08,"6722 112th avenu northeast no r palm bay, fl",32907,Opp-sex spouse,Female,Latino,M,903
+904,Joshua,Kelly,45,1974-04-23,"615 75th st se  north lauderdale, fl",33068,Reference person,Male,White,J,904
+905,Deanna,Bolton,40,1979-06-02,"615 75th st se  north lauderdale, fl",33068,Opp-sex spouse,Female,White,A,905
+906,Fabiola,Yaeger,18,2001-08-12,"615 75th st se  north lauderdale, fl",33068,Biological child,Female,White,F,906
+907,Michael,Szafranski,15,2004-04-25,"615 75th st se  north lauderdale, fl",33068,Other relative,Male,White,J,907
+908,Christopher,Rados,14,2006-02-15,"615 75th st se  north lauderdale, fl",33068,Other relative,Male,White,A,908
+909,Janet,Greenberg,64,1955-04-24,"29 pelican dr  lk mary, fl",32746,Reference person,Female,Multiracial or Other,J,909
+911,Karen,Leiphart,64,1955-12-02,"521 mandalay ave  cocoa, fl",32926,Reference person,Female,White,J,911
+912,Ralph,Pace,66,1953-05-13,"521 mandalay ave  cocoa, fl",32926,Opp-sex spouse,Male,White,H,912
+913,Sean,Delany,23,1996-08-26,"1305 4th ave n  orlando, fl",32811,Reference person,Male,White,L,913
+914,Gabriella,Herrmann,23,1996-04-08,"1305 4th ave n  orlando, fl",32811,Sibling,Female,White,L,914
+915,Michael,Jeffrey,44,1975-08-22,"15907 sw 146th ave  jacksonville, fl",32222,Reference person,Male,White,P,915
+916,Anthony,Ellis,10,2009-04-16,"15907 sw 146th ave  jacksonville, fl",32222,Biological child,Male,Multiracial or Other,N,916
+917,Dominik,Rigard,8,2012-01-13,"15907 sw 146th ave  jacksonville, fl",32222,Biological child,Male,Multiracial or Other,A,917
+918,Mary,Fish,75,1944-04-20,"17 sth burlington rd  port charlotte, fl",33952,Reference person,Female,White,L,918
+919,Victoria,Clark,95,1925-01-15,"17 sth burlington rd  port charlotte, fl",33952,Parent,Female,White,M,919
+920,Mary,Dean,67,1952-04-24,"7214 218th st n  daytona beach, fl",32114,Reference person,Female,White,K,920
+921,James,Wallace,73,1946-08-01,"7214 218th st n  daytona beach, fl",32114,Opp-sex spouse,Male,White,P,921
+923,Serenity,Kilpatrick,21,1998-09-13,"5180 parkstone dr  merritt island, fl",32952,Biological child,Female,White,B,923
+924,Michael,Mustain,42,1978-03-11,"5180 parkstone dr  merritt island, fl",32952,Opp-sex partner,Male,White,C,924
+925,Jacqueline,Schlager,55,1964-04-25,"7753 big cr road apartment 102 lake land, fl",33815,Reference person,Female,White,R,925
+926,Matthew,Stymiest,48,1972-01-30,"7753 big cr road apartment 102 lake land, fl",33815,Opp-sex spouse,Male,White,J,926
+927,Kenneth,Sheriff,66,1953-10-05,"1112 s clinton ave  riverview, fl",33569,Reference person,Male,Black,A,927
+928,Linda,Parker,67,1952-08-28,"1112 s clinton ave  riverview, fl",33569,Opp-sex spouse,Female,Black,M,928
+929,Diane,Almonte Prado,69,1950-10-25,"395 rutledge  jacksonville, fl",32205,Reference person,Female,Latino,E,929
+930,Victor,Cano,71,1948-12-19,"395 rutledge  jacksonville, fl",32205,Opp-sex spouse,Male,Latino,J,930
+931,Inez,Kennedy,83,1937-03-24,"6568 ne 2nd st  north fort myers, fl",33917,Reference person,Female,White,M,931
+932,Gary,Nolte,71,1948-11-20,"907 santorini ln  santa rosa beach, fl",32459,Reference person,Male,White,K,932
+933,Deborah,Woodall,63,1957-02-06,"907 santorini ln  santa rosa beach, fl",32459,Opp-sex spouse,Female,White,D,933
+934,Jay,Vasquez,34,1986-02-28,"7801 greenshire dr  edgewood, fl",32839,Reference person,Male,Latino,L,934
+935,Kristen,Behlen,28,1991-04-08,"7801 greenshire dr  edgewood, fl",32839,Opp-sex partner,Female,White,J,935
+936,Willie,Cardell,67,1952-08-13,"1104 stonedown ln  kendall, fl",33172,Reference person,Male,White,D,936
+937,Andrea,Knutson,40,1979-08-26,"319 winifred drive  ocala, fl",34471,Reference person,Female,White,R,937
+938,Demetrius,Whittington,43,1976-06-09,"319 winifred drive  ocala, fl",34471,Opp-sex spouse,Male,White,A,938
+939,Olivia,Woods,10,2009-07-10,"319 winifred drive  ocala, fl",34471,Biological child,Female,White,R,939
+940,Isabella,Arnold,7,2013-03-28,"319 winifred drive  ocala, fl",34471,Biological child,Female,White,O,940
+941,Christopher,Coleman,27,1992-06-01,"6517 bay tree dr  lehigh acres, fl",33972,Reference person,Male,Asian,J,941
+942,Melanie,Gallagher,45,1974-08-27,"2 south dudley avenu  margate, fl",33063,Reference person,Female,White,T,942
+943,Christopher,Lonnemann,34,1985-10-31,"2 south dudley avenu  margate, fl",33063,Opp-sex spouse,Male,White,J,943
+944,Anthony,Monahan,62,1957-09-24,"1562 jerome st  lehigh acres, fl",33972,Reference person,Male,White,W,944
+945,Sheila,Spenard,58,1962-01-30,"1562 jerome st  lehigh acres, fl",33972,Opp-sex spouse,Female,White,R,945
+946,Janet,Schmitz,60,1960-01-18,"6 hillcroft rd  orlando, fl",32811,Reference person,Female,White,S,946
+947,Karen,Fisk,64,1955-07-20,"6 hillcroft rd  orlando, fl",32811,Sibling,Female,White,N,947
+948,Michael,Turner,27,1993-02-09," east north avenue  hollywood, fl",33019,Reference person,Male,White,J,948
+949,Nicole,Manos,40,1979-10-18,"4424 arthur st  kissimmee, fl",34746,Reference person,Female,White,P,949
+950,Ruben,Keskin,39,1981-03-27,"4424 arthur st  kissimmee, fl",34746,Opp-sex spouse,Male,Multiracial or Other,J,950
+951,Jacob,Zendejas,10,2009-07-05,"4424 arthur st  kissimmee, fl",34746,Biological child,Male,Latino,A,951
+952,Aubrey,Nesbitt,38,1982-03-26,"729 orchard dr  brandon, fl",33511,Reference person,Female,Black,T,952
+953,Michael,Dyer,44,1975-09-17,"729 orchard dr  brandon, fl",33511,Opp-sex spouse,Male,Black,C,953
+954,Liam,Prescod,6,2013-05-27,"729 orchard dr  brandon, fl",33511,Biological child,Male,Black,E,954
+955,Franklin,Rios,65,1954-07-15,"8729 havant ln  bradenton, fl",34212,Reference person,Male,Latino,J,955
+956,Daniel,Suarez,56,1963-06-21,"8729 havant ln  bradenton, fl",34212,Sibling,Male,Latino,K,956
+957,Vicky,Merced,50,1970-03-17,"8729 havant ln  bradenton, fl",34212,Other nonrelative,Female,Latino,T,957
+958,Ray,Blough,69,1951-02-03,"112 morning mist trl  rockledge, fl",32955,Reference person,Male,White,J,958
+959,Vera,Duran,67,1952-07-12,"112 morning mist trl  rockledge, fl",32955,Opp-sex spouse,Female,Latino,S,959
+960,Michael,Petitt,43,1976-07-13,"3341 lismore ln  kendall, fl",33134,Reference person,Male,White,S,960
+961,Leon,Hudson,47,1973-03-26,"3341 lismore ln  kendall, fl",33134,Same-sex spouse,Male,White,N,961
+962,Isabella,Polson,1,2018-10-10,"3341 lismore ln  kendall, fl",33134,Adopted child,Female,White,M,962
+963,Gary,Boland-Hale,71,1948-08-28,"12931 barley knob rd  st johns, fl",32259,Reference person,Male,Multiracial or Other,R,963
+964,Joyce,Obar,69,1950-04-22,"12931 barley knob rd  st johns, fl",32259,Opp-sex spouse,Female,Multiracial or Other,M,964
+965,James,Barnum,54,1965-07-25,"108 palmer street  unincorporated, fl",33406,Reference person,Male,White,M,965
+966,Jacqueline,Lopeman,55,1964-11-27,"108 palmer street  unincorporated, fl",33406,Opp-sex spouse,Female,White,T,966
+967,Iris,Hurley,75,1944-08-14,"4817 sw stephenson st  prt charlotte, fl",33952,Reference person,Female,Black,B,967
+968,Stefan,Hartzog,27,1993-01-05,"4817 sw stephenson st  prt charlotte, fl",33952,Adopted child,Male,Black,J,968
+969,Anthony,Lunn,52,1967-12-19,"2953 gra  jacksonville, fl",32221,Reference person,Male,White,R,969
+970,Jennifer,Davis,44,1975-06-19,"2953 gra  jacksonville, fl",32221,Opp-sex partner,Female,White,D,970
+971,Emma,Deshpande,12,2007-06-12,"2953 gra  jacksonville, fl",32221,Stepchild,Female,White,A,971
+972,Tara,Charles,38,1981-06-04,"9850 united states route 4 lot 29 middleburg, fl",32068,Reference person,Female,Black,V,972
+973,Henry,Therlonge,5,2014-06-25,"9850 united states route 4 lot 29 middleburg, fl",32068,Biological child,Male,Black,J,973
+974,Brian,Baxter,17,2002-08-17,"9850 united states route 4 lot 29 middleburg, fl",32068,Adopted child,Male,Black,J,974
+975,Trisha,Goldsberry,36,1983-11-23,"1704 southwest sieben street lower level unit 144 cocoa, fl",32927,Reference person,Female,White,N,975
+976,Isabella,Crawford,12,2007-08-05,"1704 southwest sieben street lower level unit 144 cocoa, fl",32927,Biological child,Female,White,M,976
+977,Beau,Ferrari,10,2010-01-06,"1704 southwest sieben street lower level unit 144 cocoa, fl",32927,Biological child,Male,White,D,977
+978,Noah,Magee,2,2017-11-21,"1704 southwest sieben street lower level unit 144 cocoa, fl",32927,Biological child,Male,White,L,978
+979,Yaritza,Crocker,1,2019-02-20,"1704 southwest sieben street lower level unit 144 cocoa, fl",32927,Biological child,Female,White,E,979
+980,Camila,Finnell,25,1994-05-21,"12822 worthington rd nw  lehigh acres, fl",33971,Reference person,Female,White,M,980
+981,Cedric,Gregg,25,1994-09-16,"12822 worthington rd nw  lehigh acres, fl",33971,Opp-sex partner,Male,White,R,981
+982,Jennifer,Hampton,49,1970-05-27,"4392 lighthouse ln  east lk, fl",33615,Reference person,Female,Black,M,982
+983,David,Livingston Johnson,52,1967-04-03,"4392 lighthouse ln  east lk, fl",33615,Opp-sex spouse,Male,Black,J,983
+984,Ashley,Hendricks-Zachary,26,1993-12-13,"4392 lighthouse ln  east lk, fl",33615,Biological child,Female,Black,S,984
+985,Samantha,Spears,21,1999-02-01,"4392 lighthouse ln  east lk, fl",33615,Biological child,Female,Black,I,985
+986,Olivia,Turner,3,2016-09-13,"4392 lighthouse ln  east lk, fl",33615,Grandchild,Female,Black,S,986
+987,Elijah,Simmons,0,2019-05-28,"4392 lighthouse ln  east lk, fl",33615,Grandchild,Male,Black,C,987
+988,Michael,Escobedo-Gonzalez,34,1985-06-08,"333 riverside dr  sanibel, fl",33957,Reference person,Male,Latino,C,988
+989,Christine,Fuentes Saavedra,36,1983-06-02,"333 riverside dr  sanibel, fl",33957,Opp-sex spouse,Female,Latino,J,989
+991,Cade,Reyes,15,2004-06-20,"333 riverside dr  sanibel, fl",33957,Stepchild,Male,Latino,C,991
+992,Chastity,Hollenkamp,47,1972-06-23,"3402 mount bonnell dr  oviedo, fl",32765,Reference person,Female,White,M,992
+993,Michael,Kelton,47,1972-10-17,"3402 mount bonnell dr  oviedo, fl",32765,Opp-sex spouse,Male,White,J,993
+994,Harold,Harrell,62,1958-01-11,"411 n central ave  gainesville, fl",32641,Reference person,Male,White,R,994
+995,Mary,Moon,63,1956-10-13,"411 n central ave  gainesville, fl",32641,Opp-sex spouse,Female,White,L,995
+996,Cassandra,Stevens,56,1963-08-14,"4475 13th st  spring hill, fl",34606,Reference person,Female,White,S,996
+997,James,Hansen,64,1955-08-13,"4475 13th st  spring hill, fl",34606,Opp-sex spouse,Male,White,R,997
+998,Deanna,Miller,28,1991-05-03,"4475 13th st  spring hill, fl",34606,Biological child,Female,White,R,998
+999,Denzel,Heaney,26,1993-05-06,"4475 13th st  spring hill, fl",34606,Biological child,Male,White,N,999
+1000,Michael,Moran,9,2010-07-23,"4475 13th st  spring hill, fl",34606,Grandchild,Male,White,L,1000

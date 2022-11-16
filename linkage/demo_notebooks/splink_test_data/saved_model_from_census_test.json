@@ -1,0 +1,135 @@
+{
+    "link_type": "link_only",
+    "comparisons": [
+        {
+            "output_column_name": "first_name",
+            "comparison_levels": [
+                {
+                    "sql_condition": "\"first_name_l\" IS NULL OR \"first_name_r\" IS NULL",
+                    "label_for_charts": "Null",
+                    "is_null_level": true
+                },
+                {
+                    "sql_condition": "\"first_name_l\" = \"first_name_r\"",
+                    "label_for_charts": "Exact match",
+                    "m_probability": 1.0,
+                    "u_probability": 0.007674481357438771
+                },
+                {
+                    "sql_condition": "levenshtein(\"first_name_l\", \"first_name_r\") <= 1",
+                    "label_for_charts": "levenshtein <= 1",
+                    "m_probability": 2.7084643845166102e-55,
+                    "u_probability": 0.001055538800971413
+                },
+                {
+                    "sql_condition": "levenshtein(\"first_name_l\", \"first_name_r\") <= 2",
+                    "label_for_charts": "levenshtein <= 2",
+                    "m_probability": 2.2686004436473804e-64,
+                    "u_probability": 0.0050396025459913335
+                },
+                {
+                    "sql_condition": "ELSE",
+                    "label_for_charts": "All other comparisons",
+                    "m_probability": 8.810102369194688e-25,
+                    "u_probability": 0.9862303772955985
+                }
+            ],
+            "comparison_description": "Exact match vs. levenshtein at thresholds 1, 2 vs. anything else"
+        },
+        {
+            "output_column_name": "last_name",
+            "comparison_levels": [
+                {
+                    "sql_condition": "\"last_name_l\" IS NULL OR \"last_name_r\" IS NULL",
+                    "label_for_charts": "Null",
+                    "is_null_level": true
+                },
+                {
+                    "sql_condition": "\"last_name_l\" = \"last_name_r\"",
+                    "label_for_charts": "Exact match",
+                    "m_probability": 0.9950190317465366,
+                    "u_probability": 0.001958302249170648
+                },
+                {
+                    "sql_condition": "levenshtein(\"last_name_l\", \"last_name_r\") <= 1",
+                    "label_for_charts": "levenshtein <= 1",
+                    "u_probability": 0.0002876938461294265
+                },
+                {
+                    "sql_condition": "levenshtein(\"last_name_l\", \"last_name_r\") <= 2",
+                    "label_for_charts": "levenshtein <= 2",
+                    "m_probability": 9.175425946851262e-206,
+                    "u_probability": 0.002174568657640355
+                },
+                {
+                    "sql_condition": "ELSE",
+                    "label_for_charts": "All other comparisons",
+                    "m_probability": 0.00498096825346348,
+                    "u_probability": 0.9955794352470596
+                }
+            ],
+            "comparison_description": "Exact match vs. levenshtein at thresholds 1, 2 vs. anything else"
+        },
+        {
+            "output_column_name": "sex",
+            "comparison_levels": [
+                {
+                    "sql_condition": "\"sex_l\" IS NULL OR \"sex_r\" IS NULL",
+                    "label_for_charts": "Null",
+                    "is_null_level": true
+                },
+                {
+                    "sql_condition": "\"sex_l\" = \"sex_r\"",
+                    "label_for_charts": "Exact match",
+                    "m_probability": 1.0,
+                    "u_probability": 0.5
+                },
+                {
+                    "sql_condition": "ELSE",
+                    "label_for_charts": "All other comparisons",
+                    "m_probability": 1.2777324929358193e-240,
+                    "u_probability": 0.5
+                }
+            ],
+            "comparison_description": "Exact match vs. anything else"
+        },
+        {
+            "output_column_name": "age",
+            "comparison_levels": [
+                {
+                    "sql_condition": "age_l IS NULL OR age_r IS NULL",
+                    "label_for_charts": "Null",
+                    "is_null_level": true
+                },
+                {
+                    "sql_condition": "round(age_r) - round(age_l) = 10",
+                    "label_for_charts": "Exact match",
+                    "m_probability": 0.7831309616824494,
+                    "u_probability": 0.010900620625069444
+                },
+                {
+                    "sql_condition": "abs(round(age_r) - (round(age_l)+10)) = 1",
+                    "label_for_charts": "Age within 1 year",
+                    "m_probability": 0.07034151954200414,
+                    "u_probability": 0.02183794701671402
+                },
+                {
+                    "sql_condition": "ELSE",
+                    "label_for_charts": "Age difference >= 2 years",
+                    "m_probability": 0.14652751877554637,
+                    "u_probability": 0.9672614323582165
+                }
+            ],
+            "comparison_description": "Age difference approximately 10"
+        }
+    ],
+    "blocking_rules_to_generate_predictions": [
+        "l.first_name = r.first_name and l.last_name = r.last_name",
+        "l.sex = r.sex and l.zipcode = r.zipcode",
+        "l.sex = r.sex and abs(round(r.age) - (round(l.age)+10)) <= 1 and substr(l.last_name, 1,1) = substr(r.last_name, 1,1)"
+    ],
+    "probability_two_random_records_match": 0.0009971098265895953,
+    "retain_matching_columns": true,
+    "retain_intermediate_calculation_columns": true,
+    "sql_dialect": "duckdb"
+}
