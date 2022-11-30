@@ -13,25 +13,25 @@
                     "sql_condition": "\"first_name_l\" = \"first_name_r\"",
                     "label_for_charts": "Exact match",
                     "m_probability": 1.0,
-                    "u_probability": 0.007674481357438771
+                    "u_probability": 0.0037363482405703436
                 },
                 {
                     "sql_condition": "levenshtein(\"first_name_l\", \"first_name_r\") <= 1",
                     "label_for_charts": "levenshtein <= 1",
-                    "m_probability": 2.7084643845166102e-55,
-                    "u_probability": 0.001055538800971413
+                    "m_probability": 7.93930056970845e-64,
+                    "u_probability": 0.0008511712409783186
                 },
                 {
                     "sql_condition": "levenshtein(\"first_name_l\", \"first_name_r\") <= 2",
                     "label_for_charts": "levenshtein <= 2",
-                    "m_probability": 2.2686004436473804e-64,
-                    "u_probability": 0.0050396025459913335
+                    "m_probability": 2.2302663989594165e-70,
+                    "u_probability": 0.004815476836891131
                 },
                 {
                     "sql_condition": "ELSE",
                     "label_for_charts": "All other comparisons",
-                    "m_probability": 8.810102369194688e-25,
-                    "u_probability": 0.9862303772955985
+                    "m_probability": 2.7416716901477982e-31,
+                    "u_probability": 0.9905970036815602
                 }
             ],
             "comparison_description": "Exact match vs. levenshtein at thresholds 1, 2 vs. anything else"
@@ -47,25 +47,25 @@
                 {
                     "sql_condition": "\"last_name_l\" = \"last_name_r\"",
                     "label_for_charts": "Exact match",
-                    "m_probability": 0.9950190317465366,
-                    "u_probability": 0.001958302249170648
+                    "m_probability": 0.9967681376594161,
+                    "u_probability": 0.0015957014873972846
                 },
                 {
                     "sql_condition": "levenshtein(\"last_name_l\", \"last_name_r\") <= 1",
                     "label_for_charts": "levenshtein <= 1",
-                    "u_probability": 0.0002876938461294265
+                    "u_probability": 0.00017610439468516937
                 },
                 {
                     "sql_condition": "levenshtein(\"last_name_l\", \"last_name_r\") <= 2",
                     "label_for_charts": "levenshtein <= 2",
-                    "m_probability": 9.175425946851262e-206,
-                    "u_probability": 0.002174568657640355
+                    "m_probability": 1.532099251377369e-20,
+                    "u_probability": 0.001870620014655799
                 },
                 {
                     "sql_condition": "ELSE",
                     "label_for_charts": "All other comparisons",
-                    "m_probability": 0.00498096825346348,
-                    "u_probability": 0.9955794352470596
+                    "m_probability": 0.0032318623405839376,
+                    "u_probability": 0.9963575741032618
                 }
             ],
             "comparison_description": "Exact match vs. levenshtein at thresholds 1, 2 vs. anything else"
@@ -82,13 +82,13 @@
                     "sql_condition": "\"sex_l\" = \"sex_r\"",
                     "label_for_charts": "Exact match",
                     "m_probability": 1.0,
-                    "u_probability": 0.5
+                    "u_probability": 0.5010805961329432
                 },
                 {
                     "sql_condition": "ELSE",
                     "label_for_charts": "All other comparisons",
-                    "m_probability": 1.2777324929358193e-240,
-                    "u_probability": 0.5
+                    "m_probability": 6.819778576431822e-140,
+                    "u_probability": 0.49891940386705685
                 }
             ],
             "comparison_description": "Exact match vs. anything else"
@@ -104,20 +104,20 @@
                 {
                     "sql_condition": "round(age_r) - round(age_l) = 10",
                     "label_for_charts": "Exact match",
-                    "m_probability": 0.7831309616824494,
-                    "u_probability": 0.010900620625069444
+                    "m_probability": 0.7789704895145385,
+                    "u_probability": 0.010861727721081946
                 },
                 {
                     "sql_condition": "abs(round(age_r) - (round(age_l)+10)) = 1",
                     "label_for_charts": "Age within 1 year",
-                    "m_probability": 0.07034151954200414,
-                    "u_probability": 0.02183794701671402
+                    "m_probability": 0.05643894791262434,
+                    "u_probability": 0.02163638160256956
                 },
                 {
                     "sql_condition": "ELSE",
                     "label_for_charts": "Age difference >= 2 years",
-                    "m_probability": 0.14652751877554637,
-                    "u_probability": 0.9672614323582165
+                    "m_probability": 0.16459056257283708,
+                    "u_probability": 0.9675018906763485
                 }
             ],
             "comparison_description": "Age difference approximately 10"
@@ -128,7 +128,7 @@
         "l.sex = r.sex and l.zipcode = r.zipcode",
         "l.sex = r.sex and abs(round(r.age) - (round(l.age)+10)) <= 1 and substr(l.last_name, 1,1) = substr(r.last_name, 1,1)"
     ],
-    "probability_two_random_records_match": 0.0009971098265895953,
+    "probability_two_random_records_match": 9.997803961269055e-05,
     "retain_matching_columns": true,
     "retain_intermediate_calculation_columns": true,
     "sql_dialect": "duckdb"
