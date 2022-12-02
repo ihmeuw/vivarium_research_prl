@@ -84,7 +84,7 @@ for i in df_qwerty.index:
                     if di != 0 or dj != 0: # only actual nbrs, not val itself
                         if i+di in df_qwerty.index and j+dj in df_qwerty.columns:
                             nbr_val = df_qwerty.loc[i+di, j+dj]
-                            if nbr_val != '#':
+                            if str(nbr_val) != 'nan' and nbr_val != '#':
                                 nbrs.append(nbr_val)
             qwerty_error_dict[val] = nbrs
 
