@@ -1,7 +1,8 @@
 """
-# NORC report on PVS includes lists of fake names
+This module includes lists of fake first and last names copied from a .pdf
+version of a NORC report on PVS.
 
-It is a pdf, though, so I'm going to copy them into this notebook and make something machine readable out of them.
+TODO: Find a link to the NORC report Abie used.
 """
 
 _fake_first_name_string = """GIRL
