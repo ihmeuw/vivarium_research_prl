@@ -7,13 +7,24 @@ Informed by reading https://dmm.anu.edu.au/geco/flex-data-gen-manual.pdf but not
 import numpy as np
 import pandas as pd
 
-# OCR corruption
+# Define publicly available variables
 
 df_ocr = pd.read_csv('ocr-variations-upper-lower.csv', skiprows=[0,1], header=None, names=['ocr_true', 'ocr_err'])
+df_phonetic = pd.read_csv('phonetic-variations.csv', skiprows=[0,1], header=None,
+                          names=['where', 'orig', 'new', 'pre', 'post', 'pattern', 'start'])
+df_qwerty = pd.read_csv('qwerty-keyboard.csv', skiprows=[0,1], header=None)
 
-ocr_error_dict = {}
-for k, df_k in df_ocr.groupby('ocr_true'):
-    ocr_error_dict[k] = list(df_k.ocr_err)
+ocr_error_dict = generate_ocr_error_dict()
+phonetic_error_dict = generate_phonetic_error_dict()
+qwerty_error_dict = generate_qwerty_error_dict()
+
+# OCR corruption
+
+def generate_ocr_error_dict(df_ocr=df_ocr):
+    ocr_error_dict = {}
+    for k, df_k in df_ocr.groupby('ocr_true'):
+        ocr_error_dict[k] = list(df_k.ocr_err)
+    return ocr_error_dict
     
 def ocr_corrupt(truth, corrupted_pr):
     """
@@ -45,12 +56,11 @@ def ocr_corrupt(truth, corrupted_pr):
 # This includes an undocumented microlanguage, with commands like `n;-1;t`
 # to mean no using this rule if the character before it is a t.
 
-df_phonetic = pd.read_csv('phonetic-variations.csv', skiprows=[0,1], header=None,
-                          names=['where', 'orig', 'new', 'pre', 'post', 'pattern', 'start'])
-
-phonetic_error_dict = {}
-for k, df_k in df_phonetic.groupby('orig'):
-    phonetic_error_dict[k] = list(df_k.new.str.replace('@', ''))
+def generate_phonetic_error_dict(df_phonetic=df_phonetic):
+    phonetic_error_dict = {}
+    for k, df_k in df_phonetic.groupby('orig'):
+        phonetic_error_dict[k] = list(df_k.new.str.replace('@', ''))
+    return phonetic_error_dict
 
 def phonetic_corrupt(truth, corrupted_pr):
     err = ''
@@ -71,22 +81,22 @@ def phonetic_corrupt(truth, corrupted_pr):
 
 # Keyboard corruption
 
-df_qwerty = pd.read_csv('qwerty-keyboard.csv', skiprows=[0,1], header=None)
-
-qwerty_error_dict = {}
-for i in df_qwerty.index:
-    for j in df_qwerty.columns:
-        val = df_qwerty.loc[i,j]
-        if str(val) != 'nan' and val != '#':
-            nbrs = []
-            for di in [-1,0,1]:
-                for dj in [-1,0,1]:
-                    if di != 0 or dj != 0: # only actual nbrs, not val itself
-                        if i+di in df_qwerty.index and j+dj in df_qwerty.columns:
-                            nbr_val = df_qwerty.loc[i+di, j+dj]
-                            if str(nbr_val) != 'nan' and nbr_val != '#':
-                                nbrs.append(nbr_val)
-            qwerty_error_dict[val] = nbrs
+def generate_qwerty_error_dict(df_qwerty=df_qwerty):
+    qwerty_error_dict = {}
+    for i in df_qwerty.index:
+        for j in df_qwerty.columns:
+            val = df_qwerty.loc[i,j]
+            if str(val) != 'nan' and val != '#':
+                nbrs = []
+                for di in [-1,0,1]:
+                    for dj in [-1,0,1]:
+                        if di != 0 or dj != 0: # only actual nbrs, not val itself
+                            if i+di in df_qwerty.index and j+dj in df_qwerty.columns:
+                                nbr_val = df_qwerty.loc[i+di, j+dj]
+                                if str(nbr_val) != 'nan' and nbr_val != '#':
+                                    nbrs.append(nbr_val)
+                qwerty_error_dict[val] = nbrs
+    return qwerty_error_dict
 
 def keyboard_corrupt(truth, corrupted_pr, addl_pr):
     err = ''
