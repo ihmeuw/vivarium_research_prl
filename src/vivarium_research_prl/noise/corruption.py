@@ -6,17 +6,29 @@ Informed by reading https://dmm.anu.edu.au/geco/flex-data-gen-manual.pdf but not
 
 import numpy as np
 import pandas as pd
+import os
 
-# Define publicly available variables
+# Store directory of this file to use relative filepaths for .csv's
+# I'm using this as a solution to a FileNotFound error on module import
+# based on the answer to this StackOverflow question:
+# https://stackoverflow.com/questions/61289041/python-import-module-from-directory-error-reading-file
+_this_dir = os.path.dirname(__file__)
 
-df_ocr = pd.read_csv('ocr-variations-upper-lower.csv', skiprows=[0,1], header=None, names=['ocr_true', 'ocr_err'])
-df_phonetic = pd.read_csv('phonetic-variations.csv', skiprows=[0,1], header=None,
-                          names=['where', 'orig', 'new', 'pre', 'post', 'pattern', 'start'])
-df_qwerty = pd.read_csv('qwerty-keyboard.csv', skiprows=[0,1], header=None)
+# Read in corruption data files as publicly available DataFrames
 
-ocr_error_dict = generate_ocr_error_dict()
-phonetic_error_dict = generate_phonetic_error_dict()
-qwerty_error_dict = generate_qwerty_error_dict()
+df_ocr = pd.read_csv(
+    os.path.join(_this_dir, 'ocr-variations-upper-lower.csv'),
+    skiprows=[0,1], header=None, names=['ocr_true', 'ocr_err']
+)
+df_phonetic = pd.read_csv(
+    os.path.join(_this_dir, 'phonetic-variations.csv'),
+    skiprows=[0,1], header=None,
+    names=['where', 'orig', 'new', 'pre', 'post', 'pattern', 'start']
+)
+df_qwerty = pd.read_csv(
+    os.path.join(_this_dir, 'qwerty-keyboard.csv'),
+    skiprows=[0,1], header=None
+)
 
 # OCR corruption
 
@@ -25,6 +37,8 @@ def generate_ocr_error_dict(df_ocr=df_ocr):
     for k, df_k in df_ocr.groupby('ocr_true'):
         ocr_error_dict[k] = list(df_k.ocr_err)
     return ocr_error_dict
+
+ocr_error_dict = generate_ocr_error_dict()
     
 def ocr_corrupt(truth, corrupted_pr):
     """
@@ -62,6 +76,8 @@ def generate_phonetic_error_dict(df_phonetic=df_phonetic):
         phonetic_error_dict[k] = list(df_k.new.str.replace('@', ''))
     return phonetic_error_dict
 
+phonetic_error_dict = generate_phonetic_error_dict()
+
 def phonetic_corrupt(truth, corrupted_pr):
     err = ''
     i = 0
@@ -97,6 +113,8 @@ def generate_qwerty_error_dict(df_qwerty=df_qwerty):
                                     nbrs.append(nbr_val)
                 qwerty_error_dict[val] = nbrs
     return qwerty_error_dict
+
+qwerty_error_dict = generate_qwerty_error_dict()
 
 def keyboard_corrupt(truth, corrupted_pr, addl_pr):
     err = ''
