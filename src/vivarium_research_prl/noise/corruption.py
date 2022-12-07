@@ -9,7 +9,7 @@ import pandas as pd
 import os
 
 # Store directory of this file to use relative filepaths for .csv's
-# I'm using this as a solution to a FileNotFound error on module import
+# I'm using this as a solution to a FileNotFoundError on module import
 # based on the answer to this StackOverflow question:
 # https://stackoverflow.com/questions/61289041/python-import-module-from-directory-error-reading-file
 _this_dir = os.path.dirname(__file__)
