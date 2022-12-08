@@ -49,6 +49,7 @@ def select_wic_columns(state_table_df, rows_to_include=None):
         + ['address', 'zipcode', 'household_id']
     )
     wic_df = state_table_df.loc[rows_to_include, columns_for_wic]
+    wic_df['date_of_birth'] = wic_df['date_of_birth'].dt.strftime('%Y-%m-%d')
     wic_df['wic_id'] = range(1, 1+len(wic_df))
     return wic_df
 
@@ -91,11 +92,13 @@ def select_census_columns(state_table_df, rows_to_include=None):
     census_df['middle_name'] = census_df['middle_name'].str[0]
     census_df.rename(columns={'middle_name': 'middle_initial'}, inplace=True)
     census_df['age'] = np.floor(census_df['age'])
+    census_df['date_of_birth'] = census_df['date_of_birth'].dt.strftime('%Y-%m-%d')
 #     census_df = (
 #         state_table_df.loc[rows_to_include, columns_for_census]
 #         .assign(
 #             middle_name=lambda df: df['middle_name'].str[0],
 #             age=lambda df: np.floor(df['age']),
+#             date_of_birth=lambda df: df['date_of_birth'].dt.strftime('%Y-%m-%d')
 #         )
 #         .rename(columns={'middle_name': 'middle_initial'})
 #     )
