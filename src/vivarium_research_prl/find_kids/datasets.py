@@ -60,8 +60,8 @@ def generate_wic_data(state_table_df, random_state=None):
 
 def select_random_census_respondents(
     state_table_df,
-    overall_frac=0.95,
-    kid_frac=0.90,
+    overall_frac,
+    kid_frac,
     random_state=None
 ):
     rng = np.random.default_rng(random_state) # Always use Generator instead of RandomState
@@ -102,6 +102,18 @@ def select_census_columns(state_table_df, rows_to_include=None):
 #         )
 #         .rename(columns={'middle_name': 'middle_initial'})
 #     )
+    return census_df
+
+def generate_census_data(
+    state_table_df,
+    overall_frac=0.95,
+    kid_frac=0.90,
+    random_state=None
+):
+    include_in_census = select_random_census_respondents(
+        state_table_df, overall_frac, kid_frac, random_state
+    )
+    census_df = select_census_columns(state_table_df, include_in_census)
     return census_df
 
 def omit_kids_from_census(census_df, frac=0.05, random_state=None):
