@@ -65,19 +65,22 @@ def select_random_census_respondents(
     random_state=None
 ):
     rng = np.random.default_rng(random_state) # Always use Generator instead of RandomState
-    include_in_census =  (state_table_df['cause_of_death'] == 'not_dead')
+    alive =  (state_table_df['cause_of_death'] == 'not_dead')
+    num_alive = alive.sum()
 #     unif_rvs = rng.random(len(state_table_df))
 #     pd.Series(True, index=state_table_df.index, name='census_respondent')
-    under5 = include_in_census & (state_table_df['age'] < 5)
+    under5 = alive & (state_table_df['age'] < 5)
     num_under5 = under5.sum() # Number of True's
-    num_over5 = len(state_table_df) - num_under5
+    over5 = alive & ~under5
+    num_over5 = over5.sum() #num_alive - num_under5 #len(state_table_df) - num_under5
     if num_over5 == 0:
         over5_frac = 0 # Value doesn't matter
     else:
         # Calculate probability of including over-5-year-olds to get correct overall fraction
-        over5_frac = overall_frac + (num_under5 / num_over5) * (overall_frac - kid-frac)
+        over5_frac = overall_frac + (num_under5 / num_over5) * (overall_frac - kid_frac)
+    include_in_census = alive
     include_in_census.loc[under5] &= rng.random(num_under5) < kid_frac
-    include_in_census.loc[~under5] &= rng.random(num_over5) < over5_frac
+    include_in_census.loc[over5] &= rng.random(num_over5) < over5_frac
     return include_in_census
 
 def select_census_columns(state_table_df, rows_to_include=None):
