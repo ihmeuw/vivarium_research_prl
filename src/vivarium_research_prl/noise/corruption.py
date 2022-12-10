@@ -123,7 +123,7 @@ def keyboard_corrupt(truth, corrupted_pr, addl_pr):
         error_introduced = False
         for token_length in [1]:
             token = truth[i:(i+token_length)]
-            if token in phonetic_error_dict and not error_introduced:
+            if token in qwerty_error_dict and not error_introduced:
                 if np.random.uniform() < corrupted_pr:
                     err += np.random.choice(qwerty_error_dict[token])
                     if np.random.uniform() < addl_pr:
