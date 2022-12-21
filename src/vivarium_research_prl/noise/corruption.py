@@ -166,3 +166,37 @@ def swap_month_day(date, date_format="yyyy-mm-dd"):
     else:
         raise ValueError(f"unsupported date format: {date_format}")
     return swapped_date
+
+def miswrite_zipcode(
+    zipcode,
+    first2_prob,
+    middle_prob,
+    last2_prob,
+    random_state=None
+):
+    """Randomly change digits in a 5-digit zipcode or pandas Series of 5-digit zipcodes.
+    Zipcodes must be stored as strings.
+    The probabilities of changing the first 2 digits, middle digit, and last 2 digits
+    are separately specified.
+    """
+    rng = np.random.default_rng(random_state)
+    is_series = isinstance(zipcode, pd.Series)
+    if is_series:
+        zipcode_series = zipcode
+        zipcode = zipcode.str
+        shape = (len(zipcode_series),5)
+    else: # type should be str
+        shape = (1,5)
+    threshold = np.array([2*[first2_prob] + [middle_prob] + 2*[last2_prob]])
+    replace = rng.random(shape) < threshold
+    random_digits = rng.choice(list('0123456789'), shape)
+    digits = []
+    for i in range(5):
+        digit = np.where(replace[:,i], random_digits[:,i], zipcode[i])
+        if is_series:
+            digit = pd.Series(digit, index=zipcode_series.index, name=zipcode_series.name)
+        else:
+            digit = digit[0]
+        digits.append(digit)
+    new_zipcode = digits[0] + digits[1] + digits[2] + digits[3] + digits[4]
+    return new_zipcode
