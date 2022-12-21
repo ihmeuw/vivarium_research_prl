@@ -137,3 +137,32 @@ def keyboard_corrupt(truth, corrupted_pr, addl_pr, random_state=None):
             err += truth[i:(i+1)]
             i += 1
     return err
+
+def swap_month_day(date, date_format="yyyy-mm-dd"):
+    """Swaps month and day in a date or pandas Series of dates.
+    The dates must be stored as strings (either a single str or Series of str objects).
+    The format of the date(s) must be specified; default is "yyyy-mm-dd",
+    and currently no other formats are supported except replacing '-' with
+    a different separator like '/'.
+    """
+    if isinstance(date, pd.Series):
+        date = date.str
+    date_format = date_format.lower()
+    y_idx = date_format.index("yyyy")
+    m_idx = date_format.index("mm")
+    d_idx = date_format.index("dd")
+    if y_idx == -1:
+         # in case year format is yy not yyyy
+         # NOTE: yy format is not yet implemented below and will raise a ValueError
+        y_idx = date_format.index("yy")
+        year = date[y_idx:y_idx+2]
+    else:
+        year = date[y_idx:y_idx+4]
+    month = date[m_idx:m_idx+2]
+    day = date[d_idx:d_idx+2]
+    if y_idx==0 and m_idx==5 and d_idx==8: # e.g. "yyyy-mm-dd" or "yyyy/mm/dd"
+        # Use same separators as in original date
+        swapped_date = year + date[4] + day + date[7] + month
+    else:
+        raise ValueError(f"unsupported date format: {date_format}")
+    return swapped_date
