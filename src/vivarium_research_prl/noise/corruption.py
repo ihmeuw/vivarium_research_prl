@@ -40,7 +40,7 @@ def generate_ocr_error_dict(df_ocr=df_ocr):
 
 ocr_error_dict = generate_ocr_error_dict()
     
-def ocr_corrupt(truth, corrupted_pr):
+def ocr_corrupt(truth, corrupted_pr, random_state=None):
     """
     # Algorithm sketch
 
@@ -49,6 +49,7 @@ def ocr_corrupt(truth, corrupted_pr):
     Since there are tokens of length 1, 2, and 3, how to handle?
     I guess I can start with threes, then twos, then ones, for each location in a string.
     """
+    rng = np.random.default_rng(random_state)
     err = ''
     i = 0
     while i < len(truth):
@@ -56,8 +57,8 @@ def ocr_corrupt(truth, corrupted_pr):
         for token_length in [3,2,1]:
             token = truth[i:(i+token_length)]
             if token in ocr_error_dict and not error_introduced:
-                if np.random.uniform() < corrupted_pr:
-                    err += np.random.choice(ocr_error_dict[token])
+                if rng.uniform() < corrupted_pr:
+                    err += rng.choice(ocr_error_dict[token])
                     i += token_length
                     error_introduced = True
         if not error_introduced:
@@ -78,7 +79,8 @@ def generate_phonetic_error_dict(df_phonetic=df_phonetic):
 
 phonetic_error_dict = generate_phonetic_error_dict()
 
-def phonetic_corrupt(truth, corrupted_pr):
+def phonetic_corrupt(truth, corrupted_pr, random_state=None):
+    rng = np.random.default_rng(random_state)
     err = ''
     i = 0
     while i < len(truth):
@@ -86,8 +88,8 @@ def phonetic_corrupt(truth, corrupted_pr):
         for token_length in [7,6,5,4,3,2,1]:
             token = truth[i:(i+token_length)]
             if token in phonetic_error_dict and not error_introduced:
-                if np.random.uniform() < corrupted_pr:
-                    err += np.random.choice(phonetic_error_dict[token]) # TODO: only consider possibilities allowed by where, pre, post, pattern, and start values
+                if rng.uniform() < corrupted_pr:
+                    err += rng.choice(phonetic_error_dict[token]) # TODO: only consider possibilities allowed by where, pre, post, pattern, and start values
                     i += token_length
                     error_introduced = True
         if not error_introduced:
@@ -116,7 +118,8 @@ def generate_qwerty_error_dict(df_qwerty=df_qwerty):
 
 qwerty_error_dict = generate_qwerty_error_dict()
 
-def keyboard_corrupt(truth, corrupted_pr, addl_pr):
+def keyboard_corrupt(truth, corrupted_pr, addl_pr, random_state=None):
+    rng = np.random.default_rng(random_state)
     err = ''
     i = 0
     while i < len(truth):
@@ -124,9 +127,9 @@ def keyboard_corrupt(truth, corrupted_pr, addl_pr):
         for token_length in [1]:
             token = truth[i:(i+token_length)]
             if token in qwerty_error_dict and not error_introduced:
-                if np.random.uniform() < corrupted_pr:
-                    err += np.random.choice(qwerty_error_dict[token])
-                    if np.random.uniform() < addl_pr:
+                if rng.uniform() < corrupted_pr:
+                    err += rng.choice(qwerty_error_dict[token])
+                    if rng.uniform() < addl_pr:
                         err += token
                     i += token_length
                     error_introduced = True
