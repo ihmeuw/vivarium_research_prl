@@ -24,21 +24,29 @@ def get_wic_coverage_df():
     )
     return wic_coverage_df
 
+def filter_bad_rows(state_table_df):
+    alive =  (state_table_df['cause_of_death'] == 'not_dead')
+    # Filter out nonstandard zipcode formats
+    five_digit_zip = (state_table_df['zipcode'].str.len() == 5)
+    included = alive & five_digit_zip
+    return included
+
 def select_random_wic_participants(state_table_df, random_state=None):
     wic_coverage_df = get_wic_coverage_df()
     # Make sure we only initialize with a seed once so that the same
     # seed doesn't get used in every iteration of the for loop
     rng = np.random.default_rng(random_state)
-    include_in_wic = pd.Series(False, index=state_table_df.index, name='wic_participant')
+    included = filter_bad_rows(state_table_df)
+    included &= state_table_df['age'] < 5 # Only include kids for now
     age_year = np.floor(state_table_df['age'])
     for age in range(5):
         wic_category = 'Infants' if age == 0 else f'{age}-year-old children'
-        pop_group = (age_year == age) & (state_table_df['cause_of_death'] == 'not_dead')
+        pop_group = included & (age_year == age)
         pop_size = pop_group.sum() # Number of True's
-        include_in_wic.loc[pop_group] = (
+        included.loc[pop_group] &= (
             rng.random(pop_size) < wic_coverage_df.loc[wic_category, 'population_coverage']
         )
-    return include_in_wic
+    return included
 
 def select_wic_columns(state_table_df, rows_to_include=None):
     if rows_to_include is None:
@@ -65,9 +73,7 @@ def select_random_census_respondents(
     random_state=None
 ):
     rng = np.random.default_rng(random_state) # Always use Generator instead of RandomState
-    alive =  (state_table_df['cause_of_death'] == 'not_dead')
-    five_digit_zip = (state_table_df['zipcode'].str.len() == 5) # Filter out nonstandard zipcodes
-    included = alive & five_digit_zip
+    included = filter_bad_rows(state_table_df)
     num_included = included.sum()
 #     unif_rvs = rng.random(len(state_table_df))
 #     pd.Series(True, index=state_table_df.index, name='census_respondent')
