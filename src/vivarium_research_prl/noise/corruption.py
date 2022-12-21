@@ -2,6 +2,8 @@
 # Reproduce data corruption like GeCO
 
 Informed by reading https://dmm.anu.edu.au/geco/flex-data-gen-manual.pdf but not looking at the sourcecode, since it might be in conflict with the license we end up using for this sim.
+
+NOTE: Noise functions that take strings as inputs can be vectorized by using pd.Series.str
 """
 
 import numpy as np
@@ -148,13 +150,13 @@ def swap_month_day(date, date_format="yyyy-mm-dd"):
     if isinstance(date, pd.Series):
         date = date.str
     date_format = date_format.lower()
-    y_idx = date_format.index("yyyy")
-    m_idx = date_format.index("mm")
-    d_idx = date_format.index("dd")
+    y_idx = date_format.find("yyyy")
+    m_idx = date_format.find("mm")
+    d_idx = date_format.find("dd")
     if y_idx == -1:
          # in case year format is yy not yyyy
          # NOTE: yy format is not yet implemented below and will raise a ValueError
-        y_idx = date_format.index("yy")
+        y_idx = date_format.find("yy")
         year = date[y_idx:y_idx+2]
     else:
         year = date[y_idx:y_idx+4]
