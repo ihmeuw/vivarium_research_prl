@@ -202,3 +202,19 @@ def miswrite_zipcode(
         digits.append(digit)
     new_zipcode = digits[0] + digits[1] + digits[2] + digits[3] + digits[4]
     return new_zipcode
+
+def incorrect_select(selection, choices=None, random_state=None):
+    rng = np.random.default_rng(random_state)
+    is_series = isinstance(selection, pd.Series)
+    if is_series:
+        shape = len(selection)
+        if choices is None:
+            choices = selection.unique()
+    elif choices is not None:
+        shape = None # if shape = 1, then rng.choice returns returns an array, not a scalar
+    else:
+        raise ValueError("Must specify choices when selection is a scalar")
+    new_selection = rng.choice(choices, shape)
+    if is_series:
+        new_selection = pd.Series(new_selection, index=selection.index, name=selection.name)
+    return new_selection
