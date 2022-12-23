@@ -218,3 +218,10 @@ def incorrect_select(selection, choices=None, random_state=None):
     if is_series:
         new_selection = pd.Series(new_selection, index=selection.index, name=selection.name)
     return new_selection
+
+def replace_with_missing(value, missing_value=np.nan):
+    if isinstance(value, pd.Series):
+        missing = pd.Series(missing_value, index=value.index, name=value.name)
+    else:
+        missing = missing_value
+    return missing
