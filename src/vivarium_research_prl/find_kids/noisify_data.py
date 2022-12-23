@@ -10,6 +10,9 @@ def add_noise_to_census(df_census, random_state):
     df_census = df_census.copy()
 
     # First name
+    noisify.apply_noise_function_to_column( # Replace random 1% with fake name
+        df_census, 'first_name', 0.01, rng,
+        corruption.random_choice, (fake_names.fake_first_names('title'),), inplace=True)
     noisify.apply_noise_function_to_column(
         df_census, 'first_name', 0.01, rng,
         corruption.phonetic_corrupt, (1/6,), vectorized=False, inplace=True)
@@ -21,6 +24,9 @@ def add_noise_to_census(df_census, random_state):
         corruption.keyboard_corrupt, (1/6, 1/10), vectorized=False, inplace=True)
 
     # Last name
+    noisify.apply_noise_function_to_column( # Replace random 1% with fake name
+        df_census, 'last_name', 0.01, rng,
+        corruption.random_choice, (fake_names.fake_last_names('title'),), inplace=True)
     noisify.apply_noise_function_to_column(
         df_census, 'last_name', 0.01, rng,
         corruption.phonetic_corrupt, (1/6.8,), vectorized=False, inplace=True)
@@ -133,15 +139,15 @@ def add_noise_to_wic(df_wic, random_state):
         corruption.keyboard_corrupt, (1/33, 1/10), vectorized=False, inplace=True)
 
     # Sex
-    noisify.apply_noise_function_to_column(
+    noisify.apply_noise_function_to_column( # Approximately 1%*(1/2)=0.5% will be different
         df_wic, 'sex', 0.01, rng,
-        corruption.incorrect_select, (['M', 'F'],), inplace=True,
+        corruption.random_choice, (['M', 'F'],), inplace=True,
     )
 
     # Race/Ethnicity
-    noisify.apply_noise_function_to_column(
+    noisify.apply_noise_function_to_column( # Approximately 1%*(6/7) will be different
         df_wic, 'race_ethnicity', 0.01, rng,
-        corruption.incorrect_select,
+        corruption.random_choice,
         (['Black', 'White', 'Latino', 'Multiracial or Other', 'Asian','AIAN', 'NHOPI'],),
         inplace=True
     )
