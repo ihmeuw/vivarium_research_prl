@@ -19,7 +19,6 @@ def apply_noise_function_to_column(
     corrupted = rng.random(len(df)) < row_prob
     if share_random_state:
         kwargs['random_state'] = rng
-    print(noise_function, args, kwargs)
     if vectorized:
         df.loc[corrupted, colname] = noise_function(df.loc[corrupted, colname], *args, **kwargs)
     else:
