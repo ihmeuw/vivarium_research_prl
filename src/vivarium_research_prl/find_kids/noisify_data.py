@@ -15,12 +15,18 @@ def add_noise_to_wic(df_wic, random_state):
         corruption.phonetic_corrupt, (1/6,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
         df_wic, 'first_name', 0.01, rng,
+        corruption.ocr_corrupt, (1/6,), vectorized=False, inplace=True)
+    noisify.apply_noise_function_to_column(
+        df_wic, 'first_name', 0.01, rng,
         corruption.keyboard_corrupt, (1/6, 1/10), vectorized=False, inplace=True)
 
     # Last name
     noisify.apply_noise_function_to_column(
         df_wic, 'last_name', 0.01, rng,
         corruption.phonetic_corrupt, (1/6.8,), vectorized=False, inplace=True)
+    noisify.apply_noise_function_to_column(
+        df_wic, 'last_name', 0.01, rng,
+        corruption.ocr_corrupt, (1/6.8,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
         df_wic, 'last_name', 0.01, rng,
         corruption.keyboard_corrupt, (1/6.8, 1/10), vectorized=False, inplace=True)
@@ -39,12 +45,18 @@ def add_noise_to_wic(df_wic, random_state):
         corruption.miswrite_zipcode, (0.04, 0.2, 0.36), inplace=True)
     noisify.apply_noise_function_to_column(
         df_wic, 'zipcode', 0.01, rng,
-        corruption.keyboard_corrupt, (0.05, 0.02), vectorized=False, inplace=True)
+        corruption.ocr_corrupt, (1/5,), vectorized=False, inplace=True)
+    noisify.apply_noise_function_to_column(
+        df_wic, 'zipcode', 0.01, rng,
+        corruption.keyboard_corrupt, (1/5, 0), vectorized=False, inplace=True)
 
     # Address
     noisify.apply_noise_function_to_column(
         df_wic, 'address', 0.01, rng,
         corruption.phonetic_corrupt, (1/33,), vectorized=False, inplace=True)
+    noisify.apply_noise_function_to_column(
+        df_wic, 'address', 0.01, rng,
+        corruption.ocr_corrupt, (1/33,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
         df_wic, 'address', 0.01, rng,
         corruption.keyboard_corrupt, (1/33, 1/10), vectorized=False, inplace=True)
@@ -69,8 +81,12 @@ def add_noise_to_wic(df_wic, random_state):
         corruption.phonetic_corrupt, (1/6,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
         df_wic, 'middle_name', 0.01, rng,
+        corruption.ocr_corrupt, (1/6,), vectorized=False, inplace=True)
+    noisify.apply_noise_function_to_column(
+        df_wic, 'middle_name', 0.01, rng,
         corruption.keyboard_corrupt, (1/6, 1/10), vectorized=False, inplace=True)
-    # have to insert NaNs after other noise to avoid getting errors
+    # Have to insert NaNs *after* other noise to avoid getting errors from noise functions
+    # (unless I subset to non-NaN rows when applying other noise)
     noisify.apply_noise_function_to_column(
         df_wic, 'middle_name', 0.60, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True
