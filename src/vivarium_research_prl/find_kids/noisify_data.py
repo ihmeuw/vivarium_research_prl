@@ -4,7 +4,7 @@ Module for adding noise to the decennial census and WIC data before linking.
 import numpy as np
 from ..noise import noisify, corruption, fake_names
 
-def add_noise_to_census(df_census, random_state):
+def add_noise_to_census(df_census, random_state=None):
     rng = np.random.default_rng(random_state)
     # Copy the dataframe since we're going to alter it
     df_census = df_census.copy()
@@ -68,20 +68,42 @@ def add_noise_to_census(df_census, random_state):
         corruption.keyboard_corrupt, (1/33, 1/10), vectorized=False, inplace=True)
 
     # Sex
-    ...
+    noisify.apply_noise_function_to_column( # Approximately 1%*(1/2)=0.5% will be different
+        df_census, 'sex', 0.01, rng,
+        corruption.random_choice, (['M', 'F'],), inplace=True,
+    )
 
     # Age
     ...
 
     # Race/Ethnicity
-    ...
+    noisify.apply_noise_function_to_column( # Approximately 1%*(6/7) will be different
+        df_census, 'race_ethnicity', 0.01, rng,
+        corruption.random_choice,
+        (['Black', 'White', 'Latino', 'Multiracial or Other', 'Asian','AIAN', 'NHOPI'],),
+        inplace=True
+    )
 
     # Middle initial
-    ...
+    noisify.apply_noise_function_to_column(
+        df_wic, 'middle_initial', 0.01, rng,
+        corruption.phonetic_corrupt, (1,), vectorized=False, inplace=True)
+    noisify.apply_noise_function_to_column(
+        df_wic, 'middle_initial', 0.01, rng,
+        corruption.ocr_corrupt, (1,), vectorized=False, inplace=True)
+    noisify.apply_noise_function_to_column(
+        df_wic, 'middle_initial', 0.01, rng,
+        corruption.keyboard_corrupt, (1, 0), vectorized=False, inplace=True)
+    # Have to insert NaNs *after* other noise to avoid getting errors from noise functions
+    # (unless I subset to non-NaN rows when applying other noise)
+    noisify.apply_noise_function_to_column(
+        df_wic, 'middle_initial', 0.05, rng,
+        corruption.replace_with_missing, share_random_state=False, inplace=True
+    )
 
     return df_census
 
-def add_noise_to_wic(df_wic, random_state):
+def add_noise_to_wic(df_wic, random_state=None):
     rng = np.random.default_rng(random_state)
     # Copy the dataframe since we're going to alter it
     df_wic = df_wic.copy()
