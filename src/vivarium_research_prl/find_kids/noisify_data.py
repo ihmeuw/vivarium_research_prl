@@ -10,46 +10,56 @@ def add_noise_to_census(df_census, random_state):
     df_census = df_census.copy()
 
     # First name
-    apply_noise_to_column(
+    noisify.apply_noise_function_to_column(
         df_census, 'first_name', 0.01, rng,
-        corruption.keyboard_corrupt, (0.05, 0.02), inplace=True)
-    apply_noise_to_column(
-        df_census, 'first_name', 0.001, rng,
-        corruption.phonetic_corrupt, (0.05,), inplace=True)
+        corruption.phonetic_corrupt, (1/6,), vectorized=False, inplace=True)
+    noisify.apply_noise_function_to_column(
+        df_census, 'first_name', 0.01, rng,
+        corruption.ocr_corrupt, (1/6,), vectorized=False, inplace=True)
+    noisify.apply_noise_function_to_column(
+        df_census, 'first_name', 0.01, rng,
+        corruption.keyboard_corrupt, (1/6, 1/10), vectorized=False, inplace=True)
 
     # Last name
-    apply_noise_to_column(
+    noisify.apply_noise_function_to_column(
         df_census, 'last_name', 0.01, rng,
-        corruption.keyboard_corrupt, (0.05, 0.02), inplace=True)
-    apply_noise_to_column(
-        df_census, 'last_name', 0.001, rng,
-        corruption.phonetic_corrupt, (0.05,), inplace=True)
+        corruption.phonetic_corrupt, (1/6.8,), vectorized=False, inplace=True)
+    noisify.apply_noise_function_to_column(
+        df_census, 'last_name', 0.01, rng,
+        corruption.ocr_corrupt, (1/6.8,), vectorized=False, inplace=True)
+    noisify.apply_noise_function_to_column(
+        df_census, 'last_name', 0.01, rng,
+        corruption.keyboard_corrupt, (1/6.8, 1/10), vectorized=False, inplace=True)
 
     # Date of birth
-    apply_vectorized_noise_to_column(
-        df_census, 'date_of_birth', 0.005, rng, swap_month_day, inplace=True)
-    apply_noise_to_column(
+    noisify.apply_noise_function_to_column(
         df_census, 'date_of_birth', 0.01, rng,
-        corruption.keyboard_corrupt, (0.05, 0.02), inplace=True)
+        corruption.swap_month_day, share_random_state=False, inplace=True)
+    noisify.apply_noise_function_to_column(
+        df_census, 'date_of_birth', 0.01, rng,
+        corruption.keyboard_corrupt, (1/8, 0), vectorized=False, inplace=True)
 
     # Zipcode
-#     apply_noise_to_column(
-#         df_census, 'zipcode', 0.01, rng,
-#         miswrite_zipcode, (0.1, 0.2, rng), inplace=True)
-    apply_vectorized_noise_to_column(
+    noisify.apply_noise_function_to_column(
         df_census, 'zipcode', 0.01, rng,
-        miswrite_zipcode_vec, (0.1, 0.2, rng), inplace=True)
-    apply_noise_to_column(
-        df_census, 'zipcode', .01, rng,
-        corruption.keyboard_corrupt, (0.05, 0.02), inplace=True)
+        corruption.miswrite_zipcode, (0.04, 0.2, 0.36), inplace=True)
+    noisify.apply_noise_function_to_column(
+        df_census, 'zipcode', 0.01, rng,
+        corruption.ocr_corrupt, (1/5,), vectorized=False, inplace=True)
+    noisify.apply_noise_function_to_column(
+        df_census, 'zipcode', 0.01, rng,
+        corruption.keyboard_corrupt, (1/5, 0), vectorized=False, inplace=True)
 
     # Address
-    apply_noise_to_column(
-        df_census, 'address', 0.002, rng,
-        corruption.keyboard_corrupt, (0.05, 0.02), inplace=True)
-    apply_noise_to_column(
-        df_census, 'address', 0.005, rng,
-        corruption.phonetic_corrupt, (0.05,), inplace=True)
+    noisify.apply_noise_function_to_column(
+        df_census, 'address', 0.01, rng,
+        corruption.phonetic_corrupt, (1/33,), vectorized=False, inplace=True)
+    noisify.apply_noise_function_to_column(
+        df_census, 'address', 0.01, rng,
+        corruption.ocr_corrupt, (1/33,), vectorized=False, inplace=True)
+    noisify.apply_noise_function_to_column(
+        df_census, 'address', 0.01, rng,
+        corruption.keyboard_corrupt, (1/33, 1/10), vectorized=False, inplace=True)
 
     # Sex
     ...
@@ -98,7 +108,7 @@ def add_noise_to_wic(df_wic, random_state):
         corruption.swap_month_day, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column(
         df_wic, 'date_of_birth', 0.01, rng,
-        corruption.keyboard_corrupt, (1/8, 0.02), vectorized=False, inplace=True)
+        corruption.keyboard_corrupt, (1/8, 0), vectorized=False, inplace=True)
 
     # Zipcode
     noisify.apply_noise_function_to_column(
