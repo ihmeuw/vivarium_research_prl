@@ -2,6 +2,8 @@
 # Reproduce data corruption like GeCO
 
 Informed by reading https://dmm.anu.edu.au/geco/flex-data-gen-manual.pdf but not looking at the sourcecode, since it might be in conflict with the license we end up using for this sim.
+
+NOTE: Noise functions that take strings as inputs can be vectorized by using pd.Series.str
 """
 
 import numpy as np
@@ -40,7 +42,7 @@ def generate_ocr_error_dict(df_ocr=df_ocr):
 
 ocr_error_dict = generate_ocr_error_dict()
     
-def ocr_corrupt(truth, corrupted_pr):
+def ocr_corrupt(truth, corrupted_pr, random_state=None):
     """
     # Algorithm sketch
 
@@ -49,6 +51,7 @@ def ocr_corrupt(truth, corrupted_pr):
     Since there are tokens of length 1, 2, and 3, how to handle?
     I guess I can start with threes, then twos, then ones, for each location in a string.
     """
+    rng = np.random.default_rng(random_state)
     err = ''
     i = 0
     while i < len(truth):
@@ -56,8 +59,8 @@ def ocr_corrupt(truth, corrupted_pr):
         for token_length in [3,2,1]:
             token = truth[i:(i+token_length)]
             if token in ocr_error_dict and not error_introduced:
-                if np.random.uniform() < corrupted_pr:
-                    err += np.random.choice(ocr_error_dict[token])
+                if rng.uniform() < corrupted_pr:
+                    err += rng.choice(ocr_error_dict[token])
                     i += token_length
                     error_introduced = True
         if not error_introduced:
@@ -78,7 +81,8 @@ def generate_phonetic_error_dict(df_phonetic=df_phonetic):
 
 phonetic_error_dict = generate_phonetic_error_dict()
 
-def phonetic_corrupt(truth, corrupted_pr):
+def phonetic_corrupt(truth, corrupted_pr, random_state=None):
+    rng = np.random.default_rng(random_state)
     err = ''
     i = 0
     while i < len(truth):
@@ -86,8 +90,8 @@ def phonetic_corrupt(truth, corrupted_pr):
         for token_length in [7,6,5,4,3,2,1]:
             token = truth[i:(i+token_length)]
             if token in phonetic_error_dict and not error_introduced:
-                if np.random.uniform() < corrupted_pr:
-                    err += np.random.choice(phonetic_error_dict[token]) # TODO: only consider possibilities allowed by where, pre, post, pattern, and start values
+                if rng.uniform() < corrupted_pr:
+                    err += rng.choice(phonetic_error_dict[token]) # TODO: only consider possibilities allowed by where, pre, post, pattern, and start values
                     i += token_length
                     error_introduced = True
         if not error_introduced:
@@ -116,7 +120,8 @@ def generate_qwerty_error_dict(df_qwerty=df_qwerty):
 
 qwerty_error_dict = generate_qwerty_error_dict()
 
-def keyboard_corrupt(truth, corrupted_pr, addl_pr):
+def keyboard_corrupt(truth, corrupted_pr, addl_pr, random_state=None):
+    rng = np.random.default_rng(random_state)
     err = ''
     i = 0
     while i < len(truth):
@@ -124,9 +129,9 @@ def keyboard_corrupt(truth, corrupted_pr, addl_pr):
         for token_length in [1]:
             token = truth[i:(i+token_length)]
             if token in qwerty_error_dict and not error_introduced:
-                if np.random.uniform() < corrupted_pr:
-                    err += np.random.choice(qwerty_error_dict[token])
-                    if np.random.uniform() < addl_pr:
+                if rng.uniform() < corrupted_pr:
+                    err += rng.choice(qwerty_error_dict[token])
+                    if rng.uniform() < addl_pr:
                         err += token
                     i += token_length
                     error_introduced = True
@@ -134,3 +139,89 @@ def keyboard_corrupt(truth, corrupted_pr, addl_pr):
             err += truth[i:(i+1)]
             i += 1
     return err
+
+def swap_month_day(date, date_format="yyyy-mm-dd"):
+    """Swaps month and day in a date or pandas Series of dates.
+    The dates must be stored as strings (either a single str or Series of str objects).
+    The format of the date(s) must be specified; default is "yyyy-mm-dd",
+    and currently no other formats are supported except replacing '-' with
+    a different separator like '/'.
+    """
+    if isinstance(date, pd.Series):
+        date = date.str
+    date_format = date_format.lower()
+    y_idx = date_format.find("yyyy")
+    m_idx = date_format.find("mm")
+    d_idx = date_format.find("dd")
+    if y_idx == -1:
+         # in case year format is yy not yyyy
+         # NOTE: yy format is not yet implemented below and will raise a ValueError
+        y_idx = date_format.find("yy")
+        year = date[y_idx:y_idx+2]
+    else:
+        year = date[y_idx:y_idx+4]
+    month = date[m_idx:m_idx+2]
+    day = date[d_idx:d_idx+2]
+    if y_idx==0 and m_idx==5 and d_idx==8: # e.g. "yyyy-mm-dd" or "yyyy/mm/dd"
+        # Use same separators as in original date
+        swapped_date = year + date[4] + day + date[7] + month
+    else:
+        raise ValueError(f"unsupported date format: {date_format}")
+    return swapped_date
+
+def miswrite_zipcode(
+    zipcode,
+    first2_prob,
+    middle_prob,
+    last2_prob,
+    random_state=None
+):
+    """Randomly change digits in a 5-digit zipcode or pandas Series of 5-digit zipcodes.
+    Zipcodes must be stored as strings.
+    The probabilities of changing the first 2 digits, middle digit, and last 2 digits
+    are separately specified.
+    """
+    rng = np.random.default_rng(random_state)
+    is_series = isinstance(zipcode, pd.Series)
+    if is_series:
+        zipcode_series = zipcode
+        zipcode = zipcode.str
+        shape = (len(zipcode_series),5)
+    else: # type should be str
+        shape = (1,5)
+    threshold = np.array([2*[first2_prob] + [middle_prob] + 2*[last2_prob]])
+    replace = rng.random(shape) < threshold
+    random_digits = rng.choice(list('0123456789'), shape)
+    digits = []
+    for i in range(5):
+        digit = np.where(replace[:,i], random_digits[:,i], zipcode[i])
+        if is_series:
+            digit = pd.Series(digit, index=zipcode_series.index, name=zipcode_series.name)
+        else:
+            digit = digit[0]
+        digits.append(digit)
+    new_zipcode = digits[0] + digits[1] + digits[2] + digits[3] + digits[4]
+    return new_zipcode
+
+def incorrect_select(selection, choices=None, random_state=None):
+    rng = np.random.default_rng(random_state)
+    is_series = isinstance(selection, pd.Series)
+    if is_series:
+        shape = len(selection)
+        if choices is None:
+            choices = selection.unique()
+    elif choices is not None:
+        shape = None # if shape = 1, then rng.choice returns returns an array, not a scalar
+    else:
+        raise ValueError("Must specify choices when selection is a scalar")
+    new_selection = rng.choice(choices, shape)
+    if is_series:
+        new_selection = pd.Series(new_selection, index=selection.index, name=selection.name)
+    return new_selection
+
+def replace_with_missing(value, missing_value=np.nan):
+    if isinstance(value, pd.Series):
+        missing = pd.Series(missing_value, index=value.index, name=value.name)
+    else:
+        missing = missing_value
+    return missing
