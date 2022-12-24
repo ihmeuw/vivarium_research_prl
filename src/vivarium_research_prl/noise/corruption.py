@@ -204,6 +204,10 @@ def miswrite_zipcode(
     return new_zipcode
 
 def random_choice(current_choice, choices=None, random_state=None):
+    # TODO: Add options to pass more keywords to rng.choice(), like
+    # the probability vector p, and an option to exclude current_choice
+    # from the list of choices (easy when current_choice is a scalar,
+    # a bit trickier when it's a Series)
     rng = np.random.default_rng(random_state)
     is_series = isinstance(current_choice, pd.Series)
     if is_series:
