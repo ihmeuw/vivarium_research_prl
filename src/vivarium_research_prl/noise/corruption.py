@@ -203,21 +203,25 @@ def miswrite_zipcode(
     new_zipcode = digits[0] + digits[1] + digits[2] + digits[3] + digits[4]
     return new_zipcode
 
-def incorrect_select(selection, choices=None, random_state=None):
+def random_choice(current_choice, choices=None, random_state=None):
+    # TODO: Add options to pass more keywords to rng.choice(), like
+    # the probability vector p, and an option to exclude current_choice
+    # from the list of choices (easy when current_choice is a scalar,
+    # a bit trickier when it's a Series)
     rng = np.random.default_rng(random_state)
-    is_series = isinstance(selection, pd.Series)
+    is_series = isinstance(current_choice, pd.Series)
     if is_series:
-        shape = len(selection)
+        shape = len(current_choice)
         if choices is None:
-            choices = selection.unique()
+            choices = current_choice.unique()
     elif choices is not None:
         shape = None # if shape = 1, then rng.choice returns returns an array, not a scalar
     else:
-        raise ValueError("Must specify choices when selection is a scalar")
-    new_selection = rng.choice(choices, shape)
+        raise ValueError("Must specify choices when current_choice is a scalar")
+    new_choice = rng.choice(choices, shape)
     if is_series:
-        new_selection = pd.Series(new_selection, index=selection.index, name=selection.name)
-    return new_selection
+        new_choice = pd.Series(new_choice, index=current_choice.index, name=current_choice.name)
+    return new_choice
 
 def replace_with_missing(value, missing_value=np.nan):
     if isinstance(value, pd.Series):
