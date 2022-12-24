@@ -86,18 +86,18 @@ def add_noise_to_census(df_census, random_state=None):
 
     # Middle initial
     noisify.apply_noise_function_to_column(
-        df_wic, 'middle_initial', 0.01, rng,
+        df_census, 'middle_initial', 0.01, rng,
         corruption.phonetic_corrupt, (1,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_wic, 'middle_initial', 0.01, rng,
+        df_census, 'middle_initial', 0.01, rng,
         corruption.ocr_corrupt, (1,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_wic, 'middle_initial', 0.01, rng,
+        df_census, 'middle_initial', 0.01, rng,
         corruption.keyboard_corrupt, (1, 0), vectorized=False, inplace=True)
     # Have to insert NaNs *after* other noise to avoid getting errors from noise functions
     # (unless I subset to non-NaN rows when applying other noise)
     noisify.apply_noise_function_to_column(
-        df_wic, 'middle_initial', 0.05, rng,
+        df_census, 'middle_initial', 0.05, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True
     )
 
