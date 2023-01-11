@@ -229,6 +229,17 @@ def add_random_increment(current_value, increment_choices, replace=True, p=None,
     new_value = current_value+increment
     return new_value
 
+def miswrite_age(age, increment_choices, p=None, random_state=None):
+    """Add a random increment to each age."""
+    # TODO: It might be better to do something different when age=0 than when age>0.
+    # For ages>0, it's probably more likely to write age-1, but for age=0,
+    # it's probably more likely to write age+1. Currently any ages that end up < 0
+    # are simply clipped to 0 -- it might be better to make these 1 instead, but
+    # this intuition is based on the assumption that increment_choices=[-1,1] and p=None.
+    new_age = add_random_increment(age, increment_choices, p=p, random_state=random_state)
+    new_age = np.maximum(new_age, 0) # Make sure all ages are non-negative
+    return new_age
+
 def replace_with_missing(value, missing_value=np.nan):
     if isinstance(value, pd.Series):
         missing = pd.Series(missing_value, index=value.index, name=value.name)
