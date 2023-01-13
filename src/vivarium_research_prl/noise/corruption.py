@@ -230,14 +230,28 @@ def add_random_increment(current_value, increment_choices, replace=True, p=None,
     return new_value
 
 def miswrite_age(age, increment_choices, p=None, random_state=None):
-    """Add a random increment to each age."""
-    # TODO: It might be better to do something different when age=0 than when age>0.
-    # For ages>0, it's probably more likely to write age-1, but for age=0,
-    # it's probably more likely to write age+1. Currently any ages that end up < 0
-    # are simply clipped to 0 -- it might be better to make these 1 instead, but
-    # this intuition is based on the assumption that increment_choices=[-1,1] and p=None.
+    """Add a random increment to each age.
+    If an age ends up negative, it is replaced with 1 (not 0).
+    The idea is that for ages>0, it's probably more likely to write age-1, but for
+    age=0, it's probably more likely to write age+1.
+
+    With the the assumption that increment_choices=[-1,1] and p=None,
+    setting negative ages to 1 will reflect the above hypothesis while
+    guaranteeing that all ages actually receive noise and that all
+    noised ages are nonnegative (whereas setting negative ages to 0
+    would only add noise to half the rows with age=0).
+
+    TODO: Improve the strategy for negative ages to better handle increment choices
+    that are not [-1,1]; this would require checking whether a noised age that got
+    changed from negative to 1 came from an original age that was also 1, and if so,
+    reassigning (e.g., to 0).
+    """
     new_age = add_random_increment(age, increment_choices, p=p, random_state=random_state)
-    new_age = np.maximum(new_age, 0) # Make sure all ages are non-negative
+    # Replace any negative ages with 1
+    if isinstance(new_age, pd.Series):
+        new_age.mask(new_age<0, 1, inplace=True)
+    elif new_age<0:
+        new_age = 1
     return new_age
 
 def replace_with_missing(value, missing_value=np.nan):
