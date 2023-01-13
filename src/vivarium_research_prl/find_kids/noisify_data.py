@@ -10,7 +10,7 @@ def add_noise_to_census(df_census, random_state=None):
     df_census = df_census.copy()
 
     # First name
-    noisify.apply_noise_function_to_column( # Replace random 1% with fake name
+    noisify.apply_noise_function_to_column( # Replace random 1% with random fake name
         df_census, 'first_name', 0.01, rng,
         corruption.random_choice, (fake_names.fake_first_names('title'),), inplace=True)
     noisify.apply_noise_function_to_column(
@@ -24,7 +24,7 @@ def add_noise_to_census(df_census, random_state=None):
         corruption.keyboard_corrupt, (1/6, 1/10), vectorized=False, inplace=True)
 
     # Last name
-    noisify.apply_noise_function_to_column( # Replace random 1% with fake name
+    noisify.apply_noise_function_to_column( # Replace random 1% with random fake name
         df_census, 'last_name', 0.01, rng,
         corruption.random_choice, (fake_names.fake_last_names('title'),), inplace=True)
     noisify.apply_noise_function_to_column(
@@ -74,7 +74,10 @@ def add_noise_to_census(df_census, random_state=None):
     )
 
     # Age
-    ...
+    noisify.apply_noise_function_to_column(
+        df_census, 'age', 0.01, rng,
+        corruption.miswrite_age, ([-1, 1],), inplace=True,
+    )
 
     # Race/Ethnicity
     noisify.apply_noise_function_to_column( # Approximately 1%*(6/7) will be different

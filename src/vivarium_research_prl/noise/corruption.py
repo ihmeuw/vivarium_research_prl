@@ -4,6 +4,7 @@
 Informed by reading https://dmm.anu.edu.au/geco/flex-data-gen-manual.pdf but not looking at the sourcecode, since it might be in conflict with the license we end up using for this sim.
 
 NOTE: Noise functions that take strings as inputs can be vectorized by using pd.Series.str
+See the swap_month_day and miswrite_zipcode functions for examples.
 """
 
 import numpy as np
@@ -203,9 +204,8 @@ def miswrite_zipcode(
     new_zipcode = digits[0] + digits[1] + digits[2] + digits[3] + digits[4]
     return new_zipcode
 
-def random_choice(current_choice, choices=None, random_state=None):
-    # TODO: Add options to pass more keywords to rng.choice(), like
-    # the probability vector p, and an option to exclude current_choice
+def random_choice(current_choice, choices=None, replace=True, p=None, shuffle=True, random_state=None):
+    # TODO: Add an option to exclude current_choice
     # from the list of choices (easy when current_choice is a scalar,
     # a bit trickier when it's a Series)
     rng = np.random.default_rng(random_state)
@@ -214,14 +214,45 @@ def random_choice(current_choice, choices=None, random_state=None):
         shape = len(current_choice)
         if choices is None:
             choices = current_choice.unique()
+            choices.sort() # Sort so that p vector can be specified if desired
     elif choices is not None:
         shape = None # if shape = 1, then rng.choice returns returns an array, not a scalar
     else:
         raise ValueError("Must specify choices when current_choice is a scalar")
-    new_choice = rng.choice(choices, shape)
+    new_choice = rng.choice(choices, shape, replace, p, shuffle=shuffle)
     if is_series:
         new_choice = pd.Series(new_choice, index=current_choice.index, name=current_choice.name)
     return new_choice
+
+def add_random_increment(current_value, increment_choices, replace=True, p=None, shuffle=True, random_state=None):
+    increment = random_choice(current_value, increment_choices, replace, p, shuffle, random_state)
+    new_value = current_value+increment
+    return new_value
+
+def miswrite_age(age, increment_choices, p=None, random_state=None):
+    """Add a random increment to each age.
+    If an age ends up negative, it is replaced with 1 (not 0).
+    The idea is that for ages>0, it's probably more likely to write age-1, but for
+    age=0, it's probably more likely to write age+1.
+
+    With the the assumption that increment_choices=[-1,1] and p=None,
+    setting negative ages to 1 will reflect the above hypothesis while
+    guaranteeing that all ages actually receive noise and that all
+    noised ages are nonnegative (whereas setting negative ages to 0
+    would only add noise to half the rows with age=0).
+
+    TODO: Improve the strategy for negative ages to better handle increment choices
+    that are not [-1,1]; this would require checking whether a noised age that got
+    changed from negative to 1 came from an original age that was also 1, and if so,
+    reassigning (e.g., to 0).
+    """
+    new_age = add_random_increment(age, increment_choices, p=p, random_state=random_state)
+    # Replace any negative ages with 1
+    if isinstance(new_age, pd.Series):
+        new_age.mask(new_age<0, 1, inplace=True)
+    elif new_age<0:
+        new_age = 1
+    return new_age
 
 def replace_with_missing(value, missing_value=np.nan):
     if isinstance(value, pd.Series):
