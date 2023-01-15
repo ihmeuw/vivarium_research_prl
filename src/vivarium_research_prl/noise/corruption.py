@@ -238,20 +238,32 @@ def random_choice2(current_choice, choices, exclude_current=False, replace=True,
     rng = np.random.default_rng(random_state)
     if p is None:
         p = np.full(len(choices), 1/len(choices))
-    choices, p = map(np.asarray, (choices, p))
+    choices = np.asarray(choices)
     is_series = isinstance(current_choice, pd.Series)
-    new_choice=current_choice
-    if is_series:
-        shape = len(current_choice)
-    else:
-        shape = None
+
     if exclude_current:
-        p_cond = np.where(choices != current_choice, p, 0)
-        p_cond /= p_cond.sum()
+        if is_series:
+            random_choice = np.empty(len(current_choice), dtype=current_choice.dtype)
+            for c in choices:
+                p_cond = np.where(choices != c, p, 0)
+                p_cond /= p_cond.sum()
+                current_equals_c = (current_choice == c)
+                num_rows = current_equals_c.sum()
+                random_choice[current_equals_c] = rng.choice(
+                    choices, num_rows, replace, p_cond, shuffle=shuffle)
+#                 new_choice[current_equals_c] = random_choice
+        else:
+            p_cond = np.where(choices != current_choice, p, 0)
+            p_cond /= p_cond.sum()
+            random_choice = rng.choice(choices, None, replace, p_cond, shuffle=shuffle)
     else:
-        p_cond = p
-    random_choice = rng.choice(choices, shape, replace, p_cond, shuffle=shuffle)
-    new_choice = random_choice
+        shape = len(current_choice) if is_series else None
+        random_choice = rng.choice(choices, shape, replace, p, shuffle=shuffle)
+
+    if is_series:
+        new_choice = pd.Series(random_choice, index=current_choice.index, name=current_choice.name)
+    else:
+        new_choice = random_choice
     return new_choice
 
 def add_random_increment(current_value, increment_choices, replace=True, p=None, shuffle=True, random_state=None):
