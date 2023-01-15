@@ -234,6 +234,26 @@ def random_choice(current_choice, choices, exclude_current=False, replace=True, 
                 done=True
     return new_choice
 
+def random_choice2(current_choice, choices, exclude_current=False, replace=True, p=None, shuffle=True, random_state=None):
+    rng = np.random.default_rng(random_state)
+    if p is None:
+        p = np.full(len(choices), 1/len(choices))
+    choices, p = map(np.asarray, (choices, p))
+    is_series = isinstance(current_choice, pd.Series)
+    new_choice=current_choice
+    if is_series:
+        shape = len(current_choice)
+    else:
+        shape = None
+    if exclude_current:
+        p_cond = np.where(choices != current_choice, p, 0)
+        p_cond /= p_cond.sum()
+    else:
+        p_cond = p
+    random_choice = rng.choice(choices, shape, replace, p_cond, shuffle=shuffle)
+    new_choice = random_choice
+    return new_choice
+
 def add_random_increment(current_value, increment_choices, replace=True, p=None, shuffle=True, random_state=None):
     increment = random_choice(current_value, increment_choices, replace, p, shuffle, random_state)
     new_value = current_value+increment
