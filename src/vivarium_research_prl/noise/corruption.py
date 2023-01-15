@@ -204,24 +204,34 @@ def miswrite_zipcode(
     new_zipcode = digits[0] + digits[1] + digits[2] + digits[3] + digits[4]
     return new_zipcode
 
-def random_choice(current_choice, choices=None, replace=True, p=None, shuffle=True, random_state=None):
-    # TODO: Add an option to exclude current_choice
-    # from the list of choices (easy when current_choice is a scalar,
-    # a bit trickier when it's a Series)
+def random_choice(current_choice, choices, exclude_current=False, replace=True, p=None, shuffle=True, random_state=None):
     rng = np.random.default_rng(random_state)
     is_series = isinstance(current_choice, pd.Series)
     if is_series:
         shape = len(current_choice)
-        if choices is None:
-            choices = current_choice.unique()
-            choices.sort() # Sort so that p vector can be specified if desired
-    elif choices is not None:
-        shape = None # if shape = 1, then rng.choice returns returns an array, not a scalar
+        new_choice = current_choice.copy()
+        unchanged = pd.Series(True, index=new_choice.index)
     else:
-        raise ValueError("Must specify choices when current_choice is a scalar")
-    new_choice = rng.choice(choices, shape, replace, p, shuffle=shuffle)
-    if is_series:
-        new_choice = pd.Series(new_choice, index=current_choice.index, name=current_choice.name)
+        shape = None # if shape = 1, then rng.choice returns returns an array, not a scalar
+    # If exclude_current is True, resample until all values differ from current.
+    # If exclude_current is False, the loop will execute once, and some values may stay the same.
+    done = False
+    while not done:
+        random_choice = rng.choice(choices, shape, replace, p, shuffle=shuffle)
+        if is_series:
+            new_choice[unchanged] = random_choice
+            if exclude_current:
+                unchanged = (new_choice == current_choice)
+                shape = unchanged.sum()
+                done = (shape == 0)
+            else:
+                done=True
+        else: # Scalar version
+            new_choice = random_choice
+            if exclude_current:
+                done = (new_choice != random_choice)
+            else:
+                done=True
     return new_choice
 
 def add_random_increment(current_value, increment_choices, replace=True, p=None, shuffle=True, random_state=None):
