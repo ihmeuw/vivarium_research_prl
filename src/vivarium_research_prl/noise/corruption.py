@@ -240,18 +240,14 @@ def miswrite_age(age, increment_choices, p=None, random_state=None):
     guaranteeing that all ages actually receive noise and that all
     noised ages are nonnegative (whereas setting negative ages to 0
     would only add noise to half the rows with age=0).
-
-    TODO: Improve the strategy for negative ages to better handle increment choices
-    that are not [-1,1]; this would require checking whether a noised age that got
-    changed from negative to 1 came from an original age that was also 1, and if so,
-    reassigning (e.g., to 0).
     """
     new_age = add_random_increment(age, increment_choices, p=p, random_state=random_state)
     # Replace any negative ages with 1
     if isinstance(new_age, pd.Series):
         new_age.mask(new_age<0, 1, inplace=True)
+        new_age.mask((new_age==1) & (age==1), 0, inplace=True)
     elif new_age<0:
-        new_age = 1
+        new_age = 1 if age != 1 else 0
     return new_age
 
 def replace_with_missing(value, missing_value=np.nan):
