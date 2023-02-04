@@ -70,7 +70,7 @@ def add_noise_to_census(df_census, random_state=None):
     # Sex
     noisify.apply_noise_function_to_column( # Approximately 1%*(1/2)=0.5% will be different
         df_census, 'sex', 0.01, rng,
-        corruption.random_choice, (['M', 'F'],), inplace=True,
+        corruption.random_choice, (['Male', 'Female'],), inplace=True,
     )
 
     # Age
@@ -166,7 +166,7 @@ def add_noise_to_wic(df_wic, random_state=None):
     # Sex
     noisify.apply_noise_function_to_column( # Approximately 1%*(1/2)=0.5% will be different
         df_wic, 'sex', 0.01, rng,
-        corruption.random_choice, (['M', 'F'],), inplace=True,
+        corruption.random_choice, (['Male', 'Female'],), inplace=True,
     )
 
     # Race/Ethnicity
