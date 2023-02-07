@@ -9,121 +9,145 @@ def add_noise_to_census(df_census, random_state=None):
     # Copy the dataframe since we're going to alter it
     df_census = df_census.copy()
 
+    row_eligibility_rate = 0.01
+    token_rate_multiplier = 1
+    orig_token_prob = 1/5
+
     # First name
+    fname_mean_length = df_census['first_name'].str.len().mean()
+    fname_token_rate = token_rate_multiplier / fname_mean_length
     noisify.apply_noise_function_to_column(
-        df_census, 'first_name', 0.01, rng,
+        df_census, 'first_name', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column( # Replace random 1% with random fake name
-        df_census, 'first_name', 0.01, rng,
+        df_census, 'first_name', row_eligibility_rate, rng,
         corruption.random_choice, (fake_names.fake_first_names('title'),), inplace=True)
     noisify.apply_noise_function_to_column(
-        df_census, 'first_name', 0.01, rng,
-        corruption.phonetic_corrupt, (1/6,), vectorized=False, inplace=True)
+        df_census, 'first_name', row_eligibility_rate, rng,
+        corruption.phonetic_corrupt, (fname_token_rate,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_census, 'first_name', 0.01, rng,
-        corruption.ocr_corrupt, (1/6,), vectorized=False, inplace=True)
+        df_census, 'first_name', row_eligibility_rate, rng,
+        corruption.ocr_corrupt, (fname_token_rate,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_census, 'first_name', 0.01, rng,
-        corruption.keyboard_corrupt, (1/6, 1/10), vectorized=False, inplace=True)
+        df_census, 'first_name', row_eligibility_rate, rng,
+        corruption.keyboard_corrupt, (fname_token_rate, orig_token_prob),
+        vectorized=False, inplace=True)
 
     # Last name
+    lname_mean_length = df_census['last_name'].str.len().mean()
+    lname_token_rate = token_rate_multiplier / lname_mean_length
     noisify.apply_noise_function_to_column(
-        df_census, 'last_name', 0.01, rng,
+        df_census, 'last_name', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column( # Replace random 1% with random fake name
-        df_census, 'last_name', 0.01, rng,
+        df_census, 'last_name', row_eligibility_rate, rng,
         corruption.random_choice, (fake_names.fake_last_names('title'),), inplace=True)
     noisify.apply_noise_function_to_column(
-        df_census, 'last_name', 0.01, rng,
-        corruption.phonetic_corrupt, (1/6.8,), vectorized=False, inplace=True)
+        df_census, 'last_name', row_eligibility_rate, rng,
+        corruption.phonetic_corrupt, (lname_token_rate,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_census, 'last_name', 0.01, rng,
-        corruption.ocr_corrupt, (1/6.8,), vectorized=False, inplace=True)
+        df_census, 'last_name', row_eligibility_rate, rng,
+        corruption.ocr_corrupt, (lname_token_rate,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_census, 'last_name', 0.01, rng,
-        corruption.keyboard_corrupt, (1/6.8, 1/10), vectorized=False, inplace=True)
+        df_census, 'last_name', row_eligibility_rate, rng,
+        corruption.keyboard_corrupt, (lname_token_rate, orig_token_prob),
+        vectorized=False, inplace=True)
 
     # Date of birth
+    dob_token_rate = token_rate_multiplier / len('yyyymmdd')
     noisify.apply_noise_function_to_column(
-        df_census, 'date_of_birth', 0.01, rng,
+        df_census, 'date_of_birth', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_census, 'date_of_birth', 0.01, rng,
+        df_census, 'date_of_birth', row_eligibility_rate, rng,
         corruption.swap_month_day, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_census, 'date_of_birth', 0.01, rng,
-        corruption.keyboard_corrupt, (1/8, 0), vectorized=False, inplace=True)
+        df_census, 'date_of_birth', row_eligibility_rate, rng,
+        corruption.keyboard_corrupt, (dob_token_rate, 0), # Don't add additional characters to DOB
+        vectorized=False, inplace=True)
 
     # Zipcode
+    zipcode_len = 5
+    zipcode_token_rate = token_rate_multiplier / zipcode_len
+    # Define relative error rates between first 2 digits, middle digit, last 2 digits
+    zipcode_token_weights = np.array([1,4,10])
+    zipcode_token_probs = zipcode_token_rate * zipcode_token_weights / zipcode_token_weights.mean()
     noisify.apply_noise_function_to_column(
-        df_census, 'zipcode', 0.01, rng,
+        df_census, 'zipcode', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_census, 'zipcode', 0.01, rng,
-        corruption.miswrite_zipcode, (0.04, 0.2, 0.36), inplace=True)
+        df_census, 'zipcode', row_eligibility_rate, rng,
+        corruption.miswrite_zipcode, zipcode_token_probs, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_census, 'zipcode', 0.01, rng,
-        corruption.ocr_corrupt, (1/5,), vectorized=False, inplace=True)
+        df_census, 'zipcode', row_eligibility_rate, rng,
+        corruption.ocr_corrupt, (zipcode_token_rate,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_census, 'zipcode', 0.01, rng,
-        corruption.keyboard_corrupt, (1/5, 0), vectorized=False, inplace=True)
+        df_census, 'zipcode', row_eligibility_rate, rng,
+        corruption.keyboard_corrupt, (zipcode_token_rate, 0), # Don't add extra characters to zip
+        vectorized=False, inplace=True)
 
     # Address
+    address_mean_length = df_census['address'].str.len().mean()
+    address_token_rate = token_rate_multiplier / address_mean_length
     noisify.apply_noise_function_to_column(
-        df_census, 'address', 0.01, rng,
+        df_census, 'address', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_census, 'address', 0.01, rng,
-        corruption.phonetic_corrupt, (1/33,), vectorized=False, inplace=True)
+        df_census, 'address', row_eligibility_rate, rng,
+        corruption.phonetic_corrupt, (address_token_rate,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_census, 'address', 0.01, rng,
-        corruption.ocr_corrupt, (1/33,), vectorized=False, inplace=True)
+        df_census, 'address', row_eligibility_rate, rng,
+        corruption.ocr_corrupt, (address_token_rate,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_census, 'address', 0.01, rng,
-        corruption.keyboard_corrupt, (1/33, 1/10), vectorized=False, inplace=True)
+        df_census, 'address', row_eligibility_rate, rng,
+        corruption.keyboard_corrupt, (address_token_rate, orig_token_prob),
+        vectorized=False, inplace=True)
 
     # Sex
     noisify.apply_noise_function_to_column(
-        df_census, 'sex', 0.01, rng,
+        df_census, 'sex', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column( # Approximately 1%*(1/2)=0.5% will be different
-        df_census, 'sex', 0.01, rng,
+        df_census, 'sex', row_eligibility_rate, rng,
         corruption.random_choice, (['Male', 'Female'],), inplace=True,
     )
 
     # Age
     noisify.apply_noise_function_to_column(
-        df_census, 'age', 0.01, rng,
+        df_census, 'age', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_census, 'age', 0.01, rng,
-        corruption.miswrite_age, ([-1, 1],), inplace=True,
+        df_census, 'age', row_eligibility_rate, rng,
+        corruption.miswrite_age, ([-2, -1, 1, 2],), inplace=True,
     )
 
     # Race/Ethnicity
     noisify.apply_noise_function_to_column(
-        df_census, 'race_ethnicity', 0.01, rng,
+        df_census, 'race_ethnicity', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column( # Approximately 1%*(6/7) will be different
-        df_census, 'race_ethnicity', 0.01, rng,
+        df_census, 'race_ethnicity', row_eligibility_rate, rng,
         corruption.random_choice,
         (['Black', 'White', 'Latino', 'Multiracial or Other', 'Asian','AIAN', 'NHOPI'],),
         inplace=True
     )
 
     # Middle initial
+    middle_initial_length = 1
+    mi_token_rate = token_rate_multiplier / middle_initial_length
     noisify.apply_noise_function_to_column(
-        df_census, 'middle_initial', 0.01, rng,
+        df_census, 'middle_initial', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_census, 'middle_initial', 0.01, rng,
-        corruption.phonetic_corrupt, (1,), vectorized=False, inplace=True)
+        df_census, 'middle_initial', row_eligibility_rate, rng,
+        corruption.phonetic_corrupt, (mi_token_rate,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_census, 'middle_initial', 0.01, rng,
-        corruption.ocr_corrupt, (1,), vectorized=False, inplace=True)
+        df_census, 'middle_initial', row_eligibility_rate, rng,
+        corruption.ocr_corrupt, (mi_token_rate,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_census, 'middle_initial', 0.01, rng,
-        corruption.keyboard_corrupt, (1, 0), vectorized=False, inplace=True)
+        df_census, 'middle_initial', row_eligibility_rate, rng,
+        corruption.keyboard_corrupt, (mi_token_rate, 0), # Don't add extra characters to middle initial
+        vectorized=False, inplace=True)
 
     return df_census
 
@@ -132,88 +156,91 @@ def add_noise_to_wic(df_wic, random_state=None):
     # Copy the dataframe since we're going to alter it
     df_wic = df_wic.copy()
 
+    row_eligibility_rate = 0.01
+    token_rate_multiplier = 1
+
     # First name
     noisify.apply_noise_function_to_column(
-        df_wic, 'first_name', 0.01, rng,
+        df_wic, 'first_name', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_wic, 'first_name', 0.01, rng,
+        df_wic, 'first_name', row_eligibility_rate, rng,
         corruption.phonetic_corrupt, (1/6,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_wic, 'first_name', 0.01, rng,
+        df_wic, 'first_name', row_eligibility_rate, rng,
         corruption.ocr_corrupt, (1/6,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_wic, 'first_name', 0.01, rng,
+        df_wic, 'first_name', row_eligibility_rate, rng,
         corruption.keyboard_corrupt, (1/6, 1/10), vectorized=False, inplace=True)
 
     # Last name
     noisify.apply_noise_function_to_column(
-        df_wic, 'last_name', 0.01, rng,
+        df_wic, 'last_name', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_wic, 'last_name', 0.01, rng,
+        df_wic, 'last_name', row_eligibility_rate, rng,
         corruption.phonetic_corrupt, (1/6.8,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_wic, 'last_name', 0.01, rng,
+        df_wic, 'last_name', row_eligibility_rate, rng,
         corruption.ocr_corrupt, (1/6.8,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_wic, 'last_name', 0.01, rng,
+        df_wic, 'last_name', row_eligibility_rate, rng,
         corruption.keyboard_corrupt, (1/6.8, 1/10), vectorized=False, inplace=True)
 
     # Date of birth
     noisify.apply_noise_function_to_column(
-        df_wic, 'date_of_birth', 0.01, rng,
+        df_wic, 'date_of_birth', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_wic, 'date_of_birth', 0.01, rng,
+        df_wic, 'date_of_birth', row_eligibility_rate, rng,
         corruption.swap_month_day, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_wic, 'date_of_birth', 0.01, rng,
+        df_wic, 'date_of_birth', row_eligibility_rate, rng,
         corruption.keyboard_corrupt, (1/8, 0), vectorized=False, inplace=True)
 
     # Zipcode
     noisify.apply_noise_function_to_column(
-        df_wic, 'zipcode', 0.01, rng,
+        df_wic, 'zipcode', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_wic, 'zipcode', 0.01, rng,
+        df_wic, 'zipcode', row_eligibility_rate, rng,
         corruption.miswrite_zipcode, (0.04, 0.2, 0.36), inplace=True)
     noisify.apply_noise_function_to_column(
-        df_wic, 'zipcode', 0.01, rng,
+        df_wic, 'zipcode', row_eligibility_rate, rng,
         corruption.ocr_corrupt, (1/5,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_wic, 'zipcode', 0.01, rng,
+        df_wic, 'zipcode', row_eligibility_rate, rng,
         corruption.keyboard_corrupt, (1/5, 0), vectorized=False, inplace=True)
 
     # Address
     noisify.apply_noise_function_to_column(
-        df_wic, 'address', 0.01, rng,
+        df_wic, 'address', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_wic, 'address', 0.01, rng,
+        df_wic, 'address', row_eligibility_rate, rng,
         corruption.phonetic_corrupt, (1/33,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_wic, 'address', 0.01, rng,
+        df_wic, 'address', row_eligibility_rate, rng,
         corruption.ocr_corrupt, (1/33,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_wic, 'address', 0.01, rng,
+        df_wic, 'address', row_eligibility_rate, rng,
         corruption.keyboard_corrupt, (1/33, 1/10), vectorized=False, inplace=True)
 
     # Sex
     noisify.apply_noise_function_to_column(
-        df_wic, 'sex', 0.01, rng,
+        df_wic, 'sex', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column( # Approximately 1%*(1/2)=0.5% will be different
-        df_wic, 'sex', 0.01, rng,
+        df_wic, 'sex', row_eligibility_rate, rng,
         corruption.random_choice, (['Male', 'Female'],), inplace=True,
     )
 
     # Race/Ethnicity
     noisify.apply_noise_function_to_column(
-        df_wic, 'race_ethnicity', 0.01, rng,
+        df_wic, 'race_ethnicity', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column( # Approximately 1%*(6/7) will be different
-        df_wic, 'race_ethnicity', 0.01, rng,
+        df_wic, 'race_ethnicity', row_eligibility_rate, rng,
         corruption.random_choice,
         (['Black', 'White', 'Latino', 'Multiracial or Other', 'Asian','AIAN', 'NHOPI'],),
         inplace=True
@@ -221,16 +248,16 @@ def add_noise_to_wic(df_wic, random_state=None):
 
     # Middle name
     noisify.apply_noise_function_to_column(
-        df_wic, 'middle_name', 0.01, rng,
+        df_wic, 'middle_name', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_wic, 'middle_name', 0.01, rng,
+        df_wic, 'middle_name', row_eligibility_rate, rng,
         corruption.phonetic_corrupt, (1/6,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_wic, 'middle_name', 0.01, rng,
+        df_wic, 'middle_name', row_eligibility_rate, rng,
         corruption.ocr_corrupt, (1/6,), vectorized=False, inplace=True)
     noisify.apply_noise_function_to_column(
-        df_wic, 'middle_name', 0.01, rng,
+        df_wic, 'middle_name', row_eligibility_rate, rng,
         corruption.keyboard_corrupt, (1/6, 1/10), vectorized=False, inplace=True)
 
     return df_wic
