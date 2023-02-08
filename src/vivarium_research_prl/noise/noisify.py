@@ -19,13 +19,15 @@ def apply_noise_function_to_column(
     # Set corrupted equal to corruptable, then choose corrupted at rate row_prob
     corrupted = df[colname].notna()
     corrupted.loc[corrupted] = rng.random(corrupted.sum()) < row_prob
-    if share_random_state:
-        kwargs['random_state'] = rng
-    if vectorized:
-        df.loc[corrupted, colname] = noise_function(df.loc[corrupted, colname], *args, **kwargs)
-    else:
-        df.loc[corrupted, colname] = df.loc[corrupted, colname].map(
-            lambda element: noise_function(element, *args, **kwargs))
+    # Don't try adding noise to empty Series, which can lead to errors
+    if corrupted.sum() > 0:
+        if share_random_state:
+            kwargs['random_state'] = rng
+        if vectorized:
+            df.loc[corrupted, colname] = noise_function(df.loc[corrupted, colname], *args, **kwargs)
+        else:
+            df.loc[corrupted, colname] = df.loc[corrupted, colname].map(
+                lambda element: noise_function(element, *args, **kwargs))
     if not inplace:
         return df
     else:
