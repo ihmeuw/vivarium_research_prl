@@ -14,6 +14,7 @@ def add_noise_to_census(df_census, random_state=None):
     orig_token_prob = 1/5
 
     # First name
+    print('first name')
     fname_mean_length = df_census['first_name'].str.len().mean()
     fname_token_rate = token_rate_multiplier / fname_mean_length
     noisify.apply_noise_function_to_column(
@@ -34,6 +35,7 @@ def add_noise_to_census(df_census, random_state=None):
         vectorized=False, inplace=True)
 
     # Last name
+    print('last name')
     lname_mean_length = df_census['last_name'].str.len().mean()
     lname_token_rate = token_rate_multiplier / lname_mean_length
     noisify.apply_noise_function_to_column(
@@ -54,6 +56,7 @@ def add_noise_to_census(df_census, random_state=None):
         vectorized=False, inplace=True)
 
     # Date of birth
+    print('DOB')
     dob_token_rate = token_rate_multiplier / len('yyyymmdd')
     noisify.apply_noise_function_to_column(
         df_census, 'date_of_birth', row_eligibility_rate, rng,
@@ -67,6 +70,7 @@ def add_noise_to_census(df_census, random_state=None):
         vectorized=False, inplace=True)
 
     # Zipcode
+    print('zip')
     zipcode_len = 5
     zipcode_token_rate = token_rate_multiplier / zipcode_len
     # Define relative error rates between first 2 digits, middle digit, last 2 digits
@@ -87,6 +91,7 @@ def add_noise_to_census(df_census, random_state=None):
         vectorized=False, inplace=True)
 
     # Address
+    print('address')
     address_mean_length = df_census['address'].str.len().mean()
     address_token_rate = token_rate_multiplier / address_mean_length
     noisify.apply_noise_function_to_column(
@@ -104,6 +109,7 @@ def add_noise_to_census(df_census, random_state=None):
         vectorized=False, inplace=True)
 
     # Sex
+    print('sex')
     noisify.apply_noise_function_to_column(
         df_census, 'sex', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
@@ -113,6 +119,7 @@ def add_noise_to_census(df_census, random_state=None):
     )
 
     # Age
+    print('age')
     noisify.apply_noise_function_to_column(
         df_census, 'age', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
@@ -122,6 +129,7 @@ def add_noise_to_census(df_census, random_state=None):
     )
 
     # Race/Ethnicity
+    print('race/ethnicity')
     noisify.apply_noise_function_to_column(
         df_census, 'race_ethnicity', row_eligibility_rate, rng,
         corruption.replace_with_missing, share_random_state=False, inplace=True)
@@ -133,6 +141,7 @@ def add_noise_to_census(df_census, random_state=None):
     )
 
     # Middle initial
+    print('middle initial')
     middle_initial_length = 1
     mi_token_rate = token_rate_multiplier / middle_initial_length
     noisify.apply_noise_function_to_column(
