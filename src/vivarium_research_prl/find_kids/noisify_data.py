@@ -4,14 +4,16 @@ Module for adding noise to the decennial census and WIC data before linking.
 import numpy as np
 from ..noise import noisify, corruption, fake_names
 
-def add_noise_to_census(df_census, random_state=None):
+def add_noise_to_census(
+    df_census,
+    row_eligibility_rate = 0.01,
+    token_rate_multiplier = 1,
+    orig_token_prob = 1/5,
+    random_state=None,
+):
     rng = np.random.default_rng(random_state)
     # Copy the dataframe since we're going to alter it
     df_census = df_census.copy()
-
-    row_eligibility_rate = 0.01
-    token_rate_multiplier = 1
-    orig_token_prob = 1/5
 
     # First name
     print('first name')
@@ -160,14 +162,16 @@ def add_noise_to_census(df_census, random_state=None):
 
     return df_census
 
-def add_noise_to_wic(df_wic, random_state=None):
+def add_noise_to_wic(
+    df_wic,
+    row_eligibility_rate = 0.01,
+    token_rate_multiplier = 1,
+    orig_token_prob = 1/5,
+    random_state=None,
+):
     rng = np.random.default_rng(random_state)
     # Copy the dataframe since we're going to alter it
     df_wic = df_wic.copy()
-
-    row_eligibility_rate = 0.01
-    token_rate_multiplier = 1
-    orig_token_prob = 1/5
 
     # First name
     print('first name')
