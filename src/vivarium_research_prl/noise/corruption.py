@@ -231,15 +231,20 @@ def add_random_increment(current_value, increment_choices, replace=True, p=None,
 
 def miswrite_age(age, increment_choices, p=None, random_state=None):
     """Add a random increment to each age.
-    If an age ends up negative, it is replaced with 1 (not 0).
-    The idea is that for ages>0, it's probably more likely to write age-1, but for
-    age=0, it's probably more likely to write age+1.
+    If an age ends up negative, it is replaced with 1 (not 0), unless
+    the original age was also 1, in which case the negative age is
+    replaced with 0.
 
+    The idea is that for ages > 0, it's probably more likely to write age - 1, but for
+    age = 0, it's probably more likely to write age + 1.
     With the the assumption that increment_choices=[-1,1] and p=None,
     setting negative ages to 1 will reflect the above hypothesis while
     guaranteeing that all ages actually receive noise and that all
     noised ages are nonnegative (whereas setting negative ages to 0
-    would only add noise to half the rows with age=0).
+    would only add noise to half the rows with age = 0).
+    Resetting a negative age to 0 in the exceptional case when the original age = 1
+    guarantees that all ages receive noise for other increment choices as well,
+    e.g., [-2,-1,1,2].
     """
     new_age = add_random_increment(age, increment_choices, p=p, random_state=random_state)
     # Replace any negative ages with 1
