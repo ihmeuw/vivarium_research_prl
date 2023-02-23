@@ -204,28 +204,120 @@ def miswrite_zipcode(
     new_zipcode = digits[0] + digits[1] + digits[2] + digits[3] + digits[4]
     return new_zipcode
 
-def random_choice(current_choice, choices=None, replace=True, p=None, shuffle=True, random_state=None):
-    # TODO: Add an option to exclude current_choice
-    # from the list of choices (easy when current_choice is a scalar,
-    # a bit trickier when it's a Series)
+def random_choice(
+    current_choice,
+    choices,
+    exclusion_algorithm='explicit_exclusion',
+    replace=True,
+    p=None,
+    shuffle=True,
+    random_state=None,
+):
+    """Replaces current choice with a value randomly selected from choices.
+
+    By default the current choice is explicitly excluded from the list of choices
+    in order to guarantee that every value in current_choice is changed.
+    To change this behavior and instead allow the current choice to remain the
+    same if it happens to be selected from choices, set exclusion_algorithm
+    to None or False (or any other Python expression evaluating to False, such as
+    '' or 0). If exclusion_algorithm doesn't evaluate to False, it must be one of
+    'explicit_exclusion' (default) or 'resampling'.
+    The values of replace, p, and suffle are passed to
+    numpy.random.Generator.choice.
+    """
+    if not exclusion_algorithm:
+        # Allow current choice to stay the same if it is selected from choices
+        rng = np.random.default_rng(random_state)
+        is_series = isinstance(current_choice, pd.Series)
+        if is_series:
+            new_choice = pd.Series(
+                rng.choice(choices, len(current_choice), replace, p, shuffle=shuffle),
+                index=current_choice.index, name=current_choice.name)
+        else:
+            # Set shape=None not shape=1 so that rng.choice returns a scalar not an array
+            new_choice = rng.choice(choices, None, replace, p, shuffle=shuffle)
+    elif exclusion_algorithm == 'explicit_exclusion':
+        new_choice = random_different_choice_via_explicit_exclusion(
+            current_choice, choices, replace, p, shuffle, random_state)
+    elif exclusion_algorithm == 'resampling':
+        new_choice = random_different_choice_via_resampling(
+            current_choice, choices, replace, p, shuffle, random_state)
+    else:
+        raise ValueError(f'Unrecognized exclusion algorithm: {exclusion_algorithm}')
+    return new_choice
+
+def random_different_choice_via_explicit_exclusion(
+    current_choice,
+    choices,
+    replace=True,
+    p=None,
+    shuffle=True,
+    random_state=None,
+):
+    rng = np.random.default_rng(random_state)
+    is_series = isinstance(current_choice, pd.Series)
+    choices = np.asarray(choices)
+    if p is None:
+        p = np.full(len(choices), 1/len(choices))
+    if is_series:
+        new_choice = pd.Series(
+            np.empty(len(current_choice), dtype=current_choice.dtype),
+            index=current_choice.index, name=current_choice.name)
+        current_not_in_choices = ~current_choice.isin(choices)
+        num_rows = current_not_in_choices.sum()
+        new_choice[current_not_in_choices] = rng.choice(
+                choices, num_rows, replace, p, shuffle=shuffle)
+        for c in choices:
+            p_cond = np.where(choices != c, p, 0)
+            p_cond /= p_cond.sum()
+            current_equals_c = (current_choice == c)
+            num_rows = current_equals_c.sum()
+            new_choice[current_equals_c] = rng.choice(
+                choices, num_rows, replace, p_cond, shuffle=shuffle)
+    else: # Scalar version
+        p_cond = np.where(choices != current_choice, p, 0)
+        p_cond /= p_cond.sum()
+        new_choice = rng.choice(choices, None, replace, p_cond, shuffle=shuffle)
+
+    return new_choice
+
+def random_different_choice_via_resampling(
+    current_choice,
+    choices,
+    replace=True,
+    p=None,
+    shuffle=True,
+    random_state=None,
+):
     rng = np.random.default_rng(random_state)
     is_series = isinstance(current_choice, pd.Series)
     if is_series:
         shape = len(current_choice)
-        if choices is None:
-            choices = current_choice.unique()
-            choices.sort() # Sort so that p vector can be specified if desired
-    elif choices is not None:
-        shape = None # if shape = 1, then rng.choice returns returns an array, not a scalar
+        new_choice = pd.Series(
+            np.empty(shape, dtype=current_choice.dtype),
+            index=current_choice.index, name=current_choice.name)
+        # No values have changed until the loop executes the first time
+        unchanged = pd.Series(True, index=new_choice.index)
     else:
-        raise ValueError("Must specify choices when current_choice is a scalar")
-    new_choice = rng.choice(choices, shape, replace, p, shuffle=shuffle)
-    if is_series:
-        new_choice = pd.Series(new_choice, index=current_choice.index, name=current_choice.name)
+        # Set shape=None not shape=1 so that rng.choice returns a scalar not an array
+        shape = None
+    # Resample until all values differ from current
+    done = False
+    while not done:
+        random_choice = rng.choice(choices, shape, replace, p, shuffle=shuffle)
+        if is_series:
+            new_choice[unchanged] = random_choice
+            unchanged = (new_choice == current_choice)
+            shape = unchanged.sum()
+            done = (shape == 0)
+        else: # Scalar version
+            new_choice = random_choice
+            done = (new_choice != current_choice)
     return new_choice
 
 def add_random_increment(current_value, increment_choices, replace=True, p=None, shuffle=True, random_state=None):
-    increment = random_choice(current_value, increment_choices, replace, p, shuffle, random_state)
+    increment = random_choice(
+        current_value, increment_choices, None, replace, p, shuffle, random_state)
     new_value = current_value+increment
     return new_value
 
