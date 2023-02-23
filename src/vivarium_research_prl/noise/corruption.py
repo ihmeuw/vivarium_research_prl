@@ -207,14 +207,26 @@ def miswrite_zipcode(
 def random_choice(
     current_choice,
     choices,
-    exclude_current=True,
-    exclusion_algorithm='explicit_exclusion', # Ignored if exclude_current is False
+    exclusion_algorithm='explicit_exclusion',
     replace=True,
     p=None,
     shuffle=True,
     random_state=None,
 ):
-    if not exclude_current:
+    """Replaces current choice with a value randomly selected from choices.
+
+    By default the current choice is explicitly excluded from the list of choices
+    in order to guarantee that every value in current_choice is changed.
+    To change this behavior and instead allow the current choice to remain the
+    same if it happens to be selected from choices, set exclusion_algorithm
+    to None or False (or any other Python expression evaluating to False, such as
+    '' or 0). If exclusion_algorithm doesn't evaluate to False, it must be one of
+    'explicit_exclusion' (default) or 'resampling'.
+    The values of replace, p, and suffle are passed to
+    numpy.random.Generator.choice.
+    """
+    if not exclusion_algorithm:
+        # Allow current choice to stay the same if it is selected from choices
         rng = np.random.default_rng(random_state)
         is_series = isinstance(current_choice, pd.Series)
         if is_series:
@@ -305,7 +317,7 @@ def random_different_choice_via_resampling(
 
 def add_random_increment(current_value, increment_choices, replace=True, p=None, shuffle=True, random_state=None):
     increment = random_choice(
-        current_value, increment_choices, False, None, replace, p, shuffle, random_state)
+        current_value, increment_choices, None, replace, p, shuffle, random_state)
     new_value = current_value+increment
     return new_value
 
