@@ -168,29 +168,42 @@ def id_int_to_str(id_col_int):
     id_col_str = seed_id.astype(str) + '_' + sim_id.astype(str)
     return id_col_str
 
-def get_column_categories():
-    column_cats = {
-        'string_ids': [
-            'simulant_id', 'first_name_id', 'middle_name_id', 'last_name_id', 'address_id'
-        ],
-        'categorical': [
+def get_column_dtypes(use_categorical='maximal'):
+    categorical = [
             'sex', 'race_ethnicity', 'relation_to_household_head', 'housing_type', 'state',
-            'middle_initial', 'year_of_birth', 'census_year', 'random_seed', 'state_id', 'puma'
-        ],
-        'optional_categorical': [
+            'middle_initial', 'year_of_birth', 'census_year',
+            'zipcode', 'mailing_address_zipcode',
+        ]
+    optional_categorical = [
             'date_of_birth', 'first_name',
             'last_name', 'street_number', 'street_name',
             'unit_number', 'city', 'mailing_address_street_number',
             'mailing_address_street_name', 'mailing_address_unit_number',
             'mailing_address_state', 'mailing_address_city',
-            'zipcode', 'mailing_address_zipcode',
             'po_box', 'mailing_address_po_box',
+        ]
+
+    if not use_categorical: # E.g., False or None
+        categorical_cols = []
+    if use_categorical == 'natural':
+        categorical_cols = categorical
+    elif use_categorical == 'maximal':
+        categorical_cols = categorical + optional_categorical
+    else:
+        raise ValueError(f"Unknown categorical option: {use_categorical}")
+
+    column_dtypes = {
+        'str': [
+            'simulant_id', 'first_name_id', 'middle_name_id', 'last_name_id', 'address_id'
         ],
-        'int_ids': ['guardian_1', 'guardian_2'],
-        'float_ids': ['guardian_1_address_id', 'guardian_2_address_id'],
-        'float_cols': ['age'],
+        'category': categorical_cols,
+        'int8': ['random_seed', 'state_id'],
+        'int16' ['puma'],
+        'int32': ['guardian_1', 'guardian_2'],
+        'float32': ['age', 'guardian_1_address_id', 'guardian_2_address_id'],
+#         'float16': ['age'],
     }
-    return column_cats
+    return column_dtypes
 
 def convert_string_id_cols(df):
     string_id_cols = get_column_categories()['string_ids']
@@ -199,19 +212,8 @@ def convert_string_id_cols(df):
             df[col] = id_str_to_int(df[col])
 
 def load_data(filepath, use_categorical='maximal', convert_str_ids=False):
-    column_cats = get_column_categories()
-    if use_categorical == 'natural':
-        categorical_cols = column_cats['categorical']
-    elif use_categorical == 'maximal':
-        categorical_cols = column_cats['categorical'] + column_cats['optional_categorical']
-    elif use_categorical:
-        raise ValueError(f"Unknown categorical option: {use_categorical}")
-
-    if use_categorical:
-        dtypes = {col: 'category' for col in categorical_cols}
-    else:
-        dtypes = None
-
+    column_dtypes = get_column_dtypes(use_categorical)
+    dtypes = {dtype: col for dtype, columns in column_dtypes.items() for col in columns}
     df = pd.read_csv(filepath, dtype=dtypes)
     if convert_str_ids:
         convert_string_id_cols(df)
