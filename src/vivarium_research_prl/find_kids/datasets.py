@@ -168,11 +168,35 @@ def id_int_to_str(id_col_int):
     id_col_str = seed_id.astype(str) + '_' + sim_id.astype(str)
     return id_col_str
 
+def get_column_categories():
+    column_cats = {
+        'string_ids': [
+            'simulant_id', 'first_name_id', 'middle_name_id', 'last_name_id', 'address_id'
+        ],
+        'categorical': [
+            'sex', 'race_ethnicity', 'relation_to_household_head', 'housing_type', 'state',
+            'middle_initial', 'year_of_birth', 'census_year', 'random_seed', 'state_id', 'puma'
+        ],
+        'optional_categorical': [
+            'date_of_birth', 'first_name',
+            'last_name', 'street_number', 'street_name',
+            'unit_number', 'city', 'mailing_address_street_number',
+            'mailing_address_street_name', 'mailing_address_unit_number',
+            'mailing_address_state', 'mailing_address_city',
+            'zipcode', 'mailing_address_zipcode',
+            'po_box', 'mailing_address_po_box',
+        ],
+        'int_ids': ['guardian_1', 'guardian_2'],
+        'float_ids': ['guardian_1_address_id', 'guardian_2_address_id'],
+        'float_cols': ['age'],
+    }
+    return column_cats
+
 def load_data(filepath, use_categorical='maximal', convert_str_ids=False):
     string_ids = [
         'simulant_id', 'first_name_id', 'middle_name_id', 'last_name_id', 'address_id']
     categorical = [
-        'sex', 'race_ethnicity', 'relation_to_household_head', 'housing_type', 'state'
+        'sex', 'race_ethnicity', 'relation_to_household_head', 'housing_type', 'state',
         'middle_initial', 'year_of_birth', 'census_year', 'random_seed', 'state_id', 'puma'
     ]
     additional_categorical = [
