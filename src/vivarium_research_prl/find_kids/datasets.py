@@ -153,6 +153,21 @@ def get_census_data_with_missing_kids(state_table_df, frac=0.05, random_state=No
 
 ###### Things for new, larger, more complete data, starting 2023-03-05 #####
 
+ID_PAD_WIDTH = 9 # Width to which to pad the 2nd component of an id when converting to int
+
+def id_str_to_int(id_col_str):
+    """Convert a column of string IDs to integer IDs"""
+    id_pieces = id_col_str.str.split('_')
+    seed_id, sim_id = id_pieces.str[0].astype(int), id_pieces.str[1].astype(int)
+    id_col_int = seed_id * 10**ID_PAD_WIDTH + sim_id
+    return id_col_int
+
+def id_int_to_str(id_col_int):
+    """Convert a column of integer IDs to string IDs"""
+    seed_id, sim_id = id_col_int.divmod(10**ID_PAD_WIDTH)
+    id_col_str = seed_id.astype(str) + '_' + sim_id.astype(str)
+    return id_col_str
+
 def load_data(filepath, use_categorical='maximal', convert_str_ids=False):
     string_ids = [
         'simulant_id', 'first_name_id', 'middle_name_id', 'last_name_id', 'address_id']
