@@ -203,7 +203,7 @@ def load_data(filepath, use_categorical='maximal', convert_str_ids=False):
     if use_categorical == 'natural':
         categorical_cols = column_cats['categorical']
     elif use_categorical == 'maximal':
-        categorical_cols += column_cats['optional_categorical']
+        categorical_cols = column_cats['categorical'] + column_cats['optional_categorical']
     elif use_categorical:
         raise ValueError(f"Unknown categorical option: {use_categorical}")
 
