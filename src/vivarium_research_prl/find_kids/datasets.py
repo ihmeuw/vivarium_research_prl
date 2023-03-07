@@ -211,10 +211,12 @@ def convert_string_id_cols(df):
         if col in df:
             df[col] = id_str_to_int(df[col])
 
-def load_data(filepath, use_categorical='maximal', convert_str_ids=False):
+def load_data(filepath, use_categorical='maximal', convert_str_ids=False, **kwargs):
     columns_by_dtype = get_columns_by_dtype(use_categorical)
     dtypes = {dtype: col for dtype, columns in columns_by_dtype.items() for col in columns}
-    df = pd.read_csv(filepath, dtype=dtypes)
+    if 'dtype' not in kwargs:
+        kwargs['dtype'] = dtypes
+    df = pd.read_csv(filepath, **kwargs)
     if convert_str_ids:
         convert_string_id_cols(df)
     return df
