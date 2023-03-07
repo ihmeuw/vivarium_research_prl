@@ -150,3 +150,30 @@ def get_census_data_with_missing_kids(state_table_df, frac=0.05, random_state=No
     census_df = omit_kids_from_census(state_table_df, frac, random_state)
     census_df['age'] = np.floor(census_df['age'])
     return census_df
+
+###### Things for new, larger, more complete data, starting 2023-03-05 #####
+
+def load_data(filepath, use_categorical='maximal', convert_str_ids=False):
+    string_ids = [
+        'simulant_id', 'first_name_id', 'middle_name_id', 'last_name_id', 'address_id']
+    categorical = [
+        'sex', 'race_ethnicity', 'relation_to_household_head', 'housing_type', 'state'
+        'middle_initial', 'year_of_birth', 'census_year', 'random_seed', 'state_id', 'puma'
+    ]
+    additional_categorical = [
+        'date_of_birth', 'first_name',
+        'last_name', 'street_number', 'street_name',
+        'unit_number', 'city', 'mailing_address_street_number',
+        'mailing_address_street_name', 'mailing_address_unit_number',
+        'mailing_address_state', 'mailing_address_city',
+        'zipcode', 'mailing_address_zipcode',
+        'po_box', 'mailing_address_po_box',
+    ]
+    int_ids = ['guardian_1', 'guardian_2']
+    float_ids = ['guardian_1_address_id', 'guardian_2_address_id']
+    float_cols = ['age']
+
+    categorical_cols = categorical + additional_categorical
+    dtypes = {col: 'category' for col in categorical_cols}
+    df = pd.read_csv(filepath, dtype=dtypes)
+    return df
