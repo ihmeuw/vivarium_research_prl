@@ -192,6 +192,12 @@ def get_column_categories():
     }
     return column_cats
 
+def convert_string_id_cols(df):
+    string_id_cols = get_column_categories()['string_ids']
+    for col in string_id_cols:
+        if col in df:
+            df[col] = id_str_to_int(df[col])
+
 def load_data(filepath, use_categorical='maximal', convert_str_ids=False):
     string_ids = [
         'simulant_id', 'first_name_id', 'middle_name_id', 'last_name_id', 'address_id']
