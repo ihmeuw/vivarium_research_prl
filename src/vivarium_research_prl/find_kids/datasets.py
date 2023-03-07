@@ -168,7 +168,7 @@ def id_int_to_str(id_col_int):
     id_col_str = seed_id.astype(str) + '_' + sim_id.astype(str)
     return id_col_str
 
-def get_column_dtypes(use_categorical='maximal'):
+def get_columns_by_dtype(use_categorical='maximal'):
     categorical = [
             'sex', 'race_ethnicity', 'relation_to_household_head', 'housing_type', 'state',
             'middle_initial', 'year_of_birth', 'census_year',
@@ -192,7 +192,7 @@ def get_column_dtypes(use_categorical='maximal'):
     else:
         raise ValueError(f"Unknown categorical option: {use_categorical}")
 
-    column_dtypes = {
+    columns_by_dtype = {
         'str': [
             'simulant_id', 'first_name_id', 'middle_name_id', 'last_name_id', 'address_id'
         ],
@@ -203,17 +203,17 @@ def get_column_dtypes(use_categorical='maximal'):
         'float32': ['age', 'guardian_1_address_id', 'guardian_2_address_id'],
 #         'float16': ['age'],
     }
-    return column_dtypes
+    return columns_by_dtype
 
 def convert_string_id_cols(df):
-    string_id_cols = get_column_categories()['string_ids']
+    string_id_cols = [col for col in get_columns_by_dtype()['str'] if '_id' in col]
     for col in string_id_cols:
         if col in df:
             df[col] = id_str_to_int(df[col])
 
 def load_data(filepath, use_categorical='maximal', convert_str_ids=False):
-    column_dtypes = get_column_dtypes(use_categorical)
-    dtypes = {dtype: col for dtype, columns in column_dtypes.items() for col in columns}
+    columns_by_dtype = get_columns_by_dtype(use_categorical)
+    dtypes = {dtype: col for dtype, columns in columns_by_dtype.items() for col in columns}
     df = pd.read_csv(filepath, dtype=dtypes)
     if convert_str_ids:
         convert_string_id_cols(df)
