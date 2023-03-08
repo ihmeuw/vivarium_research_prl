@@ -171,7 +171,7 @@ def id_int_to_str(id_col_int):
 def get_columns_by_dtype(use_categorical='maximal'):
     categorical = [
             'sex', 'race_ethnicity', 'relation_to_household_head', 'housing_type', 'state',
-            'middle_initial', 'year_of_birth', 'census_year',
+            'middle_initial', 'year_of_birth', 'census_year', 'wic_year',
             'zipcode', 'mailing_address_zipcode',
         ]
     optional_categorical = [
