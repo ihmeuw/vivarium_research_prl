@@ -198,7 +198,7 @@ def get_columns_by_dtype(use_categorical='maximal'):
         ],
         'category': categorical_cols,
         'int8': ['random_seed', 'state_id'],
-        'int16' ['puma'],
+        'int16': ['puma'],
         'int32': ['guardian_1', 'guardian_2'],
         'float32': ['age', 'guardian_1_address_id', 'guardian_2_address_id'],
 #         'float16': ['age'],
@@ -213,9 +213,9 @@ def convert_string_id_cols(df):
 
 def load_data(filepath, use_categorical='maximal', convert_str_ids=False, **kwargs):
     columns_by_dtype = get_columns_by_dtype(use_categorical)
-    dtypes = {dtype: col for dtype, columns in columns_by_dtype.items() for col in columns}
+    col_to_dtype = {col: dtype for dtype, columns in columns_by_dtype.items() for col in columns}
     if 'dtype' not in kwargs:
-        kwargs['dtype'] = dtypes
+        kwargs['dtype'] = col_to_dtype
     df = pd.read_csv(filepath, **kwargs)
     if convert_str_ids:
         convert_string_id_cols(df)
