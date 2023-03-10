@@ -22,18 +22,18 @@ def id_int_to_str(id_col_int):
 
 def get_columns_by_dtype(use_categorical='maximal'):
     categorical = [
-            'sex', 'race_ethnicity', 'relation_to_household_head', 'housing_type', 'state',
-            'middle_initial', 'year_of_birth', 'census_year', 'wic_year',
-            'zipcode', 'mailing_address_zipcode',
-        ]
+        'sex', 'race_ethnicity', 'relation_to_household_head', 'housing_type',
+        'middle_initial', 'state', 'mailing_address_state',
+        'zipcode', 'mailing_address_zipcode',
+        'year_of_birth', 'census_year', 'wic_year',
+    ]
     optional_categorical = [
-            'date_of_birth', 'first_name',
-            'last_name', 'street_number', 'street_name',
-            'unit_number', 'city', 'mailing_address_street_number',
-            'mailing_address_street_name', 'mailing_address_unit_number',
-            'mailing_address_state', 'mailing_address_city',
-            'po_box', 'mailing_address_po_box',
-        ]
+        'first_name', 'last_name', 'date_of_birth',
+        'street_number', 'street_name', 'unit_number', 'city',
+        'mailing_address_street_number', 'mailing_address_street_name',
+        'mailing_address_unit_number', 'mailing_address_city',
+        'po_box', 'mailing_address_po_box',
+    ]
 
     if not use_categorical: # E.g., False or None
         categorical_cols = []
@@ -57,7 +57,16 @@ def get_columns_by_dtype(use_categorical='maximal'):
     }
     return columns_by_dtype
 
-def convert_string_id_cols(df):
+def convert_string_cats_to_ints(df):
+    """Renames categories in select columns to change string categories to ints.
+    """
+    int_categorical = ['year_of_birth', 'census_year', 'wic_year']
+    # Also these? 'po_box', 'mailing_address_po_box',
+    for col in int_categorical:
+        if col in df and df[col].dtype == 'category':
+            df[col] = df[col].cat.rename_categories(df[col].cat.categories.astype(int))
+
+def convert_string_ids_to_ints(df):
     string_id_cols = [col for col in get_columns_by_dtype()['str'] if '_id' in col]
     for col in string_id_cols:
         if col in df:
@@ -69,6 +78,10 @@ def load_csv_data(filepath, use_categorical='maximal', convert_str_ids=False, **
     if 'dtype' not in kwargs:
         kwargs['dtype'] = col_to_dtype
     df = pd.read_csv(filepath, **kwargs)
+    # Convert appropriate categories (e.g., years) to integers,
+    # since all categories are read in as strings:
+    # https://stackoverflow.com/questions/64652975/pandas-read-csv-with-dtype-pd-categoricaldtype-creates-object-categories-ev
+    convert_string_cats_to_ints(df)
     if convert_str_ids:
-        convert_string_id_cols(df)
+        convert_string_ids_to_ints(df)
     return df
