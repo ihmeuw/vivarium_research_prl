@@ -21,6 +21,19 @@ def id_int_to_str(id_col_int):
     id_col_str = seed_id.astype(str) + '_' + sim_id.astype(str)
     return id_col_str
 
+def ssn_to_int(ssn):
+    """Convert a column of social security numbers from strings
+    of the form 'abc-def-ghij' to 32-bit ints of the form abcdefghi.
+    NaNs will be replaced by -1. The function also works on string
+    SSNs in the format 'abcdefghi'.
+    """
+    ssn_int = (
+        ssn.str.replace('-', '')
+        .fillna(-1)
+        .astype('int32')
+    )
+    return ssn_int
+
 def get_columns_by_dtype(use_categorical='maximal'):
     categorical = [
         'relation_to_household_head', 'housing_type',
