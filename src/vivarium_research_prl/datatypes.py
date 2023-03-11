@@ -23,16 +23,19 @@ def id_int_to_str(id_col_int):
 
 def get_columns_by_dtype(use_categorical='maximal'):
     categorical = [
-        'sex', 'race_ethnicity', 'relation_to_household_head', 'housing_type',
-        'middle_initial', 'state', 'mailing_address_state',
-        'zipcode', 'mailing_address_zipcode',
-        'year_of_birth', 'census_year', 'wic_year',
+        'relation_to_household_head', 'housing_type',
+        'sex', 'race_ethnicity', 'middle_initial',
+        'state', 'mailing_address_state', 'employer_state',
+        'zipcode', 'mailing_address_zipcode', 'employer_zipcode',
+        'year_of_birth', 'census_year', 'wic_year', 'tax_year',
     ]
     optional_categorical = [
-        'first_name', 'last_name', 'date_of_birth',
+        'first_name', 'last_name', 'date_of_birth', 'employer_name',
         'street_number', 'street_name', 'unit_number', 'city',
         'mailing_address_street_number', 'mailing_address_street_name',
         'mailing_address_unit_number', 'mailing_address_city',
+        'employer_street_number', 'employer_street_name',
+        'employer_unit_number', 'employer_city',
         'po_box', 'mailing_address_po_box',
     ]
 
@@ -48,13 +51,16 @@ def get_columns_by_dtype(use_categorical='maximal'):
     columns_by_dtype = {
         'str': [
             'simulant_id', 'first_name_id', 'middle_name_id', 'last_name_id',
-            'address_id', 'household_id',
+            'address_id', 'household_id', 'guardian_id', 'ssn',
         ],
         'category': categorical_cols,
         'int8': ['random_seed', 'state_id'],
         'int16': ['puma'],
 #         'int32': ['guardian_1', 'guardian_2'], # This broke with new data like '7359_-1' vs. '-1'
-        'float32': ['age', 'guardian_1_address_id', 'guardian_2_address_id'],
+        'float32': [
+            'age', 'income',
+            'guardian_1_address_id', 'guardian_2_address_id'
+        ],
 #         'float16': ['age'],
     }
     return columns_by_dtype
