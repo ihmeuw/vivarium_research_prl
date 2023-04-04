@@ -128,3 +128,10 @@ def load_csv_data(filepath, use_categorical='maximal', convert_str_ids=False, **
     if convert_str_ids:
         convert_string_ids_to_ints(df)
     return df
+
+def convert_dtypes(df, use_categorical='maximal'):
+    columns_by_dtype = get_columns_by_dtype(use_categorical)
+    for dtype, columns in columns_by_dtype.items():
+        for col in columns:
+            if col in df:
+                df[col] = df[col].astype(dtype)
