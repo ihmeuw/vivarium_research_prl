@@ -93,11 +93,11 @@ def convert_string_cats_to_ints(df):
 def convert_string_ids_to_ints(df, string_id_cols=None, include_ssn=None):
     """Convert string id columns to ints. Convert all string ID columns
     if string_id_cols=None, or convert the explicit columns passed if
-    string_id_cols is list-like. The 'ssn' column is included by default
+    string_id_cols is list-like. The 'ssn' and 'itin' columns are included by default
     when string_id_cols=None, but this can be overridden by passing
     include_ssn=False. If a list of columns is passed explicitly to
-    string_id_cols, by default the 'ssn' column will *not* be included
-    unless the list includes 'ssn'. This can be overridden by passing
+    string_id_cols, by default the 'ssn' and 'itin' columns will *not* be included
+    unless the list includes 'ssn' or 'itin'. This can be overridden by passing
     include_ssn=True.
     """
     if string_id_cols is None:
@@ -112,6 +112,8 @@ def convert_string_ids_to_ints(df, string_id_cols=None, include_ssn=None):
             df[col] = id_str_to_int(df[col])
     if include_ssn and 'ssn' in df and df['ssn'].dtype == 'object':
         df['ssn'] = ssn_to_int(df['ssn'])
+    if include_ssn and 'itin' in df and df['itin'].dtype == 'object':
+        df['itin'] = ssn_to_int(df['itin'])
 
 def load_csv_data(filepath, use_categorical='maximal', convert_str_ids=False, **kwargs):
     columns_by_dtype = get_columns_by_dtype(use_categorical)
