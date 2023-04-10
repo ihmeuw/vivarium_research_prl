@@ -41,7 +41,7 @@ def get_columns_by_dtype(use_categorical='maximal'):
         'state', 'mailing_address_state', 'employer_state',
         'zipcode', 'mailing_address_zipcode', 'employer_zipcode',
         'year_of_birth', 'census_year', 'wic_year', 'tax_year',
-        'event_type',
+        'event_type', 'tax_form',
     ]
     optional_categorical = [
         'first_name', 'last_name', 'date_of_birth', 'employer_name',
