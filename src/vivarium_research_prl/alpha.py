@@ -21,5 +21,8 @@ def get_zero_column_noise_config():
     for dataset_config in config.values():
         for column_config in dataset_config['column_noise'].values():
             for noise_config in column_config.values():
-                noise_config['probability'] = 0
+                if 'probability' in noise_config:
+                    noise_config['probability'] = 0
+                elif 'cell_probability' in noise_config:
+                    noise_config['cell_probability'] = 0
     return config
