@@ -184,5 +184,11 @@ OF HOUSE
 H AGE
 OF THE HOME"""
 
-fake_first_names = _fake_first_name_string.split('\n')
-fake_last_names = _fake_last_name_string.split('\n')
+
+def fake_first_names(case='upper'):
+    fake_names = getattr(_fake_first_name_string, case)()
+    return fake_names.split('\n')
+
+def fake_last_names(case='upper'):
+    fake_names = getattr(_fake_last_name_string, case)()
+    return fake_names.split('\n')

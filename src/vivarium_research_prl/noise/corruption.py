@@ -4,6 +4,7 @@
 Informed by reading https://dmm.anu.edu.au/geco/flex-data-gen-manual.pdf but not looking at the sourcecode, since it might be in conflict with the license we end up using for this sim.
 
 NOTE: Noise functions that take strings as inputs can be vectorized by using pd.Series.str
+See the swap_month_day and miswrite_zipcode functions for examples.
 """
 
 import numpy as np
@@ -203,21 +204,148 @@ def miswrite_zipcode(
     new_zipcode = digits[0] + digits[1] + digits[2] + digits[3] + digits[4]
     return new_zipcode
 
-def incorrect_select(selection, choices=None, random_state=None):
-    rng = np.random.default_rng(random_state)
-    is_series = isinstance(selection, pd.Series)
-    if is_series:
-        shape = len(selection)
-        if choices is None:
-            choices = selection.unique()
-    elif choices is not None:
-        shape = None # if shape = 1, then rng.choice returns returns an array, not a scalar
+def random_choice(
+    current_choice,
+    choices,
+    exclusion_algorithm='explicit_exclusion',
+    replace=True,
+    p=None,
+    shuffle=True,
+    random_state=None,
+):
+    """Replaces current choice with a value randomly selected from choices.
+
+    By default the current choice is explicitly excluded from the list of choices
+    in order to guarantee that every value in current_choice is changed.
+    To change this behavior and instead allow the current choice to remain the
+    same if it happens to be selected from choices, set exclusion_algorithm
+    to None or False (or any other Python expression evaluating to False, such as
+    '' or 0). If exclusion_algorithm doesn't evaluate to False, it must be one of
+    'explicit_exclusion' (default) or 'resampling'.
+    The values of replace, p, and suffle are passed to
+    numpy.random.Generator.choice.
+    """
+    if not exclusion_algorithm:
+        # Allow current choice to stay the same if it is selected from choices
+        rng = np.random.default_rng(random_state)
+        is_series = isinstance(current_choice, pd.Series)
+        if is_series:
+            new_choice = pd.Series(
+                rng.choice(choices, len(current_choice), replace, p, shuffle=shuffle),
+                index=current_choice.index, name=current_choice.name)
+        else:
+            # Set shape=None not shape=1 so that rng.choice returns a scalar not an array
+            new_choice = rng.choice(choices, None, replace, p, shuffle=shuffle)
+    elif exclusion_algorithm == 'explicit_exclusion':
+        new_choice = random_different_choice_via_explicit_exclusion(
+            current_choice, choices, replace, p, shuffle, random_state)
+    elif exclusion_algorithm == 'resampling':
+        new_choice = random_different_choice_via_resampling(
+            current_choice, choices, replace, p, shuffle, random_state)
     else:
-        raise ValueError("Must specify choices when selection is a scalar")
-    new_selection = rng.choice(choices, shape)
+        raise ValueError(f'Unrecognized exclusion algorithm: {exclusion_algorithm}')
+    return new_choice
+
+def random_different_choice_via_explicit_exclusion(
+    current_choice,
+    choices,
+    replace=True,
+    p=None,
+    shuffle=True,
+    random_state=None,
+):
+    rng = np.random.default_rng(random_state)
+    is_series = isinstance(current_choice, pd.Series)
+    choices = np.asarray(choices)
+    if p is None:
+        p = np.full(len(choices), 1/len(choices))
     if is_series:
-        new_selection = pd.Series(new_selection, index=selection.index, name=selection.name)
-    return new_selection
+        new_choice = pd.Series(
+            np.empty(len(current_choice), dtype=current_choice.dtype),
+            index=current_choice.index, name=current_choice.name)
+        current_not_in_choices = ~current_choice.isin(choices)
+        num_rows = current_not_in_choices.sum()
+        new_choice[current_not_in_choices] = rng.choice(
+                choices, num_rows, replace, p, shuffle=shuffle)
+        for c in choices:
+            p_cond = np.where(choices != c, p, 0)
+            p_cond /= p_cond.sum()
+            current_equals_c = (current_choice == c)
+            num_rows = current_equals_c.sum()
+            new_choice[current_equals_c] = rng.choice(
+                choices, num_rows, replace, p_cond, shuffle=shuffle)
+    else: # Scalar version
+        p_cond = np.where(choices != current_choice, p, 0)
+        p_cond /= p_cond.sum()
+        new_choice = rng.choice(choices, None, replace, p_cond, shuffle=shuffle)
+
+    return new_choice
+
+def random_different_choice_via_resampling(
+    current_choice,
+    choices,
+    replace=True,
+    p=None,
+    shuffle=True,
+    random_state=None,
+):
+    rng = np.random.default_rng(random_state)
+    is_series = isinstance(current_choice, pd.Series)
+    if is_series:
+        shape = len(current_choice)
+        new_choice = pd.Series(
+            np.empty(shape, dtype=current_choice.dtype),
+            index=current_choice.index, name=current_choice.name)
+        # No values have changed until the loop executes the first time
+        unchanged = pd.Series(True, index=new_choice.index)
+    else:
+        # Set shape=None not shape=1 so that rng.choice returns a scalar not an array
+        shape = None
+    # Resample until all values differ from current
+    done = False
+    while not done:
+        random_choice = rng.choice(choices, shape, replace, p, shuffle=shuffle)
+        if is_series:
+            new_choice[unchanged] = random_choice
+            unchanged = (new_choice == current_choice)
+            shape = unchanged.sum()
+            done = (shape == 0)
+        else: # Scalar version
+            new_choice = random_choice
+            done = (new_choice != current_choice)
+    return new_choice
+
+def add_random_increment(current_value, increment_choices, replace=True, p=None, shuffle=True, random_state=None):
+    increment = random_choice(
+        current_value, increment_choices, None, replace, p, shuffle, random_state)
+    new_value = current_value+increment
+    return new_value
+
+def miswrite_age(age, increment_choices, p=None, random_state=None):
+    """Add a random increment to each age.
+    If an age ends up negative, it is replaced with 1 (not 0), unless
+    the original age was also 1, in which case the negative age is
+    replaced with 0.
+
+    The idea is that for ages > 0, it's probably more likely to write age - 1, but for
+    age = 0, it's probably more likely to write age + 1.
+    With the the assumption that increment_choices=[-1,1] and p=None,
+    setting negative ages to 1 will reflect the above hypothesis while
+    guaranteeing that all ages actually receive noise and that all
+    noised ages are nonnegative (whereas setting negative ages to 0
+    would only add noise to half the rows with age = 0).
+    Resetting a negative age to 0 in the exceptional case when the original age = 1
+    guarantees that all ages receive noise for other increment choices as well,
+    e.g., [-2,-1,1,2].
+    """
+    new_age = add_random_increment(age, increment_choices, p=p, random_state=random_state)
+    # Replace any negative ages with 1
+    if isinstance(new_age, pd.Series):
+        new_age.mask(new_age<0, 1, inplace=True)
+        new_age.mask((new_age==1) & (age==1), 0, inplace=True)
+    elif new_age<0:
+        new_age = 1 if age != 1 else 0
+    return new_age
 
 def replace_with_missing(value, missing_value=np.nan):
     if isinstance(value, pd.Series):
