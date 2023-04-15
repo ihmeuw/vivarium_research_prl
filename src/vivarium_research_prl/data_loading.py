@@ -1,17 +1,19 @@
 import pandas as pd
 import os
+import re
 from tqdm import tqdm
 
-def convert_csvs_to_hdf(output_dir, save_dir):
+def convert_csvs_to_hdf(output_dir, save_dir, nrows=None):
     """Loads all shards stored as .csv.bz2 files in all subdirectories of
     output_directory, converts datatypes to numerics and categoricals,
     concatenates all shards, and saves the concatenated DataFrames to .hdf
     files in save_dir.
+
+    Copied from the notebook 2023_04_04a_large_data_tests_2023_03_16_17_21_09.ipynb
     """
     observer_names = []
-    nrows = None
     ext = '.csv.bz2'
-    seed_length=4
+    seed_length=4 # TODO: Fix this to account for seeds of length 2 or 3 as well
     for dirpath, dirnames, filenames in os.walk(output_dir):
         observer_name = dirpath[dirpath.rindex('/')+1:]
         if observer_name == 'logs':
@@ -51,3 +53,39 @@ def convert_csvs_to_hdf(output_dir, save_dir):
             del shards
     print('\nObservers:', observer_names, '\n')
     return 
+
+def load_shards_and_concatenate(
+    observer_dir,
+    ext,
+    seeds='all',
+    filter_query=None,
+    transform=None,
+    **pd_read_kwargs
+):
+    """Loads shards from a directory with the output from a single observer
+    and concatenates them. Optionally filters and transforms the data before concatenating.
+    """
+    pandas_read = {
+        '.parquet': pd.read_parquet,
+        '.hdf': pd.read_hdf,
+        '.csv.bz2': pd.read_csv,
+        '.csv': pd.read_csv,
+    }
+    shards = []
+    with os.scandir(observer_dir) as scanner:
+        for entry in scanner:
+            if entry.name.endswith(ext) and entry.is_file():
+                if seeds != 'all':
+                    # Use regex to identify seed as a string of digits before the extension, e.g.,
+                    # '9871' in 'social_security_observer_9871.hdf'
+                    seed = int(re.findall(r'^.*_(\d+)' + ext + '$', entry.name)[0])
+                    if seed not in seeds:
+                        continue
+                shard = pandas_read[ext](entry, **pd_read_kwargs)
+                if filter_query is not None:
+                    shard = shard.query(filter_query)
+                if transform:
+                    shard = transform(shard)
+                shards.append(shard)
+    df = pd.concat(shards, ignore_index=True)
+    return df
