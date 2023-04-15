@@ -60,6 +60,7 @@ def load_shards_and_concatenate(
     seeds='all',
     filter_query=None,
     transform=None,
+    ignore_index=True,
     **pd_read_kwargs
 ):
     """Loads shards from a directory with the output from a single observer
@@ -71,21 +72,20 @@ def load_shards_and_concatenate(
         '.csv.bz2': pd.read_csv,
         '.csv': pd.read_csv,
     }
-    shards = []
+    shards = {}
     with os.scandir(observer_dir) as scanner:
         for entry in scanner:
             if entry.name.endswith(ext) and entry.is_file():
-                if seeds != 'all':
-                    # Use regex to identify seed as a string of digits before the extension, e.g.,
-                    # '9871' in 'social_security_observer_9871.hdf'
-                    seed = int(re.findall(r'^.*_(\d+)' + ext + '$', entry.name)[0])
-                    if seed not in seeds:
-                        continue
+                # Use regex to identify seed as a string of digits before the extension, e.g.,
+                # '9871' in 'social_security_observer_9871.hdf'
+                seed = int(re.findall(r'^.*_(\d+)' + ext + '$', entry.name)[0])
+                if seeds != 'all' and seed not in seeds:
+                    continue
                 shard = pandas_read[ext](entry, **pd_read_kwargs)
                 if filter_query is not None:
                     shard = shard.query(filter_query)
                 if transform:
                     shard = transform(shard)
-                shards.append(shard)
-    df = pd.concat(shards, ignore_index=True)
+                shards[seed] = shard
+    df = pd.concat(shards, ignore_index=ignore_index)
     return df
