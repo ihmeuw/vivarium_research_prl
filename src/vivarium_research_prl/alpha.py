@@ -17,8 +17,13 @@ def compare_columns(df1, df2, colname, notna=False):
         return df1[colname].compare(df2[colname])
 
 def get_zero_noise_config(row_or_col='both'):
+    if row_or_col not in ['row', 'column', 'both']:
+        raise ValueError("row_or_col must be 'row', 'column', or 'both'")
     config = get_configuration()
     for dataset_config in config.values():
+        if row_or_col in ['row', 'both']:
+            for row_noise_config in dataset_config['row_noise'].values():
+                row_noise_config['probability'] = 0
         if row_or_col in ['column', 'both']:
             for column_config in dataset_config['column_noise'].values():
                 for noise_config in column_config.values():
