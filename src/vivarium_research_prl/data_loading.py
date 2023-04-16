@@ -64,7 +64,22 @@ def load_shards_and_concatenate(
     **pd_read_kwargs
 ):
     """Loads shards from a directory with the output from a single observer
-    and concatenates them. Optionally filters and transforms the data before concatenating.
+    and concatenates them. Optionally filters and transforms the data after
+    loading and before concatenating. Can load a subset of all shards by
+    passing a list of ints to `seeds` to specify which random seeds should
+    be loaded. Supports various filetypes for shards (.parquet, .hdf,
+    .csv.bz2, .csv), and allows passing keyword arguments
+    to the corresponding pandas function that reads the data. For example,
+    to save memory and/or time when loading, keyword arguments can be used
+    to filter the data before loading a .parquet or .hdf, and for .csv's,
+    the number of rows can be limited and/or datatypes can be converted.
+    If you want to filter data after loading but before concatenating the shards,
+    you can pass a string to `filter_query`, which will then be passed to
+    DataFfame.query(). An example use of the `transform` parameter
+    would be to pass a function that conforms the categories in a categorical
+    column of the shards so that they can be concatenated as dtype 'category'
+    instead of getting converted to dtype 'object' because of mismatched
+    categories between shards.
     """
     pandas_read = {
         '.parquet': pd.read_parquet,
@@ -78,7 +93,7 @@ def load_shards_and_concatenate(
             if entry.name.endswith(ext) and entry.is_file():
                 # Use regex to identify seed as a string of digits before the extension, e.g.,
                 # '9871' in 'social_security_observer_9871.hdf'
-                seed = int(re.match(fr'^.*_(\d+){ext}$', entry.name).group(1))
+                seed = int(re.match(fr'^.+_(\d+){ext}$', entry.name).group(1))
                 if seeds != 'all' and seed not in seeds:
                     continue
                 shard = pandas_read[ext](entry, **pd_read_kwargs)
