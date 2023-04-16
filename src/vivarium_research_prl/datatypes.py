@@ -91,7 +91,7 @@ def get_columns_by_dtype(use_categorical='maximal'):
 def convert_string_cats_to_ints(df):
     """Renames categories in select columns to change string categories to ints.
     """
-    int_categorical = ['year_of_birth', 'census_year', 'wic_year', 'tax_year']
+    int_categorical = ['year', 'year_of_birth', 'census_year', 'wic_year', 'tax_year']
 #     int_categorical += ['po_box', 'mailing_address_po_box'] # Also these?
 #     int_categorical += ['zipcode', 'mailing_address_zipcode'] # And these?
     for col in int_categorical:
