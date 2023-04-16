@@ -6,6 +6,14 @@ the output of the Vivarium PRL simulation in pandas.
 import pandas as pd
 
 ID_PAD_WIDTH = 9 # Width to which to pad the 2nd component of an id when converting to int
+ID_COLUMNS = [
+    'simulant_id', 'guardian_1', 'guardian_2',
+    # The rest of these should be gone from post-processed data in final version:
+    'first_name_id', 'middle_name_id', 'last_name_id',
+    'address_id', 'household_id', 'guardian_id',
+    'guardian_1_address_id', 'guardian_2_address_id',
+]
+SSN_COLUMNS = ['ssn', 'itin']
 
 def id_str_to_int(id_col_str):
     """Convert a column of string IDs to integer IDs"""
