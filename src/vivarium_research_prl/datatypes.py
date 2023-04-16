@@ -6,12 +6,11 @@ the output of the Vivarium PRL simulation in pandas.
 import pandas as pd
 
 ID_PAD_WIDTH = 9 # Width to which to pad the 2nd component of an id when converting to int
-ID_COLUMNS = [
-    'simulant_id', 'guardian_1', 'guardian_2',
+STR_ID_COLUMNS = [
+    'simulant_id', 'household_id', 'guardian_1', 'guardian_2',
     # The rest of these should be gone from post-processed data in final version:
     'first_name_id', 'middle_name_id', 'last_name_id',
     'address_id', 'household_id', 'guardian_id',
-    'guardian_1_address_id', 'guardian_2_address_id',
 ]
 SSN_COLUMNS = ['ssn', 'itin']
 
@@ -109,7 +108,7 @@ def convert_string_ids_to_ints(df, string_id_cols=None, include_ssn=None):
     include_ssn=True.
     """
     if string_id_cols is None:
-        string_id_cols = ID_COLUMNS
+        string_id_cols = STR_ID_COLUMNS
         if include_ssn is None:
             include_ssn = True # If no columns were passed, include SSN by default
     elif include_ssn is None:
