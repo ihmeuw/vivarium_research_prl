@@ -97,6 +97,17 @@ def convert_string_cats_to_ints(df):
         if col in df and df[col].dtype == 'category':
             df[col] = df[col].cat.rename_categories(df[col].cat.categories.astype(int))
 
+def convert_category_dtype(df, dtype):
+    category_cols = df.dtypes.loc[df.dtypes == 'category'].index
+    if not isinstance(dtype, dict):
+        dtype = {col: dtype for col in category_cols}
+    for col, col_dtype in dtype.items():
+        try: # This version should be faster but will fail if catetories are not unique after conversion
+            df[col] = df[col].cat.rename_categories(df[col].cat.categories.astype(col_dtype))
+        except ValueError: # Error message: 'Categorical categories must be unique'
+            # In case of non-unique categories, this version may be slower but should work
+            df[col] = df[col].astype(col_dtype).astype('category')
+
 def convert_string_ids_to_ints(df, string_id_cols=None, include_ssn=None):
     """Convert string id columns to ints. Convert all string ID columns
     if string_id_cols=None, or convert the explicit columns passed if
