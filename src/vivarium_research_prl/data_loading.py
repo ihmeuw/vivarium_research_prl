@@ -78,11 +78,11 @@ def load_shards_and_concatenate(
             if entry.name.endswith(ext) and entry.is_file():
                 # Use regex to identify seed as a string of digits before the extension, e.g.,
                 # '9871' in 'social_security_observer_9871.hdf'
-                seed = int(re.findall(r'^.*_(\d+)' + ext + '$', entry.name)[0])
+                seed = int(re.match(fr'^.*_(\d+){ext}$', entry.name).group(1))
                 if seeds != 'all' and seed not in seeds:
                     continue
                 shard = pandas_read[ext](entry, **pd_read_kwargs)
-                if filter_query is not None:
+                if filter_query:
                     shard = shard.query(filter_query)
                 if transform:
                     shard = transform(shard)
