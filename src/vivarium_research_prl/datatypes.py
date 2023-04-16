@@ -109,19 +109,16 @@ def convert_string_ids_to_ints(df, string_id_cols=None, include_ssn=None):
     include_ssn=True.
     """
     if string_id_cols is None:
-        string_id_cols = [col for col in get_columns_by_dtype()['str'] if '_id' in col]
-        string_id_cols += ['guardian_1', 'guardian_2'] # These got prepended with random seeds
+        string_id_cols = ID_COLUMNS
         if include_ssn is None:
             include_ssn = True # If no columns were passed, include SSN by default
     elif include_ssn is None:
         include_ssn = False # If columns were passed explicitly, don't include SSN by default
+    if include_ssn:
+        string_id_cols.append(SSN_COLUMNS)
     for col in string_id_cols:
         if col in df and df[col].dtype == 'object': # Could modify to check for type str instead
             df[col] = id_str_to_int(df[col])
-    if include_ssn and 'ssn' in df and df['ssn'].dtype == 'object':
-        df['ssn'] = ssn_to_int(df['ssn'])
-    if include_ssn and 'itin' in df and df['itin'].dtype == 'object':
-        df['itin'] = ssn_to_int(df['itin'])
 
 def load_csv_data(filepath, use_categorical='maximal', convert_str_ids=False, **kwargs):
     columns_by_dtype = get_columns_by_dtype(use_categorical)
