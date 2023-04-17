@@ -87,6 +87,12 @@ def get_columns_by_dtype(use_categorical='maximal'):
     }
     return columns_by_dtype
 
+def merge_categories(series, category_mapping):
+    old_categories = series.cat.categories
+    new_categories = old_categories.map(category_mapping)
+    series.cat.set_categories(old_categories.union(new_categories.unique()))
+    return series.map(category_mapping)
+
 def convert_string_cats_to_ints(df):
     """Renames categories in select columns to change string categories to ints.
     """
