@@ -30,3 +30,17 @@ def get_zero_noise_config(row_or_col='both'):
                     if 'cell_probability' in noise_config:
                         noise_config['cell_probability'] = 0
     return config
+
+def recursive_zero(d):
+    """Recursively set all probabilities to 0 in a configuration dictionary.
+    Modifies the dictionary in place. This is Abie's solution posted in
+    Slack on April 21, 2023.
+    """
+    if not isinstance(d, dict):
+        return
+
+    for k in d.keys():
+        if 'probability' in str(k):
+            d[k] = 0.0
+        else:
+            recursive_zero(d[k])
