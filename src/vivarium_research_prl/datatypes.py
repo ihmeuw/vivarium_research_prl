@@ -6,6 +6,13 @@ the output of the Vivarium PRL simulation in pandas.
 import pandas as pd
 
 ID_PAD_WIDTH = 9 # Width to which to pad the 2nd component of an id when converting to int
+STR_ID_COLUMNS = [
+    'simulant_id', 'household_id', 'guardian_1', 'guardian_2',
+    # The rest of these should be gone from post-processed data in final version:
+    'first_name_id', 'middle_name_id', 'last_name_id',
+    'address_id', 'household_id', 'guardian_id',
+]
+SSN_COLUMNS = ['ssn', 'itin']
 
 def id_str_to_int(id_col_str):
     """Convert a column of string IDs to integer IDs"""
@@ -80,15 +87,33 @@ def get_columns_by_dtype(use_categorical='maximal'):
     }
     return columns_by_dtype
 
+def merge_categories(series, category_mapping):
+    # https://stackoverflow.com/questions/32262982/pandas-combining-multiple-categories-into-one
+    return series.map(category_mapping).astype('category')
+
 def convert_string_cats_to_ints(df):
     """Renames categories in select columns to change string categories to ints.
     """
-    int_categorical = ['year_of_birth', 'census_year', 'wic_year', 'tax_year']
+    int_categorical = ['year', 'year_of_birth', 'census_year', 'wic_year', 'tax_year']
 #     int_categorical += ['po_box', 'mailing_address_po_box'] # Also these?
 #     int_categorical += ['zipcode', 'mailing_address_zipcode'] # And these?
     for col in int_categorical:
         if col in df and df[col].dtype == 'category':
             df[col] = df[col].cat.rename_categories(df[col].cat.categories.astype(int))
+
+def convert_category_dtype(df, dtype):
+    category_cols = df.dtypes.loc[df.dtypes == 'category'].index
+    if not isinstance(dtype, dict):
+        dtype = {col: dtype for col in category_cols}
+    for col, col_dtype in dtype.items():
+        new_categories = df[col].cat.categories.astype(col_dtype)
+        if not new_categories.duplicated().any():
+            # This version should save memory and time but will fail if catetories are not unique after conversion
+            df[col] = df[col].cat.rename_categories(new_categories)
+        else:
+            # In case of non-unique categories, this version may take more memory and time but should work
+            cat_map = dict(zip(df[col].cat.categories, new_categories))
+            df[col] = merge_categories(df[col], cat_map)
 
 def convert_string_ids_to_ints(df, string_id_cols=None, include_ssn=None):
     """Convert string id columns to ints. Convert all string ID columns
@@ -101,19 +126,16 @@ def convert_string_ids_to_ints(df, string_id_cols=None, include_ssn=None):
     include_ssn=True.
     """
     if string_id_cols is None:
-        string_id_cols = [col for col in get_columns_by_dtype()['str'] if '_id' in col]
-        string_id_cols += ['guardian_1', 'guardian_2'] # These got prepended with random seeds
+        string_id_cols = STR_ID_COLUMNS
         if include_ssn is None:
             include_ssn = True # If no columns were passed, include SSN by default
     elif include_ssn is None:
         include_ssn = False # If columns were passed explicitly, don't include SSN by default
+    if include_ssn:
+        string_id_cols.append(SSN_COLUMNS)
     for col in string_id_cols:
         if col in df and df[col].dtype == 'object': # Could modify to check for type str instead
             df[col] = id_str_to_int(df[col])
-    if include_ssn and 'ssn' in df and df['ssn'].dtype == 'object':
-        df['ssn'] = ssn_to_int(df['ssn'])
-    if include_ssn and 'itin' in df and df['itin'].dtype == 'object':
-        df['itin'] = ssn_to_int(df['itin'])
 
 def load_csv_data(filepath, use_categorical='maximal', convert_str_ids=False, **kwargs):
     columns_by_dtype = get_columns_by_dtype(use_categorical)
