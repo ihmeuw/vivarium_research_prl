@@ -122,8 +122,9 @@ def merge_categories(categorical: pd.Categorical, old_cat_to_new_cat):
     return new_categorical
 
 def convert_category_dtype(df, dtype):
-    category_cols = df.dtypes.loc[df.dtypes == 'category'].index
-    if not isinstance(dtype, dict): # Assume a single dtype was passed -- apply it to all columns
+    if not isinstance(dtype, dict):
+        # Assume a single dtype was passed -- apply it to all categorical columns
+        category_cols = df.dtypes.loc[df.dtypes == 'category'].index
         dtype = {col: dtype for col in category_cols}
     for col, col_dtype in dtype.items():
         new_categories = df[col].cat.categories.astype(col_dtype)
