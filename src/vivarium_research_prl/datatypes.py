@@ -95,6 +95,8 @@ def get_columns_by_dtype(use_categorical='maximal'):
     return columns_by_dtype
 
 def merge_series_categories(series, category_mapping):
+    """
+    """
     # https://stackoverflow.com/questions/32262982/pandas-combining-multiple-categories-into-one
     return series.map(category_mapping).astype('category')
 
@@ -175,7 +177,7 @@ def convert_string_ids_to_ints(df, string_id_cols=None, include_ssn=None):
     elif include_ssn is None:
         include_ssn = False # If columns were passed explicitly, don't include SSN by default
     if include_ssn:
-        string_id_cols.append(SSN_COLUMNS)
+        string_id_cols += SSN_COLUMNS
     for col in string_id_cols:
         if col in df and df[col].dtype == 'object': # Could modify to check for type str instead
             df[col] = id_str_to_int(df[col])
