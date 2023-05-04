@@ -185,3 +185,9 @@ def convert_dtypes(df, use_categorical='maximal'):
         for col in columns:
             if col in df:
                 df[col] = df[col].astype(dtype)
+
+def convert_to_int_and_categorical(df):
+    convert_string_ids_to_ints(df)
+    for col, dtype in df.dtypes.items():
+        if dtype == 'object':
+            df[col] = df[col].astype('category')
