@@ -94,7 +94,11 @@ def merge_series_categories(series, category_mapping):
 def merge_categories(categorical: pd.Categorical, old_cat_to_new_cat):
     """Merge the categories in a pandas Categorical according to the mapping
     old_cat_to_new_cat, which can be a function, dict, or Series, and is passed
-    to categorical.categories.map.
+    to categorical.categories.map. If the mapping is one-to-one, the categories
+    will simply be renamed according to the mapping using categorical.rename_categories.
+    Otherwise, categorical.categories is replaced with a new array containing
+    the unique categories resulting from the mapping, and the old categories
+    are mapped accordingly.
     Returns a new Categorical with the merged categories.
     """
     new_cat_array = categorical.categories.map(old_cat_to_new_cat)
@@ -117,16 +121,6 @@ def merge_categories(categorical: pd.Categorical, old_cat_to_new_cat):
         new_categorical = pd.Categorical.from_codes(new_codes, new_cats)
     return new_categorical
 
-def convert_string_cats_to_ints(df):
-    """Renames categories in select columns to change string categories to ints.
-    """
-    int_categorical = ['year', 'year_of_birth', 'census_year', 'wic_year', 'tax_year']
-#     int_categorical += ['po_box', 'mailing_address_po_box'] # Also these?
-#     int_categorical += ['zipcode', 'mailing_address_zipcode'] # And these?
-    for col in int_categorical:
-        if col in df and df[col].dtype == 'category':
-            df[col] = df[col].cat.rename_categories(df[col].cat.categories.astype(int))
-
 def convert_category_dtype(df, dtype):
     category_cols = df.dtypes.loc[df.dtypes == 'category'].index
     if not isinstance(dtype, dict): # Assume a single dtype was passed -- apply it to all columns
@@ -135,6 +129,15 @@ def convert_category_dtype(df, dtype):
         new_categories = df[col].cat.categories.astype(col_dtype)
         cat_map = dict(zip(df[col].cat.categories, new_categories))
         df[col] = merge_categories(df[col].cat, cat_map)
+
+def convert_string_cats_to_ints(df):
+    """Renames categories in select columns to change string categories to ints.
+    """
+    int_categorical = ['year', 'year_of_birth', 'census_year', 'wic_year', 'tax_year']
+#     int_categorical += ['po_box', 'mailing_address_po_box'] # Also these?
+#     int_categorical += ['zipcode', 'mailing_address_zipcode'] # And these?
+    dtype_dict = {col: int for col in int_categorical if col in df and df[col].dtype == 'category'}
+    convert_category_dtype(df, dtype_dict)
 
 def convert_string_ids_to_ints(df, string_id_cols=None, include_ssn=None):
     """Convert string id columns to ints. Convert all string ID columns
