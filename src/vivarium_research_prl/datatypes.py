@@ -87,9 +87,35 @@ def get_columns_by_dtype(use_categorical='maximal'):
     }
     return columns_by_dtype
 
-def merge_categories(series, category_mapping):
+def merge_series_categories(series, category_mapping):
     # https://stackoverflow.com/questions/32262982/pandas-combining-multiple-categories-into-one
     return series.map(category_mapping).astype('category')
+
+def merge_categories(categorical: pd.Categorical, old_cat_to_new_cat):
+    """Merge the categories in a pandas Categorical according to the mapping
+    old_cat_to_new_cat, which can be a function, dict, or Series, and is passed
+    to categorical.categories.map.
+    Returns a new Categorical with the merged categories.
+    """
+    new_cat_array = categorical.categories.map(old_cat_to_new_cat)
+    new_cats = new_cat_array.unique()
+    if len(new_cats) == len(new_cat_array):
+        # one-to-one mapping -> no merging is necessary, just renaming of categories
+        # Note: Index.unique() returns values in order of appearance, not sorted,
+        # therefore new_cats is guaranteed to equal new_cat_array
+        new_categorical = categorical.rename_categories(new_cats)
+    else:
+        # Map each new category to its index in the categories array, i.e., its code
+        new_cat_to_new_code = dict(zip(new_cats, range(len(new_cats))))
+        # This array replaces each old category with the index (code) of the new category
+        new_code_array = new_cat_array.map(new_cat_to_new_code)
+        # The index (code) of the old category is mapped to the index (code) of the new category
+        old_code_to_new_code = dict(zip(range(len(new_code_array)), new_code_array))
+        # -1 indicates NaN and needs to stay the same in the new codes
+        old_code_to_new_code[-1] = -1
+        new_codes = categorical.codes.map(old_code_to_new_code)
+        new_categorical = pd.Categorical.from_codes(new_codes, new_cats)
+    return new_categorical
 
 def convert_string_cats_to_ints(df):
     """Renames categories in select columns to change string categories to ints.
@@ -113,7 +139,7 @@ def convert_category_dtype(df, dtype):
         else:
             # In case of non-unique categories, this version may take more memory and time but should work
             cat_map = dict(zip(df[col].cat.categories, new_categories))
-            df[col] = merge_categories(df[col], cat_map)
+            df[col] = merge_series_categories(df[col], cat_map)
 
 def convert_string_ids_to_ints(df, string_id_cols=None, include_ssn=None):
     """Convert string id columns to ints. Convert all string ID columns
