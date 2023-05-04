@@ -188,9 +188,9 @@ def load_csv_data(filepath, use_categorical='maximal', convert_str_ids=False, **
     pandas.read_csv. If 'dtype' is passed as a keyword, it will override the call to
     get_columns_by_dtype.
     """
-    columns_by_dtype = get_columns_by_dtype(use_categorical)
-    col_to_dtype = {col: dtype for dtype, columns in columns_by_dtype.items() for col in columns}
     if 'dtype' not in kwargs:
+        columns_by_dtype = get_columns_by_dtype(use_categorical)
+        col_to_dtype = {col: dtype for dtype, columns in columns_by_dtype.items() for col in columns}
         kwargs['dtype'] = col_to_dtype
     df = pd.read_csv(filepath, **kwargs)
     # Convert appropriate categories (e.g., years) to integers,
