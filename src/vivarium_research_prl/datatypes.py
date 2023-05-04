@@ -129,17 +129,12 @@ def convert_string_cats_to_ints(df):
 
 def convert_category_dtype(df, dtype):
     category_cols = df.dtypes.loc[df.dtypes == 'category'].index
-    if not isinstance(dtype, dict):
+    if not isinstance(dtype, dict): # Assume a single dtype was passed -- apply it to all columns
         dtype = {col: dtype for col in category_cols}
     for col, col_dtype in dtype.items():
         new_categories = df[col].cat.categories.astype(col_dtype)
-        if not new_categories.duplicated().any():
-            # This version should save memory and time but will fail if catetories are not unique after conversion
-            df[col] = df[col].cat.rename_categories(new_categories)
-        else:
-            # In case of non-unique categories, this version may take more memory and time but should work
-            cat_map = dict(zip(df[col].cat.categories, new_categories))
-            df[col] = merge_series_categories(df[col], cat_map)
+        cat_map = dict(zip(df[col].cat.categories, new_categories))
+        df[col] = merge_categories(df[col].cat, cat_map)
 
 def convert_string_ids_to_ints(df, string_id_cols=None, include_ssn=None):
     """Convert string id columns to ints. Convert all string ID columns
