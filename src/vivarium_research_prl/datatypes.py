@@ -42,6 +42,13 @@ def ssn_to_int(ssn):
     return ssn_int
 
 def get_columns_by_dtype(use_categorical='maximal'):
+    """Returns a dictionary mapping dtypes to lists of columns in the
+    pseudopeople data. The datatypes and lists of columns were
+    hand-curated for working with intermediate versions of the datasets.
+    This function and its main user load_csv_data have mostly become
+    obsolete for the final version of the data
+    produced for the CODS seminar on April 26, 2023.
+    """
     categorical = [
         'relation_to_household_head', 'housing_type',
         'sex', 'race_ethnicity', 'middle_initial',
@@ -101,7 +108,7 @@ def merge_categories(categorical: pd.Categorical, old_cat_to_new_cat):
     are mapped accordingly. If s is a Series of type 'category', this function
     produces the same result as pandas.Categorical(s.map(old_cat_to_new_cat)),
     but it doesn't convert back to a non-categorical Series as an intermediate
-    step, hence typically uses less memory and is faster.
+    step, hence typically uses less memory and is faster when s is large.
     Returns a new Categorical with the merged categories.
     """
     new_cat_array = categorical.categories.map(old_cat_to_new_cat)
@@ -125,6 +132,14 @@ def merge_categories(categorical: pd.Categorical, old_cat_to_new_cat):
     return new_categorical
 
 def convert_category_dtype(df, dtype):
+    """Converts the dtype of the categories in categorical columns of df.
+    If dtype is a single dtype, the categories in all categorical columns
+    in df will be converted to this dtype. Otherwise, dtype must be a dict
+    mapping the names of categorical columns to the desired dtype for the
+    categories. Note that every column name listed in dtype must be of type
+    'category'; otherwise you will get an error.
+    Modifies df in place.
+    """
     if not isinstance(dtype, dict):
         # Assume a single dtype was passed -- apply it to all categorical columns
         category_cols = df.dtypes.loc[df.dtypes == 'category'].index
@@ -135,7 +150,7 @@ def convert_category_dtype(df, dtype):
         df[col] = merge_categories(df[col].cat, cat_map)
 
 def convert_string_cats_to_ints(df):
-    """Renames categories in select columns to change string categories to ints.
+    """Renames categories in select categorical columns to change string categories to ints.
     """
     int_categorical = ['year', 'year_of_birth', 'census_year', 'wic_year', 'tax_year']
 #     int_categorical += ['po_box', 'mailing_address_po_box'] # Also these?
@@ -166,6 +181,13 @@ def convert_string_ids_to_ints(df, string_id_cols=None, include_ssn=None):
             df[col] = id_str_to_int(df[col])
 
 def load_csv_data(filepath, use_categorical='maximal', convert_str_ids=False, **kwargs):
+    """Loads a csv with dtypes specified according to the dictionary returned by
+    get_columns_by_dtype(use_categorical), and ensures that certain categorical
+    columns contain integers for their categories. Optionally converts STR_ID_COLUMNS
+    to integer IDs using convert_string_ids_to_ints. Allows passing keywords to
+    pandas.read_csv. If 'dtype' is passed as a keyword, it will override the call to
+    get_columns_by_dtype.
+    """
     columns_by_dtype = get_columns_by_dtype(use_categorical)
     col_to_dtype = {col: dtype for dtype, columns in columns_by_dtype.items() for col in columns}
     if 'dtype' not in kwargs:
@@ -180,6 +202,10 @@ def load_csv_data(filepath, use_categorical='maximal', convert_str_ids=False, **
     return df
 
 def convert_dtypes(df, use_categorical='maximal'):
+    """Converts dtypes of the columns in df according to the dtypes
+    specified in get_columns_by_dtype(use_categorical).
+    Modifies df in place.
+    """
     columns_by_dtype = get_columns_by_dtype(use_categorical)
     for dtype, columns in columns_by_dtype.items():
         for col in columns:
@@ -187,6 +213,10 @@ def convert_dtypes(df, use_categorical='maximal'):
                 df[col] = df[col].astype(dtype)
 
 def convert_to_int_and_categorical(df):
+    """Converts STR_ID_COLUMNS in df to ints using convert_string_ids_to_ints,
+    and converts all other 'object' columns to type 'category'.
+    Modifies df in place.
+    """
     convert_string_ids_to_ints(df)
     for col, dtype in df.dtypes.items():
         if dtype == 'object':
