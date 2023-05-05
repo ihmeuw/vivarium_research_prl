@@ -95,7 +95,11 @@ def get_columns_by_dtype(use_categorical='maximal'):
     return columns_by_dtype
 
 def merge_series_categories(series, category_mapping):
-    """
+    """Maps values of a Series to new values and converts the resulting
+    Series to type 'category'. If `series` is already of type 'category'
+    and has many fewer categories than its length, calling `merge_categories`
+    on series.cat will produce the same result (if converted back to a Series)
+    but may use less memory and may be faster.
     """
     # https://stackoverflow.com/questions/32262982/pandas-combining-multiple-categories-into-one
     return series.map(category_mapping).astype('category')
