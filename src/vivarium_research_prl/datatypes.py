@@ -107,10 +107,11 @@ def merge_categories(categorical: pd.Categorical, old_cat_to_new_cat):
     will simply be renamed according to the mapping using categorical.rename_categories.
     Otherwise, categorical.categories is replaced with a new array containing
     the unique categories resulting from the mapping, and the old categories
-    are mapped accordingly. If s is a Series of type 'category', this function
-    produces the same result as pandas.Categorical(s.map(old_cat_to_new_cat)),
+    are mapped accordingly. If s is a Series of type 'category', calling this function
+    on s.cat produces the same result as pandas.Categorical(s.map(old_cat_to_new_cat)),
     but it doesn't convert back to a non-categorical Series as an intermediate
-    step, hence typically uses less memory and is faster when s is large.
+    step, hence typically uses less memory and is faster when the number of categories
+    is much smaller than the length of the Series.
     Returns a new Categorical with the merged categories.
     """
     new_cat_array = categorical.categories.map(old_cat_to_new_cat)
