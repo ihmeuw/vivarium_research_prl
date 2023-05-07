@@ -181,11 +181,13 @@ def convert_string_ids_to_ints(df, string_id_cols=None, include_ssn=None):
             include_ssn = True # If no columns were passed, include SSN by default
     elif include_ssn is None:
         include_ssn = False # If columns were passed explicitly, don't include SSN by default
-    if include_ssn:
-        string_id_cols += SSN_COLUMNS
     for col in string_id_cols:
         if col in df and df[col].dtype == 'object': # Could modify to check for type str instead
             df[col] = id_str_to_int(df[col])
+    if include_ssn:
+        for col in SSN_COLUMNS:
+            if col in df and df[col].dtype == 'object':
+                df[col] = ssn_to_int(df[col])
 
 def load_csv_data(filepath, use_categorical='maximal', convert_str_ids=False, **kwargs):
     """Loads a csv with dtypes specified according to the dictionary returned by
