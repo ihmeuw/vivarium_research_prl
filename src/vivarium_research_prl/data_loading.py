@@ -54,6 +54,32 @@ def convert_csvs_to_hdf(output_dir, save_dir, nrows=None):
     print('\nObservers:', observer_names, '\n')
     return 
 
+def conform_categories(shards): # Operates in place...
+    """Take an iterable of dataframes (shards) with identical columns,
+    find the union of each of their categorical columns,
+    and re-set the categories in each column to the union across shards.
+    After this has been done, the dataframes can be concatenated while
+    retaining the categorical dtypes, avoiding a memory blow-up from
+    conversion to string dtypes.
+    """
+    # Code copied from:
+    # 2023_08_04_check_address_ids_2023_07_28_08_33_09.ipynb
+    # TODO: try this instead:
+    # https://pandas.pydata.org/docs/reference/api/pandas.api.types.union_categoricals.html
+    # Hmm, it looks like that doesn't do what I want -- it concatenates one categorical
+    # column at a time, but I don't think I can use it to take the union of categories
+    # before concatenating a list of dataframes.
+    # So my solution below is probably still the best option for now.
+    shards = list(shards)
+    categorical_cols = [col for col in shards[0] if shards[0][col].dtype == 'category']
+    for col in categorical_cols:
+        categories = shards[0][col].cat.categories
+        for shard in shards[1:]:
+            categories = categories.union(shard[col].cat.categories)
+        for shard in shards:
+            shard[col] = shard[col].cat.set_categories(categories)
+    return shards
+
 def load_shards_and_concatenate(
     observer_dir,
     ext,
