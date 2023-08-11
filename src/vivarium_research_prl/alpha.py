@@ -1,6 +1,6 @@
 """Module with utility functions for alpha testing the Pseudopeople package.
 """
-
+import numpy as np
 from pseudopeople import get_config
 
 def percent_different_in_columns(df1, df2):
@@ -15,6 +15,10 @@ def compare_columns(df1, df2, colname, notna=False):
         return df1[colname].loc[notna].compare(df2[colname].loc[notna])
     else:
         return df1[colname].compare(df2[colname])
+
+def index_is_consecutive(df):
+    index = df.index
+    return (index == np.arange(len(index))).all()
 
 def get_zero_noise_config(row_or_col='both'):
     if row_or_col not in ['row', 'column', 'both']:
