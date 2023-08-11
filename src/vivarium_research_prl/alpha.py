@@ -1,7 +1,19 @@
 """Module with utility functions for alpha testing the Pseudopeople package.
 """
 import numpy as np
-from pseudopeople import get_config
+import pseudopeople as psp
+from .utils import MappingViaAttributes
+
+def generate_datasets(*args, **kwargs) -> MappingViaAttributes:
+    """Generate all pseudopeople datasets and return them in a MappingViaAttributes
+    mapping, which is a light wrapper for a dictionary enabling easy tab completion
+    of dict keys. The keys will be the strings that appear after 'generate_' in the
+    function names, and the values will be the datasets. `args` and `kwargs` are
+    passed to each of the dataset generation functions.
+    """
+    generation_fns = (getattr(psp, name) for name in dir(psp) if 'generate' in name)
+    data = {f.__name__.replace('generate_', ''): f(*args, **kwargs) for f in generation_fns}
+    return MappingViaAttributes(data)
 
 def percent_missing(df):
     return 100 * df.isna().sum() / len(df)
@@ -26,7 +38,7 @@ def index_is_consecutive(df):
 def get_zero_noise_config(row_or_col='both'):
     if row_or_col not in ['row', 'column', 'both']:
         raise ValueError("row_or_col must be 'row', 'column', or 'both'")
-    config = get_config()
+    config = psp.get_config()
     for dataset_config in config.values():
         if row_or_col in ['row', 'both']:
             for row_noise_config in dataset_config['row_noise'].values():
