@@ -19,10 +19,10 @@ def percent_missing(df):
     return 100 * df.isna().sum() / len(df)
 
 def percent_different_in_columns(df1, df2):
-    return 100 * (df1 != df2).sum() / len(df1)
+    return 100 * ((df1 != df2)^(df1.isna() & df2.isna())).sum() / len(df1)
 
 def percent_of_rows_with_difference(df1, df2):
-    return 100 * (df1 != df2).any(axis=1).sum() / len(df1)
+    return 100 * ((df1 != df2)^(df1.isna() & df2.isna())).any(axis=1).sum() / len(df1)
 
 def compare_columns(df1, df2, colname, notna=False):
     if notna:
