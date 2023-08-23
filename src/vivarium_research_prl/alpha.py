@@ -2,7 +2,21 @@
 """
 import numpy as np
 import pseudopeople as psp
+import logging
+from linetimer import CodeTimer
 from .utils import MappingViaAttributes
+from pseudopeople.exceptions import ConfigurationError, DataSourceError
+
+# Create a logger for this module, set by default to propagate to higher-level loggers
+logger = logging.getLogger(__name__)
+
+# # Define a console handler with a specified format
+# console_handler = logging.StreamHandler()
+# console_format = logging.Formatter('{asctime} - {name} - {levelname} - {message}', style='{')
+# console_handler.setFormatter(console_format)
+
+# # Add handlers to the logger
+# logger.addHandler(console_handler)
 
 def generate_datasets(*args, **kwargs) -> MappingViaAttributes:
     """Generate all pseudopeople datasets and return them in a MappingViaAttributes
@@ -11,8 +25,25 @@ def generate_datasets(*args, **kwargs) -> MappingViaAttributes:
     function names, and the values will be the datasets. `args` and `kwargs` are
     passed to each of the dataset generation functions.
     """
+    code_timer_silent = kwargs.pop('code_timer_silent', False)
+    code_timer_unit = kwargs.pop('code_timer_unit', 'm')
+    code_timer_logger_func = kwargs.pop('code_timer_logger_func', logger.info)
+
+    def value_or_error(f):
+        with CodeTimer(
+            f.__name__,
+            silent=code_timer_silent,
+            unit=code_timer_unit,
+            logger_func=code_timer_logger_func
+        ):
+            try:
+                return f(*args, **kwargs)
+            except (ConfigurationError, DataSourceError, Exception) as e:
+                logger.exception('Exception occurred')
+                return e
+
     generation_fns = (getattr(psp, name) for name in dir(psp) if 'generate' in name)
-    data = {f.__name__.replace('generate_', ''): f(*args, **kwargs) for f in generation_fns}
+    data = {f.__name__.replace('generate_', ''): value_or_error(f) for f in generation_fns}
     return MappingViaAttributes(data)
 
 def percent_missing(df):
