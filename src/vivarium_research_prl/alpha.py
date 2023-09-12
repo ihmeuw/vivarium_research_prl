@@ -94,3 +94,27 @@ def recursive_zero(d):
             d[k] = 0.0
         else:
             recursive_zero(d[k])
+
+def flatten(d: dict)->dict:
+    """Recursively flattens a nested dictionary d into a single dictionary
+    with tuples for keys. The tuple components of each key are the nested
+    keys from the original dict.
+    """
+    new_dict = {}
+    current_tuple = [] # Stack to record nested keys in a tuple
+    # Inner function for recursion
+    def _flatten(dict_or_val):
+        # Base case
+        if not isinstance(dict_or_val, dict):
+            new_dict[tuple(current_tuple)] = dict_or_val
+            return
+
+        # Do a depth-first traversal of the nested dict, tracking the
+        # nested keys in the stack
+        for key, val in dict_or_val.items():
+            current_tuple.append(key)
+            _flatten(val)
+            current_tuple.pop()
+
+    _flatten(d)
+    return new_dict
