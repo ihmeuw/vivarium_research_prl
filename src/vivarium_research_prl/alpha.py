@@ -118,3 +118,13 @@ def flatten(d: dict)->dict:
 
     _flatten(d)
     return new_dict
+
+def pad_flattened_dict(d: dict, pad_val=np.nan)->dict:
+    """Pad tuples in a flattened dict d with pad_val at the end, so that
+    all tuples in the resulting dict have the same length.
+    """
+    max_len = max(map(len, d.keys()))
+    def pad_tuple(t):
+        return (*t, *((max_len - len(t)) * [pad_val]))
+    new_dict = {pad_tuple(key): val for key, val in d.items()}
+    return new_dict
