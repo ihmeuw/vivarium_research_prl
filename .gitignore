@@ -1,6 +1,9 @@
 # Data
 data/
-*.parquet
+
+# Images
+*.sif
+*.tar.gz
 
 # Jupyter Notebook
 .ipynb_checkpoints
