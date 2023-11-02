@@ -8,7 +8,8 @@ one of these dummy containers, ad infinitum.
 Therefore if we ignore what is going on inside the containers, we can build
 pipelines of arbitrary length and complexity out of these containers.
 
-The containers can take N input files (see configuration/options section below) and produce 1 output file.
+The containers can take N input files (see configuration/options section below) and produce N output files.
+N = 1 by default.
 
 Specifically, the input/output specification is: a dataframe
 with columns "foo," "bar," "counter," and optionally up to 5 columns of
