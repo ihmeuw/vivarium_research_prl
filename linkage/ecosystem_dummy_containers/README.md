@@ -45,7 +45,7 @@ You can (optionally) provide secondary input files at `/input_data/secondary_inp
 You can (optionally) provide another input file at `/extra_implementation_specific_input_data/input*` (Parquet or CSV) or a different path passed as `DUMMY_CONTAINER_EXTRA_IMPLEMENTATION_SPECIFIC_INPUT_FILE_PATH`.
 This is meant to represent an input that is specific to a given implementation.
 
-Output is written to `/results/result.<ext>` or a different path passed as `DUMMY_CONTAINER_OUTPUT_PATH`.
+Output is written to `/results/result.<ext>` or a different comma-separated list of paths passed as `DUMMY_CONTAINER_OUTPUT_PATHS`.
 If `DUMMY_CONTAINER_OUTPUT_FILE_TYPE` is `csv` it will be in CSV format, otherwise it will be Parquet.
 
 The environment variable `DUMMY_CONTAINER_BROKEN` makes the container return data that does not meet the specification.
