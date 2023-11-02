@@ -101,4 +101,5 @@ As you might imagine, this will make the chain fail.
 If `DUMMY_CONTAINERS_TEST_INCLUDE_EXTRA_INPUTS` is true, will sometimes randomly provide multiple previous outputs as inputs
 to the next container.
 
-If `DUMMY_CONTAINERS_TEST_INCLUDE_EXTRA_OUTPUTS` is true, will save log files as well as results.
+If `DUMMY_CONTAINERS_TEST_INCLUDE_EXTRA_OUTPUTS` is true, will save log files as well as results, **and** sometimes have
+a container output multiple files, all of which are passed to the next.
