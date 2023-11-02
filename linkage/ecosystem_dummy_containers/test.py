@@ -25,10 +25,11 @@ rm_in_directory(singularity_tmp)
 rm_in_directory(singularity_workdir)
 rm_in_directory(results_dir)
 
-input_file = os.getenv("DUMMY_STEP_TEST_INPUT_FILE", './input_file_2.csv')
-input_file_type = input_file.split('.')[-1]
+input_file = os.getenv("DUMMY_CONTAINERS_TEST_INPUT_FILE", './input_file_2.csv')
+input_files = [input_file]
+input_file_format = input_file.split('.')[-1]
 
-container_engine = os.getenv("DUMMY_STEP_TEST_CONTAINER_ENGINE", 'singularity')
+container_engine = os.getenv("DUMMY_CONTAINERS_TEST_CONTAINER_ENGINE", 'singularity')
 
 num_steps = 30
 
@@ -36,49 +37,84 @@ import random
 random.seed(1234)
 
 implementations = ['python_pandas', 'r' ,'python_pyspark']
-if os.getenv("DUMMY_STEP_TEST_INCLUDE_BROKEN", 'false').lower() in ('true', '1', 't'):
-    implementations += ['python_pandas_broken']
 
 steps = [
     {
         'implementation': random.choice(implementations),
-        'output_file_type': random.choice(['csv', 'parquet'])
+        'output_file_format': random.choice(['csv', 'parquet'])
     } for _ in range(num_steps)
 ]
 
-from_tar = os.getenv("DUMMY_STEP_TEST_FROM_TAR", "false").lower() in ('true', '1', 't')
-if from_tar:
+if container_engine == "docker" and os.getenv("DUMMY_CONTAINERS_TEST_FROM_TAR", "false").lower() in ('true', '1', 't'):
     for implementation in implementations:
         command = ["docker", "load", "-i", f'./{implementation}/{implementation.replace("_", "-")}-image.tar.gz']
         print(" ".join(command))
         subprocess.check_output(command)
 
+files_so_far = input_files.copy()
+
 for i, step in enumerate(steps):
     print(step)
 
+    step_results_dir = f"{results_dir}/step_{i}"
+    subprocess.run(["mkdir", "-p", step_results_dir])
+
     implementation = step['implementation']
-    output_file_type = step['output_file_type']
-    output_file = f'{results_dir}/result_{i}.{output_file_type}'
+    output_file_format = step['output_file_format']
 
-    input_path_inside_container = f'/input_data/input_file.{input_file_type}'
+    if os.getenv("DUMMY_CONTAINERS_TEST_INCLUDE_EXTRA_OUTPUTS", 'false').lower() in ('true', '1', 't') and random.random() < 0.25:
+        output_files = [f'{step_results_dir}/result_1.{output_file_format}', f'{step_results_dir}/result_2.{output_file_format}']
+    else:
+        output_files = [f'{step_results_dir}/result.{output_file_format}']
+    
     env_var_args = {
-        'INPUT_PATH': input_path_inside_container,
-        'INPUT_FILE_TYPE': input_file_type,
-        'OUTPUT_PATH': output_file.replace(results_dir, '/results'),
-        'OUTPUT_FILE_TYPE': output_file_type,
-    }
-    env_var_args = {
-        f'DUMMY_STEP_{k}': v for k, v in env_var_args.items()
+        'OUTPUT_FILE_FORMAT': output_file_format,
+        'OUTPUT_PATHS': ",".join([output_file.replace(step_results_dir, '/results') for output_file in output_files]),
     }
 
-    bindings = {
-        input_file: input_path_inside_container,
-        results_dir: '/results',
-        singularity_tmp: '/tmp',
+    if os.getenv("DUMMY_CONTAINERS_TEST_INCLUDE_BROKEN", 'false').lower() in ('true', '1', 't') and random.random() < 0.25:
+        env_var_args['BROKEN'] = 'yes'
+
+    if os.getenv("DUMMY_CONTAINERS_TEST_INCLUDE_INCREMENT", 'false').lower() in ('true', '1', 't'):
+        env_var_args['INCREMENT'] = int(random.random() * 3) + 1
+
+    bindings = [
+        (step_results_dir, '/results'),
+        (singularity_tmp, '/tmp'),
+    ]
+    for index, input_file in enumerate(input_files):
+        input_path_inside_container = f'/input_data/main_input_file_{index}.{input_file_format}'
+        bindings.append((input_file, input_path_inside_container))
+
+    if os.getenv("DUMMY_CONTAINERS_TEST_INCLUDE_EXTRA_INPUTS", 'false').lower() in ('true', '1', 't') and random.random() < 0.1:
+        second_main_input_file = random.choice(files_so_far)
+        second_main_input_file_format = second_main_input_file.split('.')[-1]
+        path_inside_container = f'/input_data/main_input_file_2.{second_main_input_file_format}'
+        bindings.append((second_main_input_file, path_inside_container))
+    
+    if os.getenv("DUMMY_CONTAINERS_TEST_INCLUDE_EXTRA_INPUTS", 'false').lower() in ('true', '1', 't') and random.random() < 0.1:
+        secondary_input_file = random.choice(files_so_far)
+        secondary_input_file_format = secondary_input_file.split('.')[-1]
+        path_inside_container = f'/input_data/secondary_input.{secondary_input_file_format}'
+        env_var_args['SECONDARY_INPUT_FILE_PATHS'] = path_inside_container
+        bindings.append((secondary_input_file, path_inside_container))
+
+    if os.getenv("DUMMY_CONTAINERS_TEST_INCLUDE_EXTRA_INPUTS", 'false').lower() in ('true', '1', 't') and random.random() < 0.1:
+        implementation_specific_input_file = random.choice(files_so_far)
+        implementation_specific_input_file_format = implementation_specific_input_file.split('.')[-1]
+        path_inside_container = f'/extra_implementation_specific_input_data/input.{implementation_specific_input_file_format}'
+        env_var_args['EXTRA_IMPLEMENTATION_SPECIFIC_INPUT_FILE_PATH'] = path_inside_container
+        bindings.append((implementation_specific_input_file, path_inside_container))
+
+    if os.getenv("DUMMY_CONTAINERS_TEST_INCLUDE_EXTRA_OUTPUTS", 'false').lower() in ('true', '1', 't'):
+        bindings.append((step_results_dir, "/extra_implementation_specific_results/"))
+
+    env_var_args = {
+        f'DUMMY_CONTAINER_{k}': v for k, v in env_var_args.items()
     }
 
     if implementation == 'python_pyspark':
-        bindings[singularity_workdir] = '/workdir'
+        bindings.append((singularity_workdir, '/workdir'))
         workdir = '/workdir'
     else:
         workdir = '/'
@@ -91,17 +127,17 @@ for i, step in enumerate(steps):
             "singularity",
             "run",
             "--pwd", workdir,
-            "-B", ",".join([f'{k}:{v}' for k, v in bindings.items()]),
+            "-B", ",".join([f'{k}:{v}' for k, v in bindings]),
             image,
         ]
         env = {**env, **{f'SINGULARITYENV_{k}': v for k, v in env_var_args.items()}}
     elif container_engine == "docker":
-        image = f'linker:dummy_step_{implementation}'
+        image = f'linker:dummy_container_{implementation}'
         command = [
             "docker",
             "run",
         ]
-        for k, v in bindings.items():
+        for k, v in bindings:
             command += ["--mount", f'type=bind,source={k},target={v}']
 
         for k, v in env_var_args.items():
@@ -115,8 +151,9 @@ for i, step in enumerate(steps):
     print(env_var_args)
     subprocess.check_output(command, env=env)
 
-    input_file = output_file
-    input_file_type = output_file_type
+    files_so_far += output_files
+    input_files = output_files
+    input_file_format = output_file_format
 
     # Just to ensure that steps aren't communicating in a way they shouldn't
     rm_in_directory(singularity_tmp)

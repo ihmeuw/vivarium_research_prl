@@ -17,6 +17,9 @@ VOLUME /input_data
 # Annoyingly, Spark _requires_ write access to the working directory, to write a file called java_opts.txt
 WORKDIR /workdir
 
-#USER spark
+# NOTE: Usually 185 (spark) is the user for this base image.
+# However, that doesn't seem to work with Singularity.
+# USER 185
+
 ENTRYPOINT ["/usr/bin/python3"]
 CMD ["/code/dummy_step.py"]

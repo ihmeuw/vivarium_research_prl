@@ -23,7 +23,10 @@ mkdir -p /code
 mkdir -p /workdir
 cd /workdir
 
-#USER spark
+# NOTE: Usually 185 (spark) is the user for this base image.
+# However, that doesn't seem to work with Singularity.
+# USER 185
+
 %environment
 export PYTHONPATH="${SPARK_HOME}/python/:${SPARK_HOME}/python/lib/py4j-0.10.9.7-src.zip:${PYTHONPATH}"
 %runscript

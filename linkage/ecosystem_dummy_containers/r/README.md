@@ -7,7 +7,7 @@ Similar to Pandas, except it requires a writeable /tmp directory, which means th
 ```
 docker build -t linker:dummy_step_r .
 mkdir -p /tmp/dummy_step_r_results/
-docker run --mount type=bind,source=./../input_file_1.parquet,target=/input_data/input_file.parquet --mount type=bind,source=/tmp/dummy_step_r_results/,target=/results -e DUMMY_STEP_INPUT_PATH=/input_data/input_file.parquet -e DUMMY_STEP_OUTPUT_PATH=/results/result.parquet -i -t linker:dummy_step_r
+docker run --mount type=bind,source=./../input_file_1.parquet,target=/input_data/main_input_file.parquet --mount type=bind,source=/tmp/dummy_step_r_results/,target=/results -i -t linker:dummy_step_r
 ```
 
 Or, going to .tar.gz and back:
@@ -16,7 +16,7 @@ Or, going to .tar.gz and back:
 docker build -t linker:dummy_step_r .
 docker save linker:dummy_step_r | gzip > r-image.tar.gz
 docker load -i r-image.tar.gz # Could be on a different machine
-docker run --mount type=bind,source=./../input_file_1.parquet,target=/input_data/input_file.parquet --mount type=bind,source=/tmp/dummy_step_r_results/,target=/results -e DUMMY_STEP_INPUT_PATH=/input_data/input_file.parquet -e DUMMY_STEP_OUTPUT_PATH=/results/result.parquet -i -t linker:dummy_step_r
+docker run --mount type=bind,source=./../input_file_1.parquet,target=/input_data/main_input_file.parquet --mount type=bind,source=/tmp/dummy_step_r_results/,target=/results -i -t linker:dummy_step_r
 ```
 
 ## Running with Singularity
@@ -28,7 +28,7 @@ spython recipe Dockerfile Singularity
 singularity build --force r-image.sif Singularity
 mkdir -p /tmp/dummy_step_r_results/
 mkdir -p /tmp/dummy_step_r_tmp/
-SINGULARITYENV_DUMMY_STEP_INPUT_PATH=/input_data/input_file.parquet SINGULARITYENV_DUMMY_STEP_OUTPUT_PATH=/results/result.parquet singularity run --pwd / -B ../input_file_1.parquet:/input_data/input_file.parquet,/tmp/dummy_step_r_results/:/results,/tmp/dummy_step_r_tmp/:/tmp ./r-image.sif
+singularity run --pwd / -B ../input_file_1.parquet:/input_data/main_input_file.parquet,/tmp/dummy_step_r_results/:/results,/tmp/dummy_step_r_tmp/:/tmp ./r-image.sif
 ```
 
 Or, using the Docker .tar.gz:
@@ -39,5 +39,5 @@ docker save linker:dummy_step_r | gzip > r-image.tar.gz
 singularity build --force r-image.sif docker-archive://$(pwd)/r-image.tar.gz
 mkdir -p /tmp/dummy_step_r_results/
 mkdir -p /tmp/dummy_step_r_tmp/
-SINGULARITYENV_DUMMY_STEP_INPUT_PATH=/input_data/input_file.parquet SINGULARITYENV_DUMMY_STEP_OUTPUT_PATH=/results/result.parquet singularity run --pwd / -B ../input_file_1.parquet:/input_data/input_file.parquet,/tmp/dummy_step_r_results/:/results,/tmp/dummy_step_r_tmp/:/tmp ./r-image.sif
+singularity run --pwd / -B ../input_file_1.parquet:/input_data/main_input_file.parquet,/tmp/dummy_step_r_results/:/results,/tmp/dummy_step_r_tmp/:/tmp ./r-image.sif
 ```
