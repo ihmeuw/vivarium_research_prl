@@ -11,7 +11,25 @@ To run this, the steps are:
 
 ## Setup/install
 
-**TODO: Make this README include the basic version in addition to the R and Spark versions.**
+### Base version
+
+To more or less exactly replicate the conda environment that was used when making
+this case study, run
+
+```
+$ conda env create --file=conda_environment.yaml
+```
+
+**TODO: This can fail in the future. Replace this with lock files.**
+
+If for whatever reason that doesn't work/has conflicts, you can *approximately*
+recreate the environment with:
+
+```
+$ conda create -n pvs_like_case_study python=3.10
+$ conda activate pvs_like_case_study
+$ pip install pandas numpy matplotlib pseudopeople splink jupyterlab jellyfish
+```
 
 ### R version
 
@@ -73,6 +91,18 @@ Spark case study environment.
 You can create a separate conda environment for this.
 
 ## Run the linking notebook
+
+### Base version
+
+Run the notebook `pvs_like_case_study_sample_data.ipynb`
+in the `pvs_like_case_study` environment created above.
+
+Or, if you'd like to run it as a Python script:
+
+```
+$ ./convert_notebook.sh pvs_like_case_study_sample_data # only necessary if you've edited the notebook
+$ python pvs_like_case_study_sample_data.py
+```
 
 ### R version
 
