@@ -59,6 +59,9 @@ class MappingViaAttributes(collections.abc.Mapping):
     def keylist(self):
         return list(self.keys())
 
+    # def __str__(self):
+    #     return str(self.__dict__)
+
 def build_full_address(df, prefix=''):
     """Concatenate address pieces in different columns to get a full address,
     including city, state, and zipcode.

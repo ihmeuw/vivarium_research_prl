@@ -1,0 +1,24 @@
+2023-08-23 16:35:13,518 - __main__ - INFO - Code block 'generate_american_community_survey' took: 0.90410 s
+2023-08-23 16:35:14,251 - __main__ - INFO - Code block 'generate_current_population_survey' took: 0.73190 s
+2023-08-23 16:35:16,396 - __main__ - INFO - Code block 'generate_decennial_census' took: 2.14440 s
+2023-08-23 16:35:18,002 - __main__ - INFO - Code block 'generate_social_security' took: 1.60542 s
+2023-08-23 16:35:22,680 - __main__ - INFO - Code block 'generate_taxes_1040' took: 4.67757 s
+2023-08-23 16:35:26,571 - __main__ - INFO - Code block 'generate_taxes_w2_and_1099' took: 3.89013 s
+2023-08-23 16:35:27,453 - __main__ - INFO - Code block 'generate_women_infants_and_children' took: 0.88141 s
+2023-08-23 16:35:27,470 - __main__ - INFO - Generating sample datasets took 14.856410640990362 s
+2023-08-23 17:04:00,995 - __main__ - INFO - Code block 'generate_american_community_survey' took: 0.90978 s
+2023-08-23 17:04:01,760 - __main__ - INFO - Code block 'generate_current_population_survey' took: 0.76477 s
+2023-08-23 17:04:03,943 - __main__ - INFO - Code block 'generate_decennial_census' took: 2.18201 s
+2023-08-23 17:04:05,562 - __main__ - INFO - Code block 'generate_social_security' took: 1.61837 s
+2023-08-23 17:04:10,544 - __main__ - INFO - Code block 'generate_taxes_1040' took: 4.98136 s
+2023-08-23 17:04:14,453 - __main__ - INFO - Code block 'generate_taxes_w2_and_1099' took: 3.90881 s
+2023-08-23 17:04:15,338 - __main__ - INFO - Code block 'generate_women_infants_and_children' took: 0.88387 s
+2023-08-23 17:04:15,353 - __main__ - INFO - Code block 'Sample data generation' took: 15.26788 s
+2023-08-23 17:08:34,812 - __main__ - INFO - Code block 'generate_american_community_survey' took: 2.86845 m
+2023-08-23 17:14:13,168 - __main__ - INFO - Code block 'generate_current_population_survey' took: 5.63923 m
+2023-08-23 17:51:20,214 - __main__ - INFO - Code block 'generate_decennial_census' took: 37.11741 m
+2023-08-23 17:51:20,231 - __main__ - INFO - Code block 'generate_social_security' took: 0.00025 m
+2023-08-23 21:32:43,424 - __main__ - INFO - Code block 'generate_taxes_1040' took: 221.38654 m
+2023-08-23 22:39:54,275 - __main__ - INFO - Code block 'generate_taxes_w2_and_1099' took: 67.18082 m
+2023-08-23 22:46:10,037 - __main__ - INFO - Code block 'generate_women_infants_and_children' took: 6.26261 m
+2023-08-23 22:46:10,059 - __main__ - INFO - Code block 'RI data generation' took: 20427353.84293 ms
