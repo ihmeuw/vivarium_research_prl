@@ -9,10 +9,11 @@ dummy_step.py .
 mkdir -p /input_data
 mkdir -p /extra_implementation_specific_input_data
 mkdir -p /results
-mkdir -p /extra_implementation_specific_results
+mkdir -p /diagnostics
 # VOLUME /results
+# VOLUME /diagnostics
 # VOLUME /input_data
-pip install pandas==2.1.2 pyarrow
+pip install pandas==2.1.2 pyarrow pyyaml
 
 %runscript
 exec /usr/local/bin/python dummy_step.py "$@"

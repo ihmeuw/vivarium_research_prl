@@ -8,8 +8,10 @@ dummy_step.R .
 
 mkdir -p /input_data
 mkdir -p /results
+mkdir -p /diagnostics
 # VOLUME /results
 # VOLUME /input_data
+# VOLUME /diagnostics
 
 %runscript
 exec /usr/local/bin/Rscript dummy_step.R "$@"

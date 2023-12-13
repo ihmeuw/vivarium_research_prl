@@ -2,6 +2,9 @@ import subprocess
 import os
 import shutil
 
+# This script just tests that the dummy containers can actually be iterated (each taking as input the
+# output of the previous). It is not part of the dummy containers themselves!
+
 # https://stackoverflow.com/a/185941/
 def rm_in_directory(directory):
     for filename in os.listdir(directory):
@@ -30,6 +33,9 @@ input_files = [input_file]
 input_file_format = input_file.split('.')[-1]
 
 container_engine = os.getenv("DUMMY_CONTAINERS_TEST_CONTAINER_ENGINE", 'singularity')
+
+# Useful for debugging: you don't need to rebuild the containers for script changes if you use this flag.
+use_latest_scripts = os.getenv("DUMMY_CONTAINERS_TEST_USE_LATEST_SCRIPTS", 'false').lower() in ('true', '1', 't')
 
 num_steps = 30
 
@@ -82,6 +88,16 @@ for i, step in enumerate(steps):
         (step_results_dir, '/results'),
         (singularity_tmp, '/tmp'),
     ]
+    if use_latest_scripts:
+        if implementation == 'python_pyspark':
+            bindings.append(('./python_pyspark/dummy_step.py', '/code/dummy_step.py'))
+        elif implementation == 'python_pandas':
+            bindings.append(('./python_pandas/dummy_step.py', '/dummy_step.py'))
+        elif implementation == 'r':
+            bindings.append(('./r/dummy_step.R', '/dummy_step.R'))
+        else:
+            raise ValueError()
+
     for index, input_file in enumerate(input_files):
         input_path_inside_container = f'/input_data/main_input_file_{index}.{input_file_format}'
         bindings.append((input_file, input_path_inside_container))
@@ -107,7 +123,7 @@ for i, step in enumerate(steps):
         bindings.append((implementation_specific_input_file, path_inside_container))
 
     if os.getenv("DUMMY_CONTAINERS_TEST_INCLUDE_EXTRA_OUTPUTS", 'false').lower() in ('true', '1', 't'):
-        bindings.append((step_results_dir, "/extra_implementation_specific_results/"))
+        bindings.append((step_results_dir, "/diagnostics/"))
 
     env_var_args = {
         f'DUMMY_CONTAINER_{k}': v for k, v in env_var_args.items()
