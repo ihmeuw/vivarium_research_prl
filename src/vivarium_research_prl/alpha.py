@@ -38,7 +38,7 @@ def generate_datasets(*args, **kwargs) -> MappingViaAttributes:
         ):
             try:
                 return f(*args, **kwargs)
-            except (ConfigurationError, DataSourceError, Exception) as e:
+            except Exception as e:
                 logger.exception('Exception occurred')
                 return e
 
@@ -62,9 +62,9 @@ def compare_columns(df1, df2, colname, notna=False):
     else:
         return df1[colname].compare(df2[colname])
 
-def index_is_consecutive(df):
-    index = df.index
-    return (index == np.arange(len(index))).all()
+def index_is_consecutive(df, start_at_zero=False):
+    first = 0 if start_at_zero else df.index[0]
+    return (df.index == np.arange(first, first+len(df.index))).all()
 
 def get_zero_noise_config(row_or_col='both'):
     if row_or_col not in ['row', 'column', 'both']:
