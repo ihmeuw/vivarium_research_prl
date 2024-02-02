@@ -43,9 +43,10 @@ def generate_datasets(*args, logger=alpha_logger, **kwargs) -> MappingViaAttribu
         getattr(psp, name) for name in dir(psp) if 'generate' in name)
     data = {}
     for f in generation_fns:
-        dataset_name = f.__name__.replace('generate_', '')
+        logger.info(f"Calling function {f.__name__}")
         dataset = value_or_error(f) # f is passed args and kwargs
         dataset_type = type(dataset) # DataFrame or Exception
+        dataset_name = f.__name__.replace('generate_', '')
         logger.info(
             f"{dataset_type} {dataset_name} occupies {sizemb(dataset)} MB in memory")
         data[dataset_name] = dataset
