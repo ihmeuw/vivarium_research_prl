@@ -4,21 +4,18 @@ import numpy as np
 import pseudopeople as psp
 import logging
 from linetimer import CodeTimer
-from .utils import MappingViaAttributes
+from .utils import MappingViaAttributes, sizemb
 from pseudopeople.exceptions import ConfigurationError, DataSourceError
 
-# Create a logger for this module, set by default to propagate to higher-level loggers
-logger = logging.getLogger(__name__)
+# Create a logger for this module, set by default to propagate to
+# higher-level loggers. In particular, the logging level is set to
+# logging.NOTSET, which "indicates that ancestor loggers are to be
+# consulted to determine the effective level. If that still resolves
+# to NOTSET, then all events are logged," according to:
+# https://docs.python.org/3/library/logging.html#levels
+alpha_logger = logging.getLogger(__name__)
 
-# # Define a console handler with a specified format
-# console_handler = logging.StreamHandler()
-# console_format = logging.Formatter('{asctime} - {name} - {levelname} - {message}', style='{')
-# console_handler.setFormatter(console_format)
-
-# # Add handlers to the logger
-# logger.addHandler(console_handler)
-
-def generate_datasets(*args, **kwargs) -> MappingViaAttributes:
+def generate_datasets(*args, logger=alpha_logger, **kwargs) -> MappingViaAttributes:
     """Generate all pseudopeople datasets and return them in a MappingViaAttributes
     mapping, which is a light wrapper for a dictionary enabling easy tab completion
     of dict keys. The keys will be the strings that appear after 'generate_' in the
@@ -39,11 +36,20 @@ def generate_datasets(*args, **kwargs) -> MappingViaAttributes:
             try:
                 return f(*args, **kwargs)
             except Exception as e:
-                logger.exception('Exception occurred')
+                logger.exception(f'Exception occurred: {e}')
                 return e
 
-    generation_fns = (getattr(psp, name) for name in dir(psp) if 'generate' in name)
-    data = {f.__name__.replace('generate_', ''): value_or_error(f) for f in generation_fns}
+    generation_fns = (
+        getattr(psp, name) for name in dir(psp) if 'generate' in name)
+    data = {}
+    for f in generation_fns:
+        dataset_name = f.__name__.replace('generate_', '')
+        dataset = value_or_error(f) # f is passed args and kwargs
+        dataset_type = type(dataset) # DataFrame or Exception
+        logger.info(
+            f"{dataset_type} {dataset_name} occupies {sizemb(dataset)} MB in memory")
+        data[dataset_name] = dataset
+
     return MappingViaAttributes(data)
 
 def percent_missing(df):
