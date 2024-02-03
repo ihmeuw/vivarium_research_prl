@@ -3,6 +3,7 @@
 import numpy as np
 import pseudopeople as psp
 import logging
+import re
 from linetimer import CodeTimer
 from .utils import MappingViaAttributes, sizemb
 from pseudopeople.exceptions import ConfigurationError, DataSourceError
@@ -15,13 +16,24 @@ from pseudopeople.exceptions import ConfigurationError, DataSourceError
 # https://docs.python.org/3/library/logging.html#levels
 alpha_logger = logging.getLogger(__name__)
 
-def generate_datasets(*args, logger=alpha_logger, **kwargs) -> MappingViaAttributes:
+def generate_datasets(*args, skip=None, logger=alpha_logger, **kwargs) -> MappingViaAttributes:
     """Generate all pseudopeople datasets and return them in a MappingViaAttributes
     mapping, which is a light wrapper for a dictionary enabling easy tab completion
     of dict keys. The keys will be the strings that appear after 'generate_' in the
     function names, and the values will be the datasets. `args` and `kwargs` are
     passed to each of the dataset generation functions.
     """
+    if skip is None:
+        # Create a regex pattern that matches nothing
+        # (negative lookahead of 0-length string):
+        # https://stackoverflow.com/questions/940822/regular-expression-syntax-for-match-nothing
+        # https://stackoverflow.com/a/942122
+        skip = ["(?!)"]
+    elif isinstance(skip, str):
+        skip = [skip]
+
+    skip_pattern = re.compile("|".join(skip))
+    logger.debug(f"{skip_pattern=}")
     code_timer_silent = kwargs.pop('code_timer_silent', False)
     code_timer_unit = kwargs.pop('code_timer_unit', 'm')
     code_timer_logger_func = kwargs.pop('code_timer_logger_func', logger.info)
@@ -43,6 +55,9 @@ def generate_datasets(*args, logger=alpha_logger, **kwargs) -> MappingViaAttribu
         getattr(psp, name) for name in dir(psp) if 'generate' in name)
     data = {}
     for f in generation_fns:
+        if skip_pattern.search(f.__name__):
+            logger.info(f"Skipping function {f.__name__}")
+            continue
         logger.info(f"Calling function {f.__name__}")
         dataset = value_or_error(f) # f is passed args and kwargs
         dataset_type = type(dataset) # DataFrame or Exception
