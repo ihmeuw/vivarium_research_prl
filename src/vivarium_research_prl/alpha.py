@@ -23,6 +23,7 @@ def generate_datasets(*args, skip=None, logger=alpha_logger, **kwargs) -> Mappin
     function names, and the values will be the datasets. `args` and `kwargs` are
     passed to each of the dataset generation functions.
     """
+    logger.info(f"Function 'generate_datasets' called with {args=}, {kwargs=}")
     if skip is None:
         # Create a regex pattern that matches nothing
         # (negative lookahead of 0-length string):
@@ -65,7 +66,9 @@ def generate_datasets(*args, skip=None, logger=alpha_logger, **kwargs) -> Mappin
         logger.info(
             f"{dataset_type} {dataset_name} occupies {sizemb(dataset)} MB in memory")
         data[dataset_name] = dataset
-
+    logger.info("Calculating total memory usage...")
+    logger.info(
+        f"All generated datasets occupy {sum(sizemb(df) for df in data.values())} MB in memory")
     return MappingViaAttributes(data)
 
 def percent_missing(df):
