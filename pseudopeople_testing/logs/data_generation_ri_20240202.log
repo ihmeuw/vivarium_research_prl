@@ -41,3 +41,7 @@ FloatingPointError: invalid value encountered in scalar divide
 2024-02-02 03:38:12,356 - __main__ - INFO - Code block 'generate_women_infants_and_children' took: 3.43616 m
 2024-02-02 03:38:12,390 - __main__ - INFO - <class 'pandas.core.frame.DataFrame'> women_infants_and_children occupies 10.120495 MB in memory
 2024-02-02 03:38:12,391 - __main__ - INFO - Code block 'RI data generation' took: 112.21689 m
+2024-02-02 16:41:25,280 - __main__ - INFO - Altogether, RI datasets occupy 3060.6762830000002 MB in memory
+2024-02-03 18:51:06,665 - __main__ - INFO - Code block 'RI datatype conversion' took: 0.00000 m
+2024-02-03 18:52:11,678 - __main__ - INFO - Code block 'RI datatype conversion' took: 0.35429 m
+2024-02-04 00:33:43,196 - __main__ - INFO - Converted to ints and categoricals, the RI datasets occupy 622.204032 MB in memory
