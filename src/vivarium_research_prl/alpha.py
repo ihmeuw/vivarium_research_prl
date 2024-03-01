@@ -1,8 +1,8 @@
 """Module with utility functions for alpha testing the Pseudopeople package.
 """
+import logging
 import numpy as np
 import pseudopeople as psp
-import logging
 import re
 from linetimer import CodeTimer
 from .utils import MappingViaAttributes, sizemb
