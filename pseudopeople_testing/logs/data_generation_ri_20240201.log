@@ -1,0 +1,32 @@
+2024-02-01 22:50:37,870 - __main__ - INFO - Generating all Rhode Island datasets
+2024-02-01 22:50:37,871 - __main__ - INFO - Calling function generate_american_community_survey
+2024-02-01 22:51:45,482 - __main__ - ERROR - Exception occurred: invalid value encountered in scalar divide
+Traceback (most recent call last):
+  File "/mnt/share/code/ndbs/vivarium_research_prl/src/vivarium_research_prl/alpha.py", line 37, in value_or_error
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/ihme/homes/ndbs/miniconda3/envs/ppplv1.0-311/lib/python3.11/site-packages/pseudopeople/interface.py", line 408, in generate_american_community_survey
+    return _generate_dataset(DATASETS.acs, source, seed, config, user_filters, verbose)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ihme/homes/ndbs/miniconda3/envs/ppplv1.0-311/lib/python3.11/site-packages/pseudopeople/interface.py", line 88, in _generate_dataset
+    noised_data = noise_dataset(dataset, data, configuration_tree, data_path_seed)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ihme/homes/ndbs/miniconda3/envs/ppplv1.0-311/lib/python3.11/site-packages/pseudopeople/noise.py", line 94, in noise_dataset
+    dataset_data[column], index_noised = noise_type(
+                                         ^^^^^^^^^^^
+  File "/ihme/homes/ndbs/miniconda3/envs/ppplv1.0-311/lib/python3.11/site-packages/pseudopeople/entity_types.py", line 97, in __call__
+    ] * self.noise_level_scaling_function(data, column_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ihme/homes/ndbs/miniconda3/envs/ppplv1.0-311/lib/python3.11/site-packages/pseudopeople/noise_scaling.py", line 30, in scale_nicknames
+    data[column_name].isin(nicknames.index).sum() / data[column_name].notna().sum()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+FloatingPointError: invalid value encountered in scalar divide
+2024-02-01 22:51:45,493 - __main__ - INFO - Code block 'generate_american_community_survey' took: 1.12702 m
+2024-02-01 22:51:45,494 - __main__ - INFO - <class 'FloatingPointError'> american_community_survey occupies 8.8e-05 MB in memory
+2024-02-01 22:51:45,495 - __main__ - INFO - Calling function generate_current_population_survey
+2024-02-01 22:55:40,594 - __main__ - INFO - Code block 'generate_current_population_survey' took: 3.91831 m
+2024-02-01 22:55:40,608 - __main__ - INFO - <class 'pandas.core.frame.DataFrame'> current_population_survey occupies 3.004004 MB in memory
+2024-02-01 22:55:40,609 - __main__ - INFO - Calling function generate_decennial_census
+2024-02-01 23:16:35,401 - __main__ - INFO - Code block 'generate_decennial_census' took: 20.91317 m
+2024-02-01 23:16:37,390 - __main__ - INFO - <class 'pandas.core.frame.DataFrame'> decennial_census occupies 901.693087 MB in memory
+2024-02-01 23:16:37,391 - __main__ - INFO - Calling function generate_social_security

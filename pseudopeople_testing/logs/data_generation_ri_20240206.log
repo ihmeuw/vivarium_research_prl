@@ -1,0 +1,32 @@
+2024-02-06 19:20:13,716 - __main__ - INFO - Generating all Rhode Island datasets from directory /mnt/team/simulation_science/pub/models/vivarium_census_prl_synth_pop/results/release_02_yellow/full_data/united_states_of_america/2023_08_21_16_35_27/final_results/2023_08_31_15_58_01/states/pseudopeople_simulated_population_rhode_island_2_0_0
+2024-02-06 19:20:13,718 - __main__ - INFO - Function 'generate_datasets' called with args=('/mnt/team/simulation_science/pub/models/vivarium_census_prl_synth_pop/results/release_02_yellow/full_data/united_states_of_america/2023_08_21_16_35_27/final_results/2023_08_31_15_58_01/states/pseudopeople_simulated_population_rhode_island_2_0_0',), kwargs={}
+2024-02-06 19:20:13,720 - __main__ - DEBUG - skip_pattern=re.compile('(?!)')
+2024-02-06 19:20:13,722 - __main__ - INFO - Calling function generate_american_community_survey
+2024-02-06 19:21:53,012 - __main__ - INFO - Code block 'generate_american_community_survey' took: 1.65483 m
+2024-02-06 19:21:53,018 - __main__ - INFO - <class 'pandas.core.frame.DataFrame'> american_community_survey occupies 0.869158 MB in memory
+2024-02-06 19:21:53,020 - __main__ - INFO - Calling function generate_current_population_survey
+2024-02-06 19:26:16,155 - __main__ - INFO - Code block 'generate_current_population_survey' took: 4.38556 m
+2024-02-06 19:26:16,173 - __main__ - INFO - <class 'pandas.core.frame.DataFrame'> current_population_survey occupies 3.004004 MB in memory
+2024-02-06 19:26:16,173 - __main__ - INFO - Calling function generate_decennial_census
+2024-02-06 19:58:46,954 - __main__ - INFO - Code block 'generate_decennial_census' took: 32.51299 m
+2024-02-06 19:58:49,704 - __main__ - INFO - <class 'pandas.core.frame.DataFrame'> decennial_census occupies 901.693087 MB in memory
+2024-02-06 19:58:49,705 - __main__ - INFO - Calling function generate_social_security
+2024-02-06 22:00:21,759 - __main__ - INFO - Code block 'generate_social_security' took: 121.53420 m
+2024-02-06 22:09:50,581 - __main__ - INFO - <class 'pandas.core.frame.DataFrame'> social_security occupies 154706.680881 MB in memory
+2024-02-06 22:09:50,586 - __main__ - INFO - Calling function generate_taxes_1040
+2024-02-06 23:15:08,225 - __main__ - INFO - Code block 'generate_taxes_1040' took: 65.29394 m
+2024-02-06 23:15:11,770 - __main__ - INFO - <class 'pandas.core.frame.DataFrame'> taxes_1040 occupies 874.667846 MB in memory
+2024-02-06 23:15:11,770 - __main__ - INFO - Calling function generate_taxes_w2_and_1099
+2024-02-07 00:07:11,431 - __main__ - INFO - Code block 'generate_taxes_w2_and_1099' took: 51.99432 m
+2024-02-07 00:07:16,055 - __main__ - INFO - <class 'pandas.core.frame.DataFrame'> taxes_w2_and_1099 occupies 1271.190763 MB in memory
+2024-02-07 00:07:16,056 - __main__ - INFO - Calling function generate_women_infants_and_children
+2024-02-07 00:11:44,532 - __main__ - INFO - Code block 'generate_women_infants_and_children' took: 4.47460 m
+2024-02-07 00:11:44,571 - __main__ - INFO - <class 'pandas.core.frame.DataFrame'> women_infants_and_children occupies 10.120495 MB in memory
+2024-02-07 00:11:44,572 - __main__ - INFO - Calculating total memory usage...
+2024-02-07 00:21:23,663 - __main__ - INFO - All generated datasets occupy 157768.226234 MB in memory
+2024-02-07 00:21:23,667 - __main__ - INFO - Code block 'RI data generation' took: 301.16582 m
+2024-02-07 00:40:47,122 - __main__ - INFO - Altogether, RI datasets occupy 157768.226234 MB in memory
+2024-02-07 01:04:44,234 - __main__ - INFO - Code block 'RI datatype conversion' took: 23.84409 m
+2024-02-07 01:09:07,876 - __main__ - INFO - Converted to ints and categoricals, the RI datasets occupy 34851.847759000004 MB in memory
+2024-02-08 14:42:58,130 - __main__ - INFO - Code block 'RI datatype conversion' took: 23.16865 m
+2024-02-08 14:47:23,387 - __main__ - INFO - Converted to ints and categoricals, the RI datasets occupy 34851.847759000004 MB in memory

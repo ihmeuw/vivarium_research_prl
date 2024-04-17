@@ -1,0 +1,26 @@
+2024-02-06 18:17:26,819 - __main__ - INFO - Generating USA decennial census from directory /mnt/team/simulation_science/pub/models/vivarium_census_prl_synth_pop/results/release_02_yellow/full_data/united_states_of_america/2023_08_21_16_35_27/final_results/2023_08_31_15_58_01/pseudopeople_simulated_population_usa_2_0_0
+2024-02-06 18:17:26,821 - __main__ - INFO - Calling function generate_decennial_census
+2024-02-06 21:38:19,392 - __main__ - INFO - Code block 'USA decennial census generation' took: 3.34794 h
+2024-02-06 21:54:30,228 - __main__ - INFO - <class 'pandas.core.frame.DataFrame'> census occupies 277575.444814 MB in memory
+2024-02-06 21:54:30,857 - __main__ - INFO - DataFrame info: None
+2024-02-06 22:10:42,944 - __main__ - INFO - Detailed DataFrame memory usage: Index                                       132
+simulant_id                         22431980013
+household_id                        22308622678
+first_name                          20707715312
+middle_initial                      19101141995
+last_name                           20925307730
+age                                 19390311234
+date_of_birth                       22048792559
+street_number                       19551188244
+street_name                         22753729177
+unit_number                         11209476244
+city                                21724459018
+state                                 330816655
+zipcode                             20411153783
+housing_type                        21779096905
+relationship_to_reference_person      330813526
+sex                                   330811774
+race_ethnicity                        330812291
+year                                11909215512
+dtype: int64
+2024-02-07 00:13:59,890 - __main__ - INFO - Converting to ints and categoricals...

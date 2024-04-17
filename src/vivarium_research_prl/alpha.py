@@ -1,30 +1,40 @@
 """Module with utility functions for alpha testing the Pseudopeople package.
 """
+import logging
 import numpy as np
 import pseudopeople as psp
-import logging
+import re
 from linetimer import CodeTimer
-from .utils import MappingViaAttributes
+from .utils import MappingViaAttributes, sizemb
 from pseudopeople.exceptions import ConfigurationError, DataSourceError
 
-# Create a logger for this module, set by default to propagate to higher-level loggers
-logger = logging.getLogger(__name__)
+# Create a logger for this module, set by default to propagate to
+# higher-level loggers. In particular, the logging level is set to
+# logging.NOTSET, which "indicates that ancestor loggers are to be
+# consulted to determine the effective level. If that still resolves
+# to NOTSET, then all events are logged," according to:
+# https://docs.python.org/3/library/logging.html#levels
+alpha_logger = logging.getLogger(__name__)
 
-# # Define a console handler with a specified format
-# console_handler = logging.StreamHandler()
-# console_format = logging.Formatter('{asctime} - {name} - {levelname} - {message}', style='{')
-# console_handler.setFormatter(console_format)
-
-# # Add handlers to the logger
-# logger.addHandler(console_handler)
-
-def generate_datasets(*args, **kwargs) -> MappingViaAttributes:
+def generate_datasets(*args, skip=None, logger=alpha_logger, **kwargs) -> MappingViaAttributes:
     """Generate all pseudopeople datasets and return them in a MappingViaAttributes
     mapping, which is a light wrapper for a dictionary enabling easy tab completion
     of dict keys. The keys will be the strings that appear after 'generate_' in the
     function names, and the values will be the datasets. `args` and `kwargs` are
     passed to each of the dataset generation functions.
     """
+    logger.info(f"Function 'generate_datasets' called with {args=}, {kwargs=}")
+    if skip is None:
+        # Create a regex pattern that matches nothing
+        # (negative lookahead of 0-length string):
+        # https://stackoverflow.com/questions/940822/regular-expression-syntax-for-match-nothing
+        # https://stackoverflow.com/a/942122
+        skip = ["(?!)"]
+    elif isinstance(skip, str):
+        skip = [skip]
+
+    skip_pattern = re.compile("|".join(skip))
+    logger.debug(f"{skip_pattern=}")
     code_timer_silent = kwargs.pop('code_timer_silent', False)
     code_timer_unit = kwargs.pop('code_timer_unit', 'm')
     code_timer_logger_func = kwargs.pop('code_timer_logger_func', logger.info)
@@ -38,12 +48,27 @@ def generate_datasets(*args, **kwargs) -> MappingViaAttributes:
         ):
             try:
                 return f(*args, **kwargs)
-            except (ConfigurationError, DataSourceError, Exception) as e:
-                logger.exception('Exception occurred')
+            except Exception as e:
+                logger.exception(f'Exception occurred: {e}')
                 return e
 
-    generation_fns = (getattr(psp, name) for name in dir(psp) if 'generate' in name)
-    data = {f.__name__.replace('generate_', ''): value_or_error(f) for f in generation_fns}
+    generation_fns = (
+        getattr(psp, name) for name in dir(psp) if 'generate' in name)
+    data = {}
+    for f in generation_fns:
+        if skip_pattern.search(f.__name__):
+            logger.info(f"Skipping function {f.__name__}")
+            continue
+        logger.info(f"Calling function {f.__name__}")
+        dataset = value_or_error(f) # f is passed args and kwargs
+        dataset_type = type(dataset) # DataFrame or Exception
+        dataset_name = f.__name__.replace('generate_', '')
+        logger.info(
+            f"{dataset_type} {dataset_name} occupies {sizemb(dataset)} MB in memory")
+        data[dataset_name] = dataset
+    logger.info("Calculating total memory usage...")
+    logger.info(
+        f"All generated datasets occupy {sum(sizemb(df) for df in data.values())} MB in memory")
     return MappingViaAttributes(data)
 
 def percent_missing(df):
@@ -62,9 +87,9 @@ def compare_columns(df1, df2, colname, notna=False):
     else:
         return df1[colname].compare(df2[colname])
 
-def index_is_consecutive(df):
-    index = df.index
-    return (index == np.arange(len(index))).all()
+def index_is_consecutive(df, start_at_zero=False):
+    first = 0 if start_at_zero else df.index[0]
+    return (df.index == np.arange(first, first+len(df.index))).all()
 
 def get_zero_noise_config(row_or_col='both'):
     if row_or_col not in ['row', 'column', 'both']:

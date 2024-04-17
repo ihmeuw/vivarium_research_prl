@@ -6,13 +6,13 @@ the output of the Vivarium PRL simulation in pandas.
 import pandas as pd
 
 ID_PAD_WIDTH = 9 # Width to which to pad the 2nd component of an id when converting to int
-STR_ID_COLUMNS = [
+STR_ID_COLUMNS = (
     'simulant_id', 'household_id', 'guardian_1', 'guardian_2',
     # The rest of these should be gone from post-processed data in final version:
     'first_name_id', 'middle_name_id', 'last_name_id',
     'address_id', 'household_id', 'guardian_id',
-]
-SSN_COLUMNS = ['ssn', 'itin']
+)
+SSN_COLUMNS = ('ssn', 'itin')
 
 def id_str_to_int(id_col_str):
     """Convert a column of string IDs to integer IDs"""
@@ -174,6 +174,7 @@ def convert_string_ids_to_ints(df, string_id_cols=None, include_ssn=None):
     string_id_cols, by default the 'ssn' and 'itin' columns will *not* be included
     unless the list includes 'ssn' or 'itin'. This can be overridden by passing
     include_ssn=True.
+    Modifies df in place.
     """
     if string_id_cols is None:
         string_id_cols = STR_ID_COLUMNS
@@ -181,6 +182,11 @@ def convert_string_ids_to_ints(df, string_id_cols=None, include_ssn=None):
             include_ssn = True # If no columns were passed, include SSN by default
     elif include_ssn is None:
         include_ssn = False # If columns were passed explicitly, don't include SSN by default
+
+    # FIXME: I think this fails in the case that string_id_cols contains
+    # 'ssn' and/or 'itin'. Regardless of the value of include_ssn, the
+    # first for loop will incorrectly apply id_str_to_int to these
+    # columns before the 2nd for loop tries to apply ssn_to_int.
     for col in string_id_cols:
         if col in df and df[col].dtype == 'object': # Could modify to check for type str instead
             df[col] = id_str_to_int(df[col])
@@ -188,6 +194,56 @@ def convert_string_ids_to_ints(df, string_id_cols=None, include_ssn=None):
         for col in SSN_COLUMNS:
             if col in df and df[col].dtype == 'object':
                 df[col] = ssn_to_int(df[col])
+
+def string_ids_to_ints(df, string_id_cols=None, include_ssn=None, concat=True):
+    """Convert string id columns to ints. Convert all string ID columns
+    if cols_to_convert=None, or convert the explicit columns passed if
+    cols_to_convert is list-like. The 'ssn' and 'itin' columns are included by default
+    when cols_to_convert=None, but this can be overridden by passing
+    include_ssn=False. If a list of columns is passed explicitly to
+    cols_to_convert, by default the 'ssn' and 'itin' columns will *not* be included
+    unless the list includes 'ssn' or 'itin'. This can be overridden by passing
+    include_ssn=True (if string_id_cols contains these columns) or
+    include_ssn=False (if string_id_cols does not contain these
+    columns).
+    Returns a new dataframe if `concat` is True, or a list of new
+    columns if `concat` is False.
+    """
+    if string_id_cols is None:
+        string_id_cols = STR_ID_COLUMNS
+        if include_ssn is None:
+            # If no columns were passed, include SSN by default
+            include_ssn = True
+    # elif include_ssn is None:
+    #     # If columns were passed, don't include SSN by default
+    #     include_ssn = False
+
+    if include_ssn == True:
+        # If necessary, add SSN columns to the list of cols to convert
+        string_id_cols = set(string_id_cols).union(SSN_COLUMNS)
+    elif include_ssn == False:
+        # Remove SSN columns if they were passed but include_ssn was False
+        string_id_cols = set(string_id_cols).difference(SSN_COLUMNS)
+    elif include_ssn is not None:
+        raise ValueError("include_ssn must be True, False, or None")
+    # else:
+    #     # include_ssn=None, and string_id_cols was passed,
+    #     # so use whatever columns were passed
+    #     pass
+
+    def get_column(colname):
+        if (colname in string_id_cols
+                and pd.api.types.is_string_dtype(df[colname])):
+            if colname in SSN_COLUMNS:
+                return ssn_to_int(df[colname])
+            else:
+                return id_str_to_int(df[colname])
+        else:
+            return df[colname]
+
+    columns = [get_column(colname) for colname in df.columns]
+    result = pd.concat(columns, axis=1) if concat else columns
+    return result
 
 def load_csv_data(filepath, use_categorical='maximal', convert_str_ids=False, **kwargs):
     """Loads a csv with dtypes specified according to the dictionary returned by
@@ -230,3 +286,28 @@ def convert_to_int_and_categorical(df):
     for col, dtype in df.dtypes.items():
         if dtype == 'object':
             df[col] = df[col].astype('category')
+
+def to_int_and_categorical(df, exclude=(), concat=True):
+    """Converts STR_ID_COLUMNS in df to ints using convert_string_ids_to_ints,
+    and converts all other 'object' columns to type 'category'.
+    Returns a new dataframe if `concat` is True, or a list of new
+    columns if `concat` is False.
+    """
+    if isinstance(exclude, str):
+        exclude = (exclude,)
+
+    # Convert all string id and ssn columns, unless they were excluded
+    string_id_cols = (set(STR_ID_COLUMNS + SSN_COLUMNS)
+                      .difference(exclude))
+    columns = string_ids_to_ints(df, string_id_cols, concat=False)
+
+    def convert_if_necessary(column):
+        if (column.name not in exclude
+                and pd.api.types.is_object_dtype(column)):
+            return column.astype('category')
+        else:
+            return column
+
+    columns = [convert_if_necessary(column) for column in columns]
+    result = pd.concat(columns, axis=1) if concat else columns
+    return result
