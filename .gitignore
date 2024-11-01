@@ -1,6 +1,9 @@
 # Data
 data/
-*.parquet
+
+# Images
+*.sif
+*.tar.gz
 
 # Splink charts
 splink_temp/
